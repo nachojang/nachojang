@@ -34,7 +34,7 @@
                 <!-- 세 번째 항목 -->
                 <div class="col-4">
                     <strong>주소</strong><br>
-                    서울 구로구 KM 타워
+                    서울시 구로구 KM 타워
                 </div>
             </div>
         </div>
