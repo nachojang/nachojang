@@ -14,6 +14,16 @@
 
 </head>
 <body>
-
+	
+	<div>
+	
+	</div>
+	
+	 <!-- 고정 푸터 -->
+ 	<footer class="text-center py-3 mt-auto bg-dark text-white">
+    	<!-- 회사정보 -->
+    	<c:import url="/WEB-INF/view/company.jsp"></c:import>
+ 	</footer>
+	
 </body>
 </html>

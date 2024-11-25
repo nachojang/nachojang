@@ -1,3 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.nachojang.mapper.GoodsMapper"></mapper>
+<mapper namespace="com.example.nachojang.mapper.GoodsMapper">
+
+	<!-- 상품 추가 : staff/on/addGoods -->
+	<insert id="addGoods"
+			parameterType="com.example.nachojang.vo.Goods">
+		INSERT INTO goods (
+			goods_title goodsTitle
+			, goods_memo goodsMemo
+			, goods_price goodsPrice
+			, goods_state goodsState
+		) VALUES (
+			#{goodsTitle}, #{goodsMemo}, #{goodsPrice}, #{goodsState}
+		)
+	</insert>
+</mapper>
