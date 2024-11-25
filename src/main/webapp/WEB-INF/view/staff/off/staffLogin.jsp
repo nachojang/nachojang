@@ -19,12 +19,12 @@
 <body class="d-flex flex-column min-vh-100"> <!-- d-flex와 flex-column을 사용하여 flex 레이아웃을 설정 -->
 
   <!-- 메인 영역 -->
-
+	
 
   <!-- 고정 푸터 -->
   <footer class="text-center py-3 mt-auto bg-dark text-white">
     <!-- 회사정보 -->
-    <c:import url="/WEB-INF/view/staff/on/inc/company.jsp"></c:import>
+    <c:import url="/WEB-INF/view/company.jsp"></c:import>
   </footer>
 
 </body>
