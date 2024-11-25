@@ -1,13 +1,68 @@
 package com.example.nachojang.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.nachojang.service.StaffService;
+import com.example.nachojang.vo.Staff;
+
+import jakarta.servlet.http.HttpSession;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class StaffController {
+    @Autowired 
+    private StaffService staffService;
 
-	@GetMapping("/staff/off/staffLogin")
-	public String getMethodName() {
-		return "staff/off/staffLogin";
-	}
+    // 로그인 폼 (GET 요청)
+    @GetMapping("/staff/off/staffLogin")
+    public String login() {
+        log.debug("로그인 페이지 요청");
+        return "staff/off/staffLogin";
+    }
+
+    // 로그인 처리 (POST 요청)
+    @PostMapping("/staff/off/staffLogin")
+    public String login(
+        Model model, 
+        HttpSession session,
+        @RequestParam(name = "staffId") String staffId,
+        @RequestParam(name = "staffPw") String staffPw
+    ) {
+        log.debug("로그인 시도: staffId={}", staffId);
+
+        // 입력값을 Staff 객체로 매핑
+        Staff paramStaff = new Staff();
+        paramStaff.setStaffId(staffId);
+        paramStaff.setStaffPw(staffPw);
+
+        // 서비스 호출
+        Staff loginS = staffService.login(paramStaff);
+
+        // 로그인 실패 처리
+        if (loginS == null) {
+            log.debug("로그인 실패: 잘못된 ID 또는 비밀번호");
+            model.addAttribute("msg", "잘못된 ID 또는 비밀번호입니다.");
+            return "staff/off/staffLogin";
+        }
+
+        // 로그인 성공 시 세션에 저장 (속성명: loginS)
+        session.setAttribute("loginS", loginS);
+        log.debug("로그인 성공: staffId={}, 세션 loginS 속성 추가", loginS.getStaffId());
+
+        return "redirect:/on/main";
+    }
+
+    // 로그아웃 처리 (GET 요청)
+    @GetMapping("/staff/on/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // 세션 무효화
+        log.debug("로그아웃 성공, 세션 제거 완료");
+        return "redirect:/staff/off/staffLogin"; // 로그인 페이지로 리다이렉트
+    }
 }
