@@ -1,21 +1,28 @@
 package com.example.nachojang.service;
 
+<<<<<<< HEAD
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+=======
+>>>>>>> branch 'master' of https://github.com/nachojang/nachojang.git
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+<<<<<<< HEAD
 import com.example.nachojang.mapper.GoodsMapper;
 import com.example.nachojang.vo.Goods;
 import com.example.nachojang.vo.GoodsFile;
 import com.example.nachojang.vo.GoodsForm;
 
+=======
+>>>>>>> branch 'master' of https://github.com/nachojang/nachojang.git
 @Service
 @Transactional
 public class GoodsService {
+<<<<<<< HEAD
 	@Autowired GoodsMapper goodsMapper;
 	
 	// 상품 추가 : staff/on/addGoods
@@ -53,4 +60,7 @@ public class GoodsService {
 		
 	}
 	
+=======
+
+>>>>>>> branch 'master' of https://github.com/nachojang/nachojang.git
 }

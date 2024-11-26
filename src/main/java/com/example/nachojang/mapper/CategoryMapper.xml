@@ -1,4 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.nachojang.mapper.CategoryMapper">
+	
+	<insert id="insertCategory" parameterType="com.example.nachojang.vo.Category">
+		INSERT INTO category(
+				category_no, category_title
+		) VALUES (
+				#{categoryNo}, #{categoryTitle}
+		)
+	</insert>
+	
+	<delete id="deleteCategory" parameterType="com.example.nachojang.vo.Category">
+		DELETE FROM category
+		WHERE category_no = #{categoryNo}		
+	</delete>
+	
+	<select id="selectCategoryList" parameterType="Integer">
+		SELECT category_no categoryNo
+	 		, category_title categoryTitle
+		FROM category
+	</select>
 </mapper>
