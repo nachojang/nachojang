@@ -8,5 +8,5 @@ import com.example.nachojang.vo.Goods;
 public interface GoodsMapper {
 
 	// 상품 추가 : staff/on/addGoods
-	int addGoods(Goods goods);
+	int insertGoods(Goods goods);
 }

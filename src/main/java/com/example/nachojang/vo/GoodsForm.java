@@ -1,5 +1,9 @@
 package com.example.nachojang.vo;
 
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Data;
 
 @Data
@@ -11,4 +15,6 @@ public class GoodsForm {
 	private String goodsState;
 	private String updateDate;
 	private String createDate;
+	private List<Category> category;
+	private List<MultipartFile> goodsFile;
 }
