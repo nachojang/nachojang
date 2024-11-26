@@ -1,32 +1,26 @@
 package com.example.nachojang.service;
 
-<<<<<<< HEAD
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
-=======
->>>>>>> branch 'master' of https://github.com/nachojang/nachojang.git
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-<<<<<<< HEAD
 import com.example.nachojang.mapper.GoodsMapper;
 import com.example.nachojang.vo.Goods;
 import com.example.nachojang.vo.GoodsFile;
 import com.example.nachojang.vo.GoodsForm;
 
-=======
->>>>>>> branch 'master' of https://github.com/nachojang/nachojang.git
 @Service
 @Transactional
 public class GoodsService {
-<<<<<<< HEAD
 	@Autowired GoodsMapper goodsMapper;
 	
 	// 상품 추가 : staff/on/addGoods
 	public void addGoods(GoodsForm goodsForm, String path) {
+		/*
 		// 상품 기본 항목 (상품명, 상품설명, 상품금액, 상품재고)
 		Goods goods = new Goods();
 		goods.setGoodsTitle(goodsForm.getGoodsTitle());
@@ -34,6 +28,7 @@ public class GoodsService {
 		goods.setGoodsPrice(goodsForm.getGoodsPrice());
 		goods.setGoodsState(goodsForm.getGoodsState());
 		
+	
 		// 상품_no = ?
 		int row = goodsMapper.insertGoods(goods);
 		// 키값
@@ -57,10 +52,7 @@ public class GoodsService {
 				goodsFile.setGoodsFileExt(ext);
 			}
 		}
-		
+		*/
 	}
 	
-=======
-
->>>>>>> branch 'master' of https://github.com/nachojang/nachojang.git
 }
