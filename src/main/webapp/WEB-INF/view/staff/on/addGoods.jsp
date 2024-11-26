@@ -48,6 +48,15 @@
 						</td>
 					</tr>
 					<tr>
+						<td>File</td>
+						<td>
+							<div id="file">
+								<button type="button" id="btnAddFile">파일추가</button>
+								<button type="button" id="btnRemoveFile">파일삭제</button>
+							</div>
+						</td>
+					</tr>
+					<tr>
 						<td>상품설명</td>
 						<td>
 							<textarea rows="3" cols="50" id="goodsMemo" name="goodsMemo"></textarea>
@@ -56,10 +65,12 @@
 					<tr>
 						<td>상품재고</td>
 						<td>
-							<input type="" id="" name="">
+							<input type="radio" class="goodsState" name="goodsState" value="재고 있음">재고 있음<br>
+							<input type="radio" class="goodsState" name="goodsState" value="재고 없음">재고 없음<br>
 						</td>
 					</tr>
 				</table>
+				<button type="button" id="btnAddGoods">상품 추가</button>
 			</form>
 		</div>
 	</div>
@@ -70,4 +81,48 @@
  	</footer>
 	
 </body>
+
+<script>
+	// 상품 추가 폼 공백 유효성 검사
+	$('#btnAddGoods').click(function() {
+		if($('#goodsTitle').val() == '') {
+			alert('상품명을 입력하세요');
+		} else if($('#category').val() == '') {
+			alert('카테고리를 선택하세요');
+		} else if($('#goodsPrice').val() == '') {
+			alert('상품금액을 입력하세요');
+		} else if($('#goodsMemo').val() == '') {
+			alert('상품설명을 입력하세요');
+		} else if($('.goodsFile').length > 0 && $('.goodsFile').last().val() == ''){
+			alert('첨부되지 않은 파일이 있습니다');	
+		} else if($('.goodsState:checked').length == 0) {
+			alert('재고상태를 선택하세요');
+		} else {
+			$('#formAddGoods').submit();
+		}
+	});
+	
+	// 파일 추가
+	$('#btnAddFile').click(function() {
+		if($('.goodsFile').last().val() == '') { // 마지막 input=file 값이 공백이라면
+			alert('첨부하지 않은 파일이 이미 존재합니다');
+		} else {
+			let html = '<input type="file" name="goodsFile" class="goodsFile">'; 
+			$('#fileDiv').append(html);
+		}
+	});
+	
+	// 파일 삭제
+	$('#btnRemoveFile').click(function() {
+		// 마지막으로 추가된 <input type="file" name="goodsFile" class="goodsFile"> 태그 제거
+		// console.log($('.goodsFile').length);
+		if($('.goodsFile').length == 0) { // class="actorFile"이 없다
+			alert('삭제할 파일이 존재하지 않습니다');	
+		} else {
+			$('.actorFile').last().remove(); // 마지막 파일선택 삭제
+		}
+	});
+	
+</script>
+
 </html>
