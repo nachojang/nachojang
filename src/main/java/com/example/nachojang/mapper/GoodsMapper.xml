@@ -3,7 +3,7 @@
 <mapper namespace="com.example.nachojang.mapper.GoodsMapper">
 
 	<!-- 상품 추가 : staff/on/addGoods -->
-	<insert id="addGoods"
+	<insert id="insertGoods"
 			parameterType="com.example.nachojang.vo.Goods">
 		INSERT INTO goods (
 			goods_title goodsTitle
