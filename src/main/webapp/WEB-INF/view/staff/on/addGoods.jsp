@@ -14,7 +14,6 @@
 
 </head>
 <body>
-<<<<<<< HEAD
 	<div class="row">
 		<!-- 관리 사이드바 고정 -->
 		<div class="col-sm-2 mt-5">
@@ -74,19 +73,11 @@
 				<button type="button" id="btnAddGoods">상품 추가</button>
 			</form>
 		</div>
-=======
 	
-	<div>
 	
->>>>>>> branch 'master' of https://github.com/nachojang/nachojang.git
-	</div>
-	
-	 <!-- 고정 푸터 -->
- 	<footer class="text-center py-3 mt-auto bg-dark text-white">
-    	<!-- 회사정보 -->
-    	<c:import url="/WEB-INF/view/company.jsp"></c:import>
- 	</footer>
-	
+    <!-- 고정 회사정보 -->
+    <c:import url="/WEB-INF/view/company.jsp"></c:import>
+ 
 </body>
 
 <script>
