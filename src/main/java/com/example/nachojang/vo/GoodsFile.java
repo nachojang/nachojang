@@ -7,7 +7,7 @@ public class GoodsFile {
 	private Integer goodsFileNo;
 	private Integer goodsNo;
 	private String goodsFileName;
-	private String goodsFileOriginName;
+	private String goodsFileOrigin;
 	private String goodsFileExt;
 	private String goodsFileType;
 	private Long goodsFileSize;

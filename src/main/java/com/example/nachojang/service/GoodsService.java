@@ -1,5 +1,6 @@
 package com.example.nachojang.service;
 
+import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.nachojang.mapper.GoodsFileMapper;
 import com.example.nachojang.mapper.GoodsMapper;
 import com.example.nachojang.vo.Goods;
 import com.example.nachojang.vo.GoodsFile;
@@ -17,6 +19,7 @@ import com.example.nachojang.vo.GoodsForm;
 @Transactional
 public class GoodsService {
 	@Autowired GoodsMapper goodsMapper;
+	@Autowired GoodsFileMapper goodsFileMapper;
 	
 	// 상품 추가 : staff/on/addGoods
 	public void addGoods(GoodsForm goodsForm, String path) {
@@ -29,11 +32,11 @@ public class GoodsService {
 		goods.setGoodsState(goodsForm.getGoodsState());
 	
 		// 상품_no = ?
-		int row = goodsMapper.insertGoods(goods);
+		int goodsRow = goodsMapper.insertGoods(goods);
 		// 키값
 		int goodsNo = goods.getGoodsNo();
 		
-		if(row == 1 && goodsForm.getGoodsFile() != null) {
+		if(goodsRow == 1 && goodsForm.getGoodsFile() != null) {
 			// 파일 입력
 			List<MultipartFile> list = goodsForm.getGoodsFile();
 			for(MultipartFile mf : list) {
@@ -47,11 +50,23 @@ public class GoodsService {
 				int dotIdx = mf.getOriginalFilename().lastIndexOf("."); // (해당하는 점을 찾아내서
 				String originname = mf.getOriginalFilename().substring(0, dotIdx);
 				String ext = mf.getOriginalFilename().substring(dotIdx + 1);
-				goodsFile.setGoodsFileOriginName(originname);
+				goodsFile.setGoodsFileOrigin(originname);
 				goodsFile.setGoodsFileExt(ext);
+				
+				int goodsFileRow = goodsFileMapper.insertGoodsFile(goodsFile);
+				if(goodsFileRow == 1) {
+					// 물리적 파일 저장
+					try {
+						mf.transferTo(new File(path + filename + "." + ext));
+					} catch (Exception e) {
+						e.printStackTrace();
+						// 예외 발생하고 예외처리 하지 않아야지 @Transactional 작동한다
+						// so... RuntimeException을 인위적으로 발생
+						// -> try에서 작동하는 예외 말고 다른 예외를 인위적으로 발생시켜서 알림
+						throw new RuntimeException(); 
+					}
+				}
 			}
 		}
-		
 	}
-	
 }
