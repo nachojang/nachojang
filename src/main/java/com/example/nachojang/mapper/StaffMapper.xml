@@ -6,11 +6,14 @@
         SELECT 
             staff_no AS staffNo,
             staff_id AS staffId,
+            staff_pw AS staffPw,
             update_date AS updateDate,
             create_date AS createDate
-        FROM staff
-        WHERE active = 1 
-          AND staff_id = #{staffId} 
-          AND staff_pw = #{staffPw}
+        FROM 
+            staff
+        WHERE 
+            staff_id = #{staffId} 
+            AND staff_pw = #{staffPw}
     </select>
+
 </mapper>

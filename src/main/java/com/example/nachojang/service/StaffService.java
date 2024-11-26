@@ -12,7 +12,7 @@ public class StaffService {
     private StaffMapper staffMapper;
 
     // 로그인 서비스
-    public Staff login(Staff staff) {
+    public Staff loginS(Staff staff) {
         return staffMapper.login(staff);
     }
 }

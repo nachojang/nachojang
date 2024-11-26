@@ -25,6 +25,12 @@ public class StaffController {
         log.debug("로그인 페이지 요청");
         return "staff/off/staffLogin";
     }
+    
+    @GetMapping("/staff/on/main")
+    public String main() {
+        return "staff/on/main"; 
+    }
+
 
     // 로그인 처리 (POST 요청)
     @PostMapping("/staff/off/staffLogin")
@@ -42,7 +48,7 @@ public class StaffController {
         paramStaff.setStaffPw(staffPw);
 
         // 서비스 호출
-        Staff loginS = staffService.login(paramStaff);
+        Staff loginS = staffService.loginS(paramStaff);
 
         // 로그인 실패 처리
         if (loginS == null) {
@@ -55,14 +61,6 @@ public class StaffController {
         session.setAttribute("loginS", loginS);
         log.debug("로그인 성공: staffId={}, 세션 loginS 속성 추가", loginS.getStaffId());
 
-        return "redirect:/on/main";
-    }
-
-    // 로그아웃 처리 (GET 요청)
-    @GetMapping("/staff/on/logout")
-    public String logout(HttpSession session) {
-        session.invalidate(); // 세션 무효화
-        log.debug("로그아웃 성공, 세션 제거 완료");
-        return "redirect:/staff/off/staffLogin"; // 로그인 페이지로 리다이렉트
+        return "redirect:/staff/on/main";
     }
 }
