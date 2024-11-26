@@ -11,9 +11,26 @@
 
 <meta charset="UTF-8">
 <title>상품 리스트</title>
+<style>
+        table {
+            margin-top: 20px;
+        }
+        .pagination {
+            justify-content: center;
+        }
+    </style>
 
 </head>
 <body>
-
+<div class="row">
+        <div class="col-sm-2 bg-light">
+            <!-- leftMenu.jsp include -->
+            <c:import url="/WEB-INF/view/staff/on/inc/staffMenu.jsp"></c:import>
+        </div>
+        </div>
+	 <!-- 푸터 -->
+    <footer class="text-center py-3 bg-dark text-white">
+        <c:import url="/WEB-INF/view/company.jsp"></c:import>
+    </footer>
 </body>
 </html>

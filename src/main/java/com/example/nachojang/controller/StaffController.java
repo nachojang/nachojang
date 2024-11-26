@@ -30,8 +30,6 @@ public class StaffController {
     public String main() {
         return "staff/on/main"; 
     }
-
-
     // 로그인 처리 (POST 요청)
     @PostMapping("/staff/off/staffLogin")
     public String login(
@@ -48,18 +46,18 @@ public class StaffController {
         paramStaff.setStaffPw(staffPw);
 
         // 서비스 호출
-        Staff loginS = staffService.loginS(paramStaff);
+        Staff loginStaff = staffService.loginS(paramStaff);
 
         // 로그인 실패 처리
-        if (loginS == null) {
+        if (loginStaff == null) {
             log.debug("로그인 실패: 잘못된 ID 또는 비밀번호");
             model.addAttribute("msg", "잘못된 ID 또는 비밀번호입니다.");
             return "staff/off/staffLogin";
         }
 
         // 로그인 성공 시 세션에 저장 (속성명: loginS)
-        session.setAttribute("loginS", loginS);
-        log.debug("로그인 성공: staffId={}, 세션 loginS 속성 추가", loginS.getStaffId());
+        session.setAttribute("loginStaff", loginStaff);
+        log.debug("로그인 성공: staffId={}, 세션 loginS 속성 추가", loginStaff.getStaffId());
 
         return "redirect:/staff/on/main";
     }
