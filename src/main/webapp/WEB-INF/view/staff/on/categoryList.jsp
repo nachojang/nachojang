@@ -15,5 +15,48 @@
 </head>
 <body>
 
+	<!-- 고정 헤더 -->	
+	<div>
+		<c:import url="/WEB-INF/view/staff/on/inc/staffMenu.jsp"></c:import>
+	</div>
+	
+	<!-- main -->
+	<div class="col-sm-10">
+		<!-- main content -->
+		<h1>카테고리 관리</h1>
+		<table class="table">
+			<tr>
+				<td>카테고리 번호</td>
+				<td>카테고리명</td>
+				<td>삭제</td>
+			</tr>
+			<c:forEach var="c" items="${categoryList}">
+				<tr>
+					<td>${c.categoryNo}</td>
+					<td>${c.categoryTitle}</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/staff/on/deleteCategory?categoryNo=${c.categoryNo}" class="btn btn-custom">
+							삭제
+						</a>
+					</td>
+				</tr>
+			</c:forEach>
+		</table>
+		
+		<div>
+			<a href="${pageContext.request.contextPath}/staff/on/addCategory">
+				카테고리 추가
+			</a>
+		</div>
+	</div>
+	
+	<!-- 고정 푸터 -->
+    <div>
+    	<footer class="text-center py-3 mt-auto bg-dark text-white">
+    		<!-- 회사정보 -->
+    		<c:import url="/WEB-INF/view/company.jsp"></c:import>
+	    </footer>
+    </div>
+	
 </body>
 </html>

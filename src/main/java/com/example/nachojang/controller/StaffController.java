@@ -46,7 +46,7 @@ public class StaffController {
         paramStaff.setStaffPw(staffPw);
 
         // 서비스 호출
-        Staff loginStaff = staffService.loginS(paramStaff);
+        Staff loginStaff = staffService.login(paramStaff);
 
         // 로그인 실패 처리
         if (loginStaff == null) {
