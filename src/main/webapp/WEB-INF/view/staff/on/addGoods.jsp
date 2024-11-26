@@ -14,14 +14,27 @@
 
 </head>
 <body>
+	<!-- 사이드바 고정 -->
+	<c:import url="/WEB-INF/view/staff/on/inc/staffMenu.jsp"></c:import>
 	
-	<div>
+	<form id="formAddGoods" method="post" action="${pageContext.request.contextPath}/staff/on/goodsList">
+		<table class="table table-bordered" style="width : 80%">
+			<tr>
+				<td>카테고리</td>
+				<td>
+					<select>
+						<option value="">::: 선택 :::</option>
+						<option value="상의">상의</option>
+						<option value="하의">하의</option>
+						<option value="겉옷">겉옷</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+	</form>
 	
-	</div>
-	
-	 <!-- 고정 푸터 -->
- 	<footer class="text-center py-3 mt-auto bg-dark text-white">
-    	<!-- 회사정보 -->
+	 <!-- 회사정보 고정 -->
+ 	<footer>
     	<c:import url="/WEB-INF/view/company.jsp"></c:import>
  	</footer>
 	
