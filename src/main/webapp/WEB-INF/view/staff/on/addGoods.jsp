@@ -36,7 +36,7 @@
 							<select id="category" name="category">
 								<option value="">::: 카테고리 선택 :::</option>
 								<c:forEach var="c" items="${categoryList}">
-									<option value="${c.categoryId}">${c.name}</option>
+									<option value="${c.categoryNo}">${c.categoryTitle}</option>
 								</c:forEach>
 							</select>
 						</td>
@@ -50,7 +50,8 @@
 					<tr>
 						<td>File</td>
 						<td>
-							<div id="file">
+							${msg}
+							<div id="fileDiv">
 								<button type="button" id="btnAddFile">파일추가</button>
 								<button type="button" id="btnRemoveFile">파일삭제</button>
 							</div>
@@ -117,7 +118,7 @@
 		if($('.goodsFile').length == 0) { // class="actorFile"이 없다
 			alert('삭제할 파일이 존재하지 않습니다');	
 		} else {
-			$('.actorFile').last().remove(); // 마지막 파일선택 삭제
+			$('.goodsFile').last().remove(); // 마지막 파일선택 삭제
 		}
 	});
 	

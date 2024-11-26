@@ -5,6 +5,9 @@
 	<!-- 상품 추가 : staff/on/addGoods -->
 	<insert id="insertGoods"
 			parameterType="com.example.nachojang.vo.Goods">
+		<selectKey resultType="int" keyProperty="goodsNo" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
 		INSERT INTO goods (
 			goods_title goodsTitle
 			, goods_memo goodsMemo
