@@ -17,26 +17,38 @@
 <body class="d-flex flex-column min-vh-100">
 
   <!-- 로그인 폼 -->
-  <div class="login-container text-center mt-5">
-    <!-- 실패 메시지 표시 -->
-    <c:if test="${not empty msg}">
-      <div class="alert alert-danger text-center">
-        ${msg}
-      </div>
-    </c:if>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <!-- 로그인 폼 -->
+        <div class="card">
+          <div class="card-header text-center">
+            <h3>Staff Login</h3>
+          </div>
+          <div class="card-body">
+            <!-- 로그인 실패 메시지 -->
+            <c:if test="${not empty msg}">
+              <div class="alert alert-danger text-center">
+                ${msg}
+              </div>
+            </c:if>
 
-    <h1>Staff Login</h1>
-    <form id="form" action="${pageContext.request.contextPath}/staff/off/staffLogin" method="post" class="mt-4">
-      <div class="mb-3">
-        <label for="loginS" class="form-label">Staff ID</label>
-        <input id="loginS" name="loginS" type="text" class="form-control text-center" required>
+            <!-- 로그인 폼 -->
+            <form id="loginForm" action="${pageContext.request.contextPath}/staff/off/staffLogin" method="post">
+              <div class="mb-3">
+                <label for="staffId" class="form-label">Staff ID</label>
+                <input type="text" class="form-control" id="staffId" name="staffId" required>
+              </div>
+              <div class="mb-3">
+                <label for="staffPw" class="form-label">Password</label>
+                <input type="password" class="form-control" id="staffPw" name="staffPw" required>
+              </div>
+              <button type="button" id="loginButton" class="btn btn-primary w-100">Login</button>
+            </form>
+          </div>
+        </div>
       </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input id="password" name="password" type="password" class="form-control text-center" required>
-      </div>
-      <button id="btn" type="button" class="btn btn-primary w-100">Login</button>
-    </form>
+    </div>
   </div>
 
   <!-- 고정 푸터 -->
@@ -48,13 +60,17 @@
 </body>
 <script>
   // 로그인 버튼 클릭 시 폼 유효성 검사
-  $('#btn').click(function() {
-    if ($.isNumeric($('#loginS').val()) == false) {
-      alert('Staff ID는 숫자만 입력 가능합니다.');
-    } else if ($('#password').val().length < 4) {
-      alert('Password는 4자 이상 입력해야 합니다.');
+   $('#loginButton').click(function () {
+    let staffId = $('#staffId').val();
+    let staffPw = $('#staffPw').val();
+
+    // 유효성 검사
+    if (!staffId || staffId.trim() === '') {
+      alert('Staff ID를 입력하세요.');
+    } else if (!staffPw || staffPw.trim() === '') {
+      alert('Password를 입력하세요.');
     } else {
-      $('#form').submit();
+      $('#loginForm').submit(); // 유효성 검사를 통과하면 폼 제출
     }
   });
 </script>
