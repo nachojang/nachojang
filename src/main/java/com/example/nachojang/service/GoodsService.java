@@ -1,7 +1,9 @@
 package com.example.nachojang.service;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,20 @@ import com.example.nachojang.vo.GoodsForm;
 public class GoodsService {
 	@Autowired GoodsMapper goodsMapper;
 	@Autowired GoodsFileMapper goodsFileMapper;
+		//페이징
+	 public List<Map<String, Object>> getGoodsList( int currentPage  , int rowPerPage) {
+	        int beginRow = (currentPage - 1) * rowPerPage ;
+
+	        Map<String, Object> params = new HashMap<>();
+	        params.put("rowPerPage", rowPerPage);
+	        params.put("beginRow", beginRow);
+	        
+	        return goodsMapper.selectGoodsList(params);
+
+//	        List< Map<String, Object>> goodsList = goodsMapper.selectGoodsList(params);
+//	        int totalCount = goodsMapper.selectGoodsCount();
+
+	    }
 	
 	// 상품 추가 : staff/on/addGoods
 	public void addGoods(GoodsForm goodsForm, String path) {

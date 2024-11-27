@@ -1,12 +1,14 @@
 package com.example.nachojang.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.example.nachojang.service.CategoryService;
@@ -23,6 +25,23 @@ public class GoodsController {
 	@Autowired GoodsService goodsService;
 	@Autowired CategoryService categoryService;
 	
+	//나정우
+	
+	
+	@GetMapping("/staff/on/goodsList") // 기존 "/goodsList"를 "/staff/on/goodsList"로 수정
+	public String goodsList(@RequestParam( defaultValue = "3")int rowPerPage,
+	                        @RequestParam(defaultValue = "1") int currentPage,
+	                        Model model) {
+	    int pageSize = 10; // 한 페이지에 표시할 상품 개수
+	 
+		List<Map<String, Object>> goodsList = goodsService.getGoodsList(currentPage, rowPerPage);
+
+	    model.addAttribute("goodsList", goodsList);
+	    model.addAttribute("currentPage", currentPage);
+	    model.addAttribute("rowPerPage", rowPerPage);
+
+	    return "/staff/on/goodsList";
+	}
 	
 	// 상품 추가 액션
 	@PostMapping("/staff/on/addGoods")
