@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.nachojang.mapper.StaffMapper">
-     <!-- 로그인 -->
-    <select id="login" parameterType="com.example.nachojang.vo.Staff" resultType="com.example.nachojang.vo.Staff">
-        SELECT 
-            staff_no AS staffNo,
-            staff_id AS staffId,
-            update_date AS updateDate,
-            create_date AS createDate
-        FROM staff
-        WHERE active = 1 
-          AND staff_id = #{staffId} 
-          AND staff_pw = #{staffPw}
-    </select>
+	<!-- 로그인 -->
+	<select id="login"
+		parameterType="com.example.nachojang.vo.Staff"
+		resultType="com.example.nachojang.vo.Staff">
+		SELECT staff_no AS staffNo,
+		staff_id AS staffId,
+		staff_pw AS staffPw,
+		update_date AS updateDate,
+		create_date AS createDate
+		FROM staff
+		WHERE staff_id = #{staffId}
+		AND staff_pw = #{staffPw}
+	</select>
 </mapper>

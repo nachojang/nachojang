@@ -18,11 +18,19 @@ import lombok.extern.slf4j.Slf4j;
 public class StaffController {
     @Autowired 
     private StaffService staffService;
+    
+    //로그아웃
+    @GetMapping("/staff/on/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
 
+        return "redirect:/staff/off/staffLogin";
+    }
+    
     // 로그인 폼 (GET 요청)
     @GetMapping("/staff/off/staffLogin")
     public String login() {
-        log.debug("로그인 페이지 요청");
+        
         return "staff/off/staffLogin";
     }
     
