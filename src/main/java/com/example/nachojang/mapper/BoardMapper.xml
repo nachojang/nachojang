@@ -1,3 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.nachojang.mapper.BoardMapper"></mapper>
+<mapper namespace="com.example.nachojang.mapper.BoardMapper">
+
+	<delete id="deleteBoardByKey" parameterType="Integer">
+		DELETE FROM board
+		WHERE orders_no = #{ordersNo}
+	</delete>
+
+	<select id="selectTotalBoard" parameterType="Integer">
+		SELECT 
+			COUNT(*)
+		FROM
+		    board b
+		JOIN 
+		    orders o ON b.orders_no = o.orders_no
+		JOIN 
+		    goods g ON o.goods_no = g.goods_no
+		JOIN 
+		    payment p ON o.payment_no = p.payment_no
+		JOIN 
+		    address a ON p.address_no = a.address_no
+		JOIN
+			 customer c ON c.customer_mail = a.customer_mail     
+	</select>
+		
+	<!-- 댓글 목록을 페이징하여 반환하는 쿼리 -->
+	<select id="selectBoardList" parameterType="Map" resultType="com.example.nachojang.vo.Board">
+		SELECT 
+		    g.goods_no goodsNo
+		    , b.orders_no ordersNo
+		    , c.customer_mail customerMail
+		    , b.board_content boardContent
+		    , b.create_date createDate
+		FROM 
+		    Board b
+		JOIN 
+		    orders o ON b.orders_no = o.orders_no
+		JOIN 
+		    goods g ON o.goods_no = g.goods_no
+		JOIN 
+		    payment p ON o.payment_no = p.payment_no
+		JOIN 
+		    address a ON p.address_no = a.address_no
+		JOIN
+			 customer c ON c.customer_mail = a.customer_mail 
+		ORDER BY b.create_date DESC
+		LIMIT #{beginRow}, #{rowPerPage}
+	</select>
+
+</mapper>

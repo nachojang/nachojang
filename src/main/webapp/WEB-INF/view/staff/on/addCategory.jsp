@@ -25,7 +25,7 @@
 		<table class="table">
 			<tr>
 				<td>카테고리 번호</td>
-				<td><input type="hidden" name="categoryNo" value="자동생성값 또는 null"></td>
+				<td><input type="text" name="categoryNo"></td>
 			</tr>
 			<tr>
 				<td>카테고리명</td>
