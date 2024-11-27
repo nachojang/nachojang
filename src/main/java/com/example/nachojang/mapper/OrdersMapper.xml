@@ -1,3 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.nachojang.mapper.OrdersMapper"></mapper>
+<mapper namespace="com.example.nachojang.mapper.OrdersMapper">
+	
+	<!-- 세영) customerMail의 전체 주문 내역 -->
+	<select id="selectOrdersListByCustomerMail" parameterType="String" resultType="Map">
+		SELECT
+			o.goods_no goodNo
+			, o.create_date createDate
+			, o.orders_amount ordersAmount
+			, p.payment_price paymentPrice
+			, p.payment_state paymentState
+		FROM orders o
+		JOIN payment p ON o.payment_no = p.payment_no
+		JOIN address a ON a.address_no = p.address_no
+		WHERE a.customer_mail = #{customerMail}
+		ORDER BY o.create_date DESC
+	</select>
+	
+</mapper>
