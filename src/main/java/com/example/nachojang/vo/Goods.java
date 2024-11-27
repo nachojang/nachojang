@@ -11,4 +11,6 @@ public class Goods {
 	private String goodsState;
 	private String updateDate;
 	private String createDate;
+	
+
 }
