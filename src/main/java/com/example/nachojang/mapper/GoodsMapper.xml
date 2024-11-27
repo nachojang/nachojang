@@ -24,17 +24,17 @@
         WHERE goods_title LIKE CONCAT('%', #{search}, '%')
     </select>
 
-	<!-- 상품 추가 : staff/on/addGoods -->
+	<!-- 우림_상품 추가 : staff/on/addGoods -->
 	<insert id="insertGoods"
 			parameterType="com.example.nachojang.vo.Goods">
 		<selectKey resultType="int" keyProperty="goodsNo" order="AFTER">
 			select LAST_INSERT_ID()
 		</selectKey>
 		INSERT INTO goods (
-			goods_title goodsTitle
-			, goods_memo goodsMemo
-			, goods_price goodsPrice
-			, goods_state goodsState
+			goods_title
+			, goods_memo
+			, goods_price
+			, goods_state 
 		) VALUES (
 			#{goodsTitle}, #{goodsMemo}, #{goodsPrice}, #{goodsState}
 		)

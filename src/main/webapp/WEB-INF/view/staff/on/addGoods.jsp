@@ -24,7 +24,8 @@
 			<h3 class="text-center">상품 추가</h3>
 			
 			<hr></hr>
-			<form id="formAddGoods" method="post" action="${pageContext.request.contextPath}/staff/on/goodsList">
+			<form id="formAddGoods" method="post" action="${pageContext.request.contextPath}/staff/on/addGoods"
+				enctype="multipart/form-data">
 				<table class="table table-bordered" style="width : 80%">
 					<tr>
 						<td>상품명</td>
@@ -66,8 +67,8 @@
 					<tr>
 						<td>상품재고</td>
 						<td>
-							<input type="radio" class="goodsState" name="goodsState" value="재고 있음">재고 있음<br>
-							<input type="radio" class="goodsState" name="goodsState" value="재고 없음">재고 없음<br>
+							<input type="radio" class="goodsState" name="goodsState" value="재고있음">재고있음<br>
+							<input type="radio" class="goodsState" name="goodsState" value="재고없음">재고없음<br>
 						</td>
 					</tr>
 				</table>

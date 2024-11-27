@@ -15,6 +15,7 @@ public class GoodsForm {
 	private String goodsState;
 	private String updateDate;
 	private String createDate;
-	private List<Category> category;
+	private Integer categoryNo;
+	private String categoryTitle;
 	private List<MultipartFile> goodsFile;
 }

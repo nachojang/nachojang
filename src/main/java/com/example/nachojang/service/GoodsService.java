@@ -37,22 +37,21 @@ public class GoodsService {
 
 	    }
 	
-	// 상품 추가 : staff/on/addGoods
+	// 우림_상품 추가 : staff/on/addGoods
 	public void addGoods(GoodsForm goodsForm, String path) {
-		
 		// 상품 기본 항목 (상품명, 상품설명, 상품금액, 상품재고)
 		Goods goods = new Goods();
 		goods.setGoodsTitle(goodsForm.getGoodsTitle());
 		goods.setGoodsMemo(goodsForm.getGoodsMemo());
 		goods.setGoodsPrice(goodsForm.getGoodsPrice());
 		goods.setGoodsState(goodsForm.getGoodsState());
-	
+		
 		// 상품_no = ?
-		int goodsRow = goodsMapper.insertGoods(goods);
+		int addGoodsRow = goodsMapper.insertGoods(goods);
 		// 키값
 		int goodsNo = goods.getGoodsNo();
 		
-		if(goodsRow == 1 && goodsForm.getGoodsFile() != null) {
+		if(addGoodsRow == 1 && goodsForm.getGoodsFile() != null) {
 			// 파일 입력
 			List<MultipartFile> list = goodsForm.getGoodsFile();
 			for(MultipartFile mf : list) {

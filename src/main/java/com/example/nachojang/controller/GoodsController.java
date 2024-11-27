@@ -1,5 +1,6 @@
 package com.example.nachojang.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -43,7 +44,7 @@ public class GoodsController {
 	    return "/staff/on/goodsList";
 	}
 	
-	// 상품 추가 액션
+	// 우림_상품 추가 액션
 	@PostMapping("/staff/on/addGoods")
 	public String addGoods(HttpSession session, Model model, GoodsForm goodsForm) {
 		log.debug("GoodsNo : " + goodsForm.getGoodsNo());
@@ -51,21 +52,26 @@ public class GoodsController {
 		log.debug("GoodsMemo : " + goodsForm.getGoodsMemo());
 		log.debug("GoodsPrice : " + goodsForm.getGoodsPrice());
 		log.debug("GoodsState : " + goodsForm.getGoodsState());
-		log.debug("GoodsState : " + goodsForm.getCategory());
-		log.debug("GoodsState : " + goodsForm.getGoodsFile());
+		log.debug("CategoryNo : " + goodsForm.getCategoryNo());
+		log.debug("CategoryTitle : " + goodsForm.getCategoryTitle());
+		log.debug("GoodsFile : " + goodsForm.getGoodsFile());
+		if(goodsForm.getGoodsFile() != null) {
+			log.debug("goodsFile size : " + goodsForm.getGoodsFile().size());
+		}
 		
+		// 파일업로드
 		List<MultipartFile> list = goodsForm.getGoodsFile();
 		if(list != null && list.size() != 0) { // 첨부된 파일이 있다면
 			for(MultipartFile mf : list) {
 				if(mf.getContentType().equals("image/jpeg") == false
 						&& mf.getContentType().equals("image/png") == false) {
-					model.addAttribute("msg", "이미지 파일만 입력이 가능합니다");
-					return "on/addGoods"; // 폼으로 다시 이동
+					model.addAttribute("msg", "이미지 파일만 입력 가능합니다");
+					return "on/addGoods"; // jpeg, png가 아니면 폼으로 이동
 				}
 			}
 		}
 		
-		String path = session.getServletContext().getRealPath("/upload/");
+		String path = session.getServletContext().getRealPath("/WEB-INF/upload/");
 		log.debug(path);
 		
 		goodsService.addGoods(goodsForm, path);
@@ -73,14 +79,12 @@ public class GoodsController {
 		return "redirect:/staff/on/goodsList";
 	}
 	
-	// 상품 추가 폼
+	// 우림_상품 추가 폼
 	@GetMapping("/staff/on/addGoods")
 	public String addGoods(Model model) {
+		// 뷰 -> 카테고리 리스트 전달
 		List<Category> categoryList = categoryService.getCategoryList();
 		model.addAttribute("categoryList", categoryList);
 		return "staff/on/addGoods";
 	}
-	
-
-	
 }

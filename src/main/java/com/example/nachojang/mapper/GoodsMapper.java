@@ -10,7 +10,7 @@ import com.example.nachojang.vo.Goods;
 @Mapper
 public interface GoodsMapper {
 
-	// 상품 추가 : staff/on/addGoods
+	// 우림_상품 추가 : staff/on/addGoods
 	int insertGoods(Goods goods);
 	
 	//나정우
