@@ -16,6 +16,7 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
     
+    //리스트 페이징
     @GetMapping("/staff/on/customerList")
     public String customerList(
             @RequestParam(defaultValue = "1") int page,
