@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.nachojang.service.CategoryService;
 import com.example.nachojang.vo.Category;
-
+	
 
 
 @Slf4j
@@ -25,7 +25,7 @@ public class CategoryController {
 		
 		Integer row = categoryService.insertCategory(category);
 		
-		return "staff/on/categoryList";
+		return "redirect:/staff/on/categoryList";
 	}
 	
 	@GetMapping("/staff/on/addCategory")

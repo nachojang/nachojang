@@ -15,7 +15,7 @@
 </head>
 <body>
 
-	<!-- 고정 헤더 -->	
+	<!-- 고정 (스테프 메뉴) -->	
 	<div>
 		<c:import url="/WEB-INF/view/staff/on/inc/staffMenu.jsp"></c:import>
 	</div>
@@ -50,12 +50,9 @@
 		</div>
 	</div>
 	
-	<!-- 고정 푸터 -->
+	<!-- 고정 (회사정보) -->
     <div>
-    	<footer class="text-center py-3 mt-auto bg-dark text-white">
-    		<!-- 회사정보 -->
     		<c:import url="/WEB-INF/view/company.jsp"></c:import>
-	    </footer>
     </div>
 	
 </body>

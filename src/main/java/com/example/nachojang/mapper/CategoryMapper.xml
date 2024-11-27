@@ -15,7 +15,7 @@
 		WHERE category_no = #{categoryNo}		
 	</delete>
 	
-	<select id="selectCategoryList" parameterType="Integer">
+	<select id="selectCategoryList">
 		SELECT category_no categoryNo
 	 		, category_title categoryTitle
 		FROM category
