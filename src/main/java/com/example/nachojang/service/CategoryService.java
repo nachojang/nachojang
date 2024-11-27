@@ -14,14 +14,20 @@ import com.example.nachojang.vo.Category;
 public class CategoryService {
 	@Autowired CategoryMapper categoryMapper;
 	
-	public Integer insertCategory(Category parmaCategory) {
-		return categoryMapper.insertCategory(parmaCategory);
+	// 세영) 카테고리 삽입
+	// staff/on/addCategory
+	public Integer insertCategory(Category paramCategory) {
+		return categoryMapper.insertCategory(paramCategory);
 	}
 	
+	// 세영) 카테고리 삭제
+	// staff/on/deleteCategory
 	public Integer deleteCategory(Category paramCategory) {
 		return categoryMapper.deleteCategory(paramCategory);
 	}
 	
+	// 세영) 카테고리 목록
+	// /staff/on/categoryList
 	public List<Category> getCategoryList() {
 		return categoryMapper.selectCategoryList();
 	}

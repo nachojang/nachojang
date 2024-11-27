@@ -58,7 +58,7 @@
 				[이전] 
 			</a>
 		</c:if>
-		
+			
 		<c:forEach var="num" begin="${startPagingNum}" end="${endPagingNum}">
 			
 			<c:if test = "${num == currentPage}">

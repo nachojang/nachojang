@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.nachojang.mapper.BoardMapper">
-
-	<delete id="deleteBoardByKey" parameterType="Integer">
+	
+	<!-- 세영) 댓글 추가 -->
+	<insert id="insertBoard" parameterType="com.example.nachojang.vo.Board">
+		INSERT INTO board(
+				orders_no, board_content
+		) VALUES (
+				#{odersNo}, #{board_content}
+		)
+	</insert>
+	
+	<!-- 세영) 댓글 삭제 -->
+	<delete id="deleteBoard" parameterType="com.example.nachojang.vo.Board">
 		DELETE FROM board
 		WHERE orders_no = #{ordersNo}
 	</delete>
 
+	<!-- 세영) 총 댓글 갯수 -->
 	<select id="selectTotalBoard" parameterType="Integer">
 		SELECT 
 			COUNT(*)
@@ -24,8 +35,8 @@
 			 customer c ON c.customer_mail = a.customer_mail     
 	</select>
 		
-	<!-- 댓글 목록을 페이징하여 반환하는 쿼리 -->
-	<select id="selectBoardList" parameterType="Map" resultType="com.example.nachojang.vo.Board">
+	<!-- 세영) 댓글 목록을 페이징하여 반환하는 쿼리 -->
+	<select id="selectBoardList" parameterType="Map" resultType="Map">
 		SELECT 
 		    g.goods_no goodsNo
 		    , b.orders_no ordersNo
@@ -33,7 +44,7 @@
 		    , b.board_content boardContent
 		    , b.create_date createDate
 		FROM 
-		    Board b
+		    board b
 		JOIN 
 		    orders o ON b.orders_no = o.orders_no
 		JOIN 
@@ -43,9 +54,8 @@
 		JOIN 
 		    address a ON p.address_no = a.address_no
 		JOIN
-			 customer c ON c.customer_mail = a.customer_mail 
+			customer c ON c.customer_mail = a.customer_mail 
 		ORDER BY b.create_date DESC
-		LIMIT #{beginRow}, #{rowPerPage}
 	</select>
 
 </mapper>
