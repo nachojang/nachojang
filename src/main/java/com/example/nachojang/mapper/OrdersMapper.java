@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface OrdersMapper {
+
+	// 세영) customerMail의 총 주문 내역 개수
+	Integer selectTotalOrdersByCustomerMail(Integer rowPerPage);
 	
 	// 세영) customerMail의 전체 주문 내역
 	List<Map<String, Object>> selectOrdersListByCustomerMail(String customerMail);

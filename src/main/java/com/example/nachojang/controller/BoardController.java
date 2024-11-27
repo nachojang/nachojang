@@ -24,7 +24,7 @@ public class BoardController {
 	public String addBoard(Board board) {
 		
 		// 삽입 메서드 호출
-		Integer row = boardService.insertBoard(board);
+		boardService.insertBoard(board);
 	
 		// 삽입되면 주문상세페이지로 이동
 		return "redirect:/customer/on/ordersList";
@@ -42,7 +42,7 @@ public class BoardController {
 	public String deleteBoard(Board board) {
 		
 		// 삭제 메소드 호출
-		Integer row = boardService.deleteBoard(board);
+		boardService.deleteBoard(board);
 		
 		// 삭제가 완료되면 댓글 목록 페이지로 리다이
 		return "redirect:/staff/on/boardList";
