@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.nachojang.mapper.GoodsCategoryMapper;
 import com.example.nachojang.mapper.GoodsFileMapper;
 import com.example.nachojang.mapper.GoodsMapper;
 import com.example.nachojang.vo.Goods;
+import com.example.nachojang.vo.GoodsCategory;
 import com.example.nachojang.vo.GoodsFile;
 import com.example.nachojang.vo.GoodsForm;
 
@@ -22,6 +24,8 @@ import com.example.nachojang.vo.GoodsForm;
 public class GoodsService {
 	@Autowired GoodsMapper goodsMapper;
 	@Autowired GoodsFileMapper goodsFileMapper;
+	@Autowired GoodsCategoryMapper goodsCategoryMapper;
+	
 		//페이징
 	 public List<Map<String, Object>> getGoodsList( int currentPage  , int rowPerPage) {
 	        int beginRow = (currentPage - 1) * rowPerPage ;
@@ -46,10 +50,11 @@ public class GoodsService {
 		goods.setGoodsPrice(goodsForm.getGoodsPrice());
 		goods.setGoodsState(goodsForm.getGoodsState());
 		
-		// 상품_no = ?
+		// 상품 no 생성
 		int addGoodsRow = goodsMapper.insertGoods(goods);
 		// 키값
 		int goodsNo = goods.getGoodsNo();
+		Integer categoryNo = goodsForm.getCategoryNo();
 		
 		if(addGoodsRow == 1 && goodsForm.getGoodsFile() != null) {
 			// 파일 입력
@@ -83,5 +88,10 @@ public class GoodsService {
 				}
 			}
 		}
+		GoodsCategory goodsCategory = new GoodsCategory();
+		goodsCategory.setGoodsNo(goodsNo);
+		goodsCategory.setCategoryNo(categoryNo);
+		
+		int categoryRow = goodsCategoryMapper.insertGoodsByCategory(goodsCategory);
 	}
 }

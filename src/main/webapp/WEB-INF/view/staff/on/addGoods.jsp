@@ -34,7 +34,7 @@
 					<tr>
 						<td>카테고리</td>
 						<td>
-							<select id="category" name="category">
+							<select id="categoryNo" name="categoryNo">
 								<option value="">::: 카테고리 선택 :::</option>
 								<c:forEach var="c" items="${categoryList}">
 									<option value="${c.categoryNo}">${c.categoryTitle}</option>
@@ -87,7 +87,7 @@
 	$('#btnAddGoods').click(function() {
 		if($('#goodsTitle').val() == '') {
 			alert('상품명을 입력하세요');
-		} else if($('#category').val() == '') {
+		} else if($('#categoryNo').val() == '') {
 			alert('카테고리를 선택하세요');
 		} else if($('#goodsPrice').val() == '') {
 			alert('상품금액을 입력하세요');
