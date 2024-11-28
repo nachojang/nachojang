@@ -26,7 +26,7 @@ public class GoodsService {
 	@Autowired GoodsFileMapper goodsFileMapper;
 	@Autowired GoodsCategoryMapper goodsCategoryMapper;
 	
-		//페이징
+	//페이징
 	 public List<Map<String, Object>> getGoodsList( int currentPage  , int rowPerPage) {
 	        int beginRow = (currentPage - 1) * rowPerPage ;
 
