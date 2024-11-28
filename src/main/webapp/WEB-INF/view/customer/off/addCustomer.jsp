@@ -15,11 +15,12 @@
 </head>
 <body>
 	
-	<!-- 쇼핑몰 로고 -->
-	<div class="mt-4 text-center">
-		<h1>NACHOJANG</h1>
+	<!-- 헤더 고정 -->
+	<div>
+		<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
 	</div>
 	
 	
+
 </body>
 </html>

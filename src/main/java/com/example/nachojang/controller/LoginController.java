@@ -21,8 +21,8 @@ public class LoginController {
 	@Autowired StaffService staffService;
 	@Autowired CustomerService customerService;
 	
-	// 정우) 고객 로그아웃
-    @GetMapping("/customer/on/logout")
+	// 우림) 고객 로그아웃
+    @GetMapping("/customer/on/customerLogout")
     public String customerLogout(HttpSession session) {
         session.invalidate();
 
