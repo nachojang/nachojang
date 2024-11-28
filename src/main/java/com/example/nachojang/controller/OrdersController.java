@@ -6,9 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.nachojang.service.BoardService;
 import com.example.nachojang.service.OrdersService;
+import com.example.nachojang.vo.Board;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +20,33 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class OrdersController {
 	@Autowired OrdersService ordersService;
+	@Autowired BoardService boardService;
+	
+	// 세영) 댓글 추가
+	@PostMapping("/customer/on/ordersOne")
+	public String addComment(Board board
+							, RequestParam paymentNo) {
+		
+		// 댓글 추가
+		boardService.insertBoard(board);
+		
+		// 주문 상세 페이지로 이동
+		return "redirect:/customer/on/ordersOne?paymentNo="+paymentNo;
+	}
+	
+	
+	// 세영) payment 안에 있는 주문목록
+	@GetMapping("/customer/on/ordersOne")
+	public String orderOne (Model model, @RequestParam Integer paymentNo) {
+        // 서비스에서 주문 상세 내역
+        Map<String, Object> orderOne = ordersService.getSelectOrderListByPayment(paymentNo);
+        
+        // 모델에 주문 상세 정보 추가
+        model.addAttribute("orderOne", orderOne);
+
+        // 주문 상세 페이지로 이동
+        return "customer/on/ordersOne";  // JSP 페이지로 전달
+	}
 	
 	// 세영) 고객의 최신 주문 내역 3개
 	@GetMapping("/customer/on/my")

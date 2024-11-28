@@ -2,7 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.nachojang.mapper.OrdersMapper">
 	
-	<!-- 세영) 주문 상세 -->
+	<!-- 세영) paymentNo  -->
+	<!-- payment 안에 있는 주문목록 -->
+	<select id="selectOrderListByPayment" resultType="Map">
+		SELECT 
+			o.payment_no paymentNo,
+			o.orders_no ordersNo,
+			o.goods_no goodsNo,
+			  gf.goods_file_name goodsFileName,
+			gf.goods_file_ext goodsFileExt,
+			g.goods_title goodsTitle,
+			g.goods_memo goodsMemo,
+			o.orders_amount ordersAmount,
+			g.goods_price * o.orders_amount totalPrice,
+			p.payment_state paymentState
+		FROM orders o
+		INNER JOIN goods g on o.goods_no = g.goods_no
+		INNER JOIN payment p on o.payment_no = p.payment_no
+		LEFT JOIN (SELECT  
+						gf.goods_file_name,
+						gf.goods_file_ext, 
+						gf.goods_no
+					FROM goods_file gf
+					LIMIT 1) gf on gf.goods_no = o.goods_no
+		WHERE o.payment_no = #{paymentNo}
+	</select>
 	
 	<!-- 세영) 고객의 최신 주문 내역 3개 -->
 	<select id="selectLatestOrdersByCustomerMail" parameterType="Integer">
@@ -42,7 +66,7 @@
 		JOIN payment p ON o.payment_no = p.payment_no
 		JOIN address a ON a.address_no = p.address_no
 		WHERE a.customer_mail = #{customerMail}
-		ORDER BY o.create_date DESC
+		ORDER BY p.payment_no DESC
 	</select>
 	
 </mapper>
