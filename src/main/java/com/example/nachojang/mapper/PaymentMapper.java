@@ -1,5 +1,14 @@
 package com.example.nachojang.mapper;
 
-public interface PaymentMapper {
+import org.apache.ibatis.annotations.Mapper;
 
+import com.example.nachojang.vo.Payment;
+
+@Mapper
+public interface PaymentMapper {
+	
+	// 세영) 배송현황 수정
+	Integer updatePaymenyState(Payment payment);
+	
+	// 세영) 배송현황 리스트
 }
