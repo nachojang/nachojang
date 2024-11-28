@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.nachojang.mapper.BoardMapper;
-import com.example.nachojang.mapper.OrdersMapper;
 import com.example.nachojang.vo.Board;
 
 @Service
