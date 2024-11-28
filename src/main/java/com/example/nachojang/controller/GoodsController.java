@@ -30,7 +30,7 @@ public class GoodsController {
 	// 나정우
 
 	@GetMapping("/staff/on/goodsList") // 기존 "/goodsList"를 "/staff/on/goodsList"로 수정
-	public String goodsList(@RequestParam(defaultValue = "3") int rowPerPage,
+	public String goodsList(@RequestParam(defaultValue = "10") int rowPerPage,
 			@RequestParam(defaultValue = "1") int currentPage, Model model, HttpSession session) {
 		int pageSize = 10; // 한 페이지에 표시할 상품 개수
 
@@ -55,6 +55,18 @@ public class GoodsController {
 		return "/staff/on/goodsList";
 	}
 
+	// 우림_상품 수정 액션
+	@PostMapping("/staff/on/modifyGoods")
+	public String modifyGoods() {
+		return "redirect:/staff/on/goodsList";
+	}
+	
+	// 우림_상품 수정 뷰
+	@GetMapping("/staff/on/modifyGoods")
+	public String modifyGoods(Model model) {
+		return "staff/on/modifyGoods";
+	}
+	
 	// 우림_상품 추가 액션
 	@PostMapping("/staff/on/addGoods")
 	public String addGoods(HttpSession session, Model model, GoodsForm goodsForm) {
@@ -82,7 +94,7 @@ public class GoodsController {
 			}
 		}
 
-		String path = session.getServletContext().getRealPath("/WEB-INF/upload/");
+		String path = session.getServletContext().getRealPath("/upload/");
 		log.debug(path);
 
 		goodsService.addGoods(goodsForm, path);
