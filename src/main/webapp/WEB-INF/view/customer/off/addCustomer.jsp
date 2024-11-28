@@ -23,7 +23,7 @@
 	<!-- 회원가입 폼 -->
 	<div>
 		${msg}
-		<form method="post" action="${pageContext.request.contextPath}/customer/off/mailCheck">
+		<form id="formMailCheck" method="post" action="${pageContext.request.contextPath}/customer/off/mailCheck">
 			<table class="table table-bordered" style="width : 80%">
 				<tr>
 					<td>MAIL</td>
@@ -33,31 +33,55 @@
 			<button>중복확인</button>
 		</form>
 		
-		<form method="post" action="${pageContext.request.contextPath}/">
-			<table class="table table-bordered" style="width : 80%">
+		<form id="formAddCustomer" method="post" action="${pageContext.request.contextPath}/customer/off/addCustomer">
+			<table class="table table-bordered mt-4" style="width : 80%">
 				<tr>
 					<td>메일</td>
 					<td><input type="email" name="customerMail" id="customerMail" value="${mailCheck}" readonly></td>
 				</tr>
 				<tr>
 					<td>비밀번호</td>
-					<td><input type="password" name="customerMail" id="customerMail"></td>
+					<td><input type="password" name="customerPw" id="customerPw"></td>
 				</tr>
 				<tr>
 					<td>비밀번호 확인</td>
 					<td><input type="password" name="repw" id="repw"></td>
 				</tr>
 				<tr>
+					<td>생일</td>
+					<td><input type="date" name="customerBirth" id="customerBirth"></td>
+				</tr>
+				<tr>
 					<td>성별</td>
 					<td>
-						<input type="radio" name="gender" class="gender" value="남자">남자<br>
-						<input type="radio" name="gender" class="gender" value="여자">여자<br>
+						<input type="radio" name="customerGender" class="customerGender" value="남자">남자 &nbsp;
+						<input type="radio" name="customerGender" class="customerGender" value="여자">여자
 					</td>
 				</tr>
 			</table>
-			<button>회원가입</button>
+			<button type="button" id="btnAddCustomer">회원가입</button>
 		</form>
 	</div>
 
 </body>
+
+<script>
+	// 회원가입 유효성 검사
+	$('#btnAddCustomer').click(function() {
+		if($('#customerMail').val() == '') {
+			alert('메일을 입력하세요');
+		} else if($('#customerPw').val() == '') {
+			alert('비밀번호를 입력하세요');
+		} else if($('#customerPw').val() != $('#repw').val()) {
+			alert('비밀번호가 같지 않습니다');
+		} else if($('#customerBirth').val() == '') {
+			alert('생일을 입력하세요');
+		} else if($('.customerGender:checked').length == 0) {
+			alert('성별을 선택하세요');
+		} else {
+			$('#formAddCustomer').submit();
+		}
+	});
+</script>
+
 </html>

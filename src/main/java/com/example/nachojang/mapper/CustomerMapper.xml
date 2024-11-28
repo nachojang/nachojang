@@ -19,7 +19,7 @@
 			, customer_pw
 			, customer_birth
 			, customer_gender
-		) VALUE (
+		) VALUES (
 			#{customerMail}, #{customerPw}, #{customerBirth}, #{customerGender}
 		)
 	</insert>

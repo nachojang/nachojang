@@ -33,7 +33,6 @@ public class CustomerController {
     	}
     	
     	// 메일 중복 아닐 시
-    	model.addAttribute("msg", "사용가능합니다");
     	model.addAttribute("mailCheck", mailCheck);
     	return "customer/off/addCustomer";
     }
@@ -42,7 +41,10 @@ public class CustomerController {
     @PostMapping("/customer/off/addCustomer")
     public String addCustomer(Customer customer) {
     	// 서비스 호출
-    	
+    	int row = customerService.addCustomer(customer);
+    	if(row == 0) { // 추가 안됐으면 다시 입력페이지로
+    		return "customer/off/addCustomer";
+    	}
     	return "redirect:/customer/off/customerLogin";
     }
     
