@@ -2,6 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.nachojang.mapper.CustomerMapper">
 
+	<!-- 우림) 고객 회원가입 시 메일 중복체크 : customer/mailCheck -->
+	<select id="mailCheck"
+			parameterType="String"
+			resultType="String">
+		SELECT customer_mail
+		FROM customer
+		WHERE customer_mail = #{mailCheck}
+	</select>
+	
+	<!-- 우림) 고객 회원가입 : customer/off/addCustomer -->
+	<insert id="insertCustomer"
+			parameterType="com.example.nachojang.vo.Customer">
+		INSERT INTO CUSTOMER (
+			customer_mail
+			, customer_pw
+			, customer_birth
+			, customer_gender
+		) VALUE (
+			#{customerMail}, #{customerPw}, #{customerBirth}, #{customerGender}
+		)
+	</insert>
+	
 	<!-- 우림) 고객 로그인 : customer/off/customerLogin -->
 	<select id="customerLogin"
 			parameterType="com.example.nachojang.vo.Customer"

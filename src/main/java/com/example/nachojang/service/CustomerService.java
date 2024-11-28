@@ -16,6 +16,16 @@ public class CustomerService {
 
     @Autowired CustomerMapper customerMapper;
     
+    // 우림) 고객 회원가입 메일 중복체크 : customer/off/mailCheck
+    public String mailCheck(String mailCheck) {
+    	return customerMapper.mailCheck(mailCheck);
+    }
+    
+    // 우림) 고객 회원가입 : customer/off/addCustomer
+    public int addCustomer(Customer customer) {
+    	return customerMapper.insertCustomer(customer);
+    }
+    
     // 우림) 고객 로그인 : customer/off/customerLogin
     public Customer customerLogin(Customer customer) {
     	return customerMapper.customerLogin(customer);

@@ -11,6 +11,12 @@ import com.example.nachojang.vo.Customer;
 public interface CustomerMapper {
 	
 	
+	// 우림) 고객 회원가입 시 메일 중복체크 : customer/off/mailCheck
+	String mailCheck(String mailCheck);
+	
+	// 우림) 고객 회원가입 : customer/off/addCustomer
+	int insertCustomer(Customer customer);
+	
 	// 우림) 고객 로그인 : customer/off/customerLogin
 	Customer customerLogin(Customer customer);
     

@@ -36,13 +36,12 @@
 			select LAST_INSERT_ID()
 		</selectKey>
 		INSERT INTO goods (
-		goods_title
-		, goods_memo
-		, goods_price
-		, goods_state
-		)
-		VALUES (
-		#{goodsTitle}, #{goodsMemo}, #{goodsPrice}, #{goodsState}
+			goods_title
+			, goods_memo
+			, goods_price
+			, goods_state
+		) VALUES (
+			#{goodsTitle}, #{goodsMemo}, #{goodsPrice}, #{goodsState}
 		)
 	</insert>
 
