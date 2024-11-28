@@ -16,6 +16,12 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
     
+    // 우림) 고객 회원가입
+    @GetMapping("/customer/off/addCustomer")
+    public String addCustomer() {
+    	return "customer/off/addCustomer";
+    }
+    
     //리스트 페이징
     @GetMapping("/staff/on/customerList")
     public String customerList(

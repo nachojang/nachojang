@@ -15,5 +15,11 @@
 </head>
 <body>
 
+	<!-- 쇼핑몰 로고 -->
+	<div class="mt-4 text-center">
+		<h1>NACHOJANG</h1>
+	</div>
+	
+
 </body>
 </html>

@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.nachojang.mapper.CustomerMapper">
+
+	<!-- 우림) 고객 로그인 : customer/off/customerLogin -->
+	<select id="customerLogin"
+			parameterType="com.example.nachojang.vo.Customer"
+			resultType="com.example.nachojang.vo.Customer">
+		SELECT 
+			customer_mail customerMail
+			, customer_pw customerPw
+		FROM customer
+		WHERE customer_mail = #{customerMail} AND customer_pw = #{customerPw}
+	</select>
+	
  <!-- 나정우 -->
     <select id="selectCustomerList" 
             parameterType="map" 

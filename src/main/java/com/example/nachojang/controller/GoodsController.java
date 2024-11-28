@@ -54,20 +54,26 @@ public class GoodsController {
 
 		return "/staff/on/goodsList";
 	}
-
-	// 우림_상품 수정 액션
+	
+	// 우림) 고객 홈
+	@GetMapping("/customer/main")
+	public String main() {
+		return "customer/main";
+	}
+	
+	// 우림) 상품관리 수정 액션
 	@PostMapping("/staff/on/modifyGoods")
 	public String modifyGoods() {
 		return "redirect:/staff/on/goodsList";
 	}
 	
-	// 우림_상품 수정 뷰
+	// 우림) 상품관리 수정 뷰
 	@GetMapping("/staff/on/modifyGoods")
 	public String modifyGoods(Model model) {
 		return "staff/on/modifyGoods";
 	}
 	
-	// 우림_상품 추가 액션
+	// 우림) 상품관리 추가 액션
 	@PostMapping("/staff/on/addGoods")
 	public String addGoods(HttpSession session, Model model, GoodsForm goodsForm) {
 		log.debug("GoodsNo : " + goodsForm.getGoodsNo());
@@ -102,7 +108,7 @@ public class GoodsController {
 		return "redirect:/staff/on/goodsList";
 	}
 
-	// 우림_상품 추가 폼
+	// 우림) 상품관리 추가 폼
 	@GetMapping("/staff/on/addGoods")
 	public String addGoods(Model model) {
 		// 뷰 -> 카테고리 리스트 전달

@@ -9,6 +9,10 @@ import com.example.nachojang.vo.Customer;
 
 @Mapper
 public interface CustomerMapper {
+	
+	
+	// 우림) 고객 로그인 : customer/off/customerLogin
+	Customer customerLogin(Customer customer);
     
     List<Customer> selectCustomerList(Map<String, Object> paramMap);
     

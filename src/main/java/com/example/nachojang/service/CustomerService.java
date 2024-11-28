@@ -1,4 +1,4 @@
-//나정우
+
 package com.example.nachojang.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,14 @@ import java.util.Map;
 @Service
 public class CustomerService {
 
-    @Autowired
-    private CustomerMapper customerMapper;
+    @Autowired CustomerMapper customerMapper;
+    
+    // 우림) 고객 로그인 : customer/off/customerLogin
+    public Customer customerLogin(Customer customer) {
+    	return customerMapper.customerLogin(customer);
+    }
 
+    // 정우) 스태프 로그인
     public Map<String, Object> getCustomerList(int currentPage, int rowPerPage, String searchMail) {
         int beginRow = (currentPage - 1) * rowPerPage;
 
