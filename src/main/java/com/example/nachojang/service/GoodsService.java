@@ -26,7 +26,7 @@ public class GoodsService {
 	@Autowired GoodsFileMapper goodsFileMapper;
 	@Autowired GoodsCategoryMapper goodsCategoryMapper;
 	
-		//페이징
+	//페이징
 	 public List<Map<String, Object>> getGoodsList( int currentPage  , int rowPerPage) {
 	        int beginRow = (currentPage - 1) * rowPerPage ;
 
@@ -41,6 +41,9 @@ public class GoodsService {
 
 	    }
 	
+	
+	// 우림) 상품 수정 : staff/on/modifyGoods
+	 
 	// 우림_상품 추가 : staff/on/addGoods
 	public void addGoods(GoodsForm goodsForm, String path) {
 		// 상품 기본 항목 (상품명, 상품설명, 상품금액, 상품재고)
@@ -51,9 +54,9 @@ public class GoodsService {
 		goods.setGoodsState(goodsForm.getGoodsState());
 		
 		// 상품 no 생성
-		int addGoodsRow = goodsMapper.insertGoods(goods);
+		Integer addGoodsRow = goodsMapper.insertGoods(goods);
 		// 키값
-		int goodsNo = goods.getGoodsNo();
+		Integer goodsNo = goods.getGoodsNo();
 		Integer categoryNo = goodsForm.getCategoryNo();
 		
 		if(addGoodsRow == 1 && goodsForm.getGoodsFile() != null) {
@@ -92,6 +95,6 @@ public class GoodsService {
 		goodsCategory.setGoodsNo(goodsNo);
 		goodsCategory.setCategoryNo(categoryNo);
 		
-		int categoryRow = goodsCategoryMapper.insertGoodsByCategory(goodsCategory);
+		Integer categoryRow = goodsCategoryMapper.insertGoodsByCategory(goodsCategory);
 	}
 }
