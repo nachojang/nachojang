@@ -15,6 +15,22 @@ import com.example.nachojang.mapper.OrdersMapper;
 public class OrdersService {
 	@Autowired OrdersMapper ordersMapper;
 	
+	// 세영)고객의 최신 주문 내역 3개
+	//
+	public Map<String, Object> getLatestOrdersList(String customerMail) {
+		
+		// 파라미터 맵을 전달하여 실제 데이터 목록을 조회
+		List<Map<String, Object>> latestOredersList = ordersMapper.selectLatestOrdersByCustomerMail(customerMail);
+		
+		// 결과를 담을 맵 생성
+		Map<String, Object> resultMap = new HashMap<>();
+		
+		// 주문 목록을 결과 맵에 담기
+		resultMap.put("latestOredersList", latestOredersList);
+		
+		return resultMap;
+	}
+	
 	// 세영) 마지막 페이지
 	// /customer/on/ordersList
 	public Integer getLastPage(Integer rowPerPage) {
@@ -62,7 +78,7 @@ public class OrdersService {
 		// 결과를 담을 맵 생성
 		Map<String, Object> resultMap = new HashMap<>();
 		
-		// 페이지네이션 번호와 댓글 목록을 결과 맵에 담기
+		// 페이지네이션 번호와 주문 목록을 결과 맵에 담기
 		resultMap.put("startPagingNum", startPagingNum);
 		resultMap.put("endPagingNum", endPagingNum);
 		resultMap.put("ordersList", ordersList);
