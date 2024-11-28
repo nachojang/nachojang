@@ -44,7 +44,7 @@
                                 <input type="hidden" name="cartNo" value="${cart.cartNo}">
                                 <input type="hidden" name="customerMail" value="${cart.customerMail}">
                                 <input type="number" name="cartAmount" value="${cart.cartAmount}" min="1" style="width: 50px;">
-                                <button type="submit" class="btn btn-primary btn-sm">수정</button>
+                                <button type="submit" class="btn btn-primary btn-sm">수정</button>	
                             </form>
                         </td>
                     </tr>
