@@ -1,3 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.nachojang.mapper.CartMapper"></mapper>
+<mapper namespace="com.example.nachojang.mapper.CartMapper">
+
+	<select id="selectCartList" resultType="map">
+		SELECT c.cart_no, c.customer_mail, c.goods_no, c.cart_amount,
+		g.goods_title, g.goods_price, gf.goods_file_ext
+		FROM cart c
+		JOIN goods g ON c.goods_no = g.goods_no
+		LEFT JOIN goods_file gf ON g.goods_no = gf.goods_no
+		WHERE c.customer_mail = #{customerMail}
+	</select>
+
+	<delete id="deleteCartGoods">
+		DELETE FROM cart
+		WHERE cart_no = #{cartNo}
+		AND customer_mail = #{customerMail}
+	</delete>
+
+	<delete id="deleteAllCartGoods">
+		DELETE FROM cart
+		WHERE customer_mail = #{customerMail}
+	</delete>
+
+	<select id="getTotalAmount" resultType="map">
+		SELECT SUM(c.cart_amount * g.goods_price)
+		FROM cart c
+		JOIN goods g ON c.goods_no = g.goods_no
+		WHERE c.customer_mail = #{customerMail}
+	</select>
+
+	<update id="updateGoodsAmount">
+		UPDATE cart
+		SET cart_amount = #{cartAmount}
+		WHERE cart_no = #{cartNo}
+	</update>
+
+	<insert id="addToOrders">
+		INSERT INTO orders (customer_mail, goods_no, order_amount, order_price)
+		SELECT c.customer_mail, c.goods_no, c.cart_amount, g.goods_price
+		FROM cart c
+		JOIN goods g ON c.goods_no = g.goods_no
+		WHERE c.customer_mail = #{customerMail}
+	</insert>
+</mapper>

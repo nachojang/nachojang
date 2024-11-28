@@ -15,8 +15,16 @@ import com.example.nachojang.mapper.OrdersMapper;
 public class OrdersService {
 	@Autowired OrdersMapper ordersMapper;
 	
-	// 세영)고객의 최신 주문 내역 3개
-	//
+	// 세영) payment 안에 있는 주문목록
+	// /customer/on/ordersOne
+	public Map<String, Object> getSelectOrderListByPayment(Integer paymentNo) {
+		
+		return ordersMapper.selectOrderListByPayment(paymentNo); 
+	}
+	
+	
+	// 세영) 고객의 최신 주문 내역 3개
+	// /customer/on/my
 	public Map<String, Object> getLatestOrdersList(String customerMail) {
 		
 		// 파라미터 맵을 전달하여 실제 데이터 목록을 조회

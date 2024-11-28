@@ -8,6 +8,9 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface OrdersMapper {
 
+	// 세영) payment 안에 있는 주문목록
+	Map<String, Object> selectOrderListByPayment(Integer paymentNo);
+	
 	// 세영) 고객의 최신 주문 내역 3개
 	List<Map<String, Object>> selectLatestOrdersByCustomerMail(String customerMail);
 	

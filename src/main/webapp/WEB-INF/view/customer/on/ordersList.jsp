@@ -30,7 +30,11 @@
 			</tr>
 			<c:forEach var="o" items="${ordersdList}">
 				<tr>
-					<td>${o.ordersNo}</td>
+					<td>
+						<a href="${pageContext.request.contextPath}/customer/on/ordersOne?paymentNo=${o.paymentNo}">
+							${o.ordersNo}
+						</a>
+					</td>
 					<td>${o.createDate}</td>
 					<td>${o.ordersAmount}</td>
 					<td>${o.paymentPrice}</td>
@@ -70,7 +74,7 @@
 	</div>
 
 	<!-- 고정 (회사정보) -->
-    <div>
+    <div>	
     		<c:import url="/WEB-INF/view/company.jsp"></c:import>
     </div>
 </body>
