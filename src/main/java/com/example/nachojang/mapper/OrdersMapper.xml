@@ -29,7 +29,7 @@
 	</select>
 	
 	<!-- 세영) 고객의 최신 주문 내역 3개 -->
-	<select id="selectLatestOrdersByCustomerMail" parameterType="Integer">
+	<select id="selectLatestOrdersByCustomerMail" parameterType="String" resultType="Map">
 		SELECT
 			o.orders_no ordersNo
 			, o.create_date createDate

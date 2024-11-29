@@ -8,10 +8,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.nachojang.service.CustomerService;
+import com.example.nachojang.service.OrdersService;
 import com.example.nachojang.vo.Customer;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
 import java.util.Map;
 
 @Slf4j
@@ -20,6 +23,24 @@ public class CustomerController {
 
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private OrdersService ordersService;
+    
+    @GetMapping("/customer/on/my")
+    public String myPage(Model model, HttpSession session) {
+    
+    	String customerMail = ((Customer)session.getAttribute("loginCustomer")).getCustomerMail();
+    	log.debug("customerMail : "+customerMail);
+    	// 최신 주문 목록 가져오기
+    	List<Map<String, Object>> latestOrdersList = ordersService.getLatestOrdersList(customerMail);
+    	log.debug("latestOrdersList : "+ latestOrdersList);
+    	
+    	// 최신 주문 목록을 모델에 추가
+    	model.addAttribute("latestOrdersList", latestOrdersList);
+    	model.addAttribute("customerMail", customerMail);
+    	
+    	return "customer/on/my";
+    }
     
     // 우림) 고객 회원가입 메일 중복체크 : customer/off/mailCheck
     @PostMapping("/customer/off/mailCheck")

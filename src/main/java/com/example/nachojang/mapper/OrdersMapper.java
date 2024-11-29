@@ -20,3 +20,4 @@ public interface OrdersMapper {
 	// 세영) 고객의 전체 주문 내역
 	List<Map<String, Object>> selectOrdersListByCustomerMail(String customerMail);
 }
+	

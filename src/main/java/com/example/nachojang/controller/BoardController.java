@@ -18,7 +18,7 @@ import com.example.nachojang.vo.Board;
 @Controller	
 public class BoardController {
 	@Autowired BoardService boardService;
-	
+
 	// 세영) 댓글 추가
 	@PostMapping("/staff/on/addBoard")
 	public String addBoard(Board board) {
