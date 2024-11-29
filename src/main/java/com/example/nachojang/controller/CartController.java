@@ -16,18 +16,24 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class CartController {
-    
-	//페이지 호출
-    @Autowired
-    CartService cartService;
-    
-    @GetMapping("/customer/on/cartList")
-    public String cartList(Model model, @RequestParam String customerMail) {
-        log.debug("CustomerMail: " + customerMail); // 확인용 로그
-        List<Map<String, Object>> cartList = cartService.getSelectCartList(customerMail);
-        log.debug(cartList + "<-----cartList");
-        model.addAttribute("cartList", cartList);
-        model.addAttribute("customerMail", customerMail);
-        return "/customer/on/cartList";
-    }
+
+	// 페이지 호출
+	@Autowired
+	CartService cartService;
+
+	@GetMapping("/customer/on/cartList")
+	public String cartList(Model model, @RequestParam String customerMail) {
+		
+		List<Map<String, Object>> cartList = cartService.getSelectCartList(customerMail);
+		
+		long paymentPrice = cartService.getCartByPayment(cartList);
+		
+		log.debug("paymentPrice :" + paymentPrice);
+		
+		model.addAttribute("cartList", cartList);
+		model.addAttribute("customerMail", customerMail);
+		model.addAttribute("paymentPrice", paymentPrice);
+		return "/customer/on/cartList";
+	}
+
 }

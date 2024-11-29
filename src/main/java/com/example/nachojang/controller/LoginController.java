@@ -52,7 +52,7 @@ public class LoginController {
         }
 
         // 로그인 성공 시 세션 저장 후 홈 이동
-        session.setAttribute("loginCustomer", loginCustomer);
+        session.setAttribute("loginCustomer", loginCustomer.getCustomerMail());
         log.debug("로그인 성공 ---> " + loginCustomer.getCustomerMail());
         
         return "redirect:/customer/main";

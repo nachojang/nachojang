@@ -19,6 +19,7 @@
         <table class="table table-bordered">
             
                 <tr>
+                	
                     <td>이미지</td>
                     <td>상품명</td>
                     <td>수량</td>
@@ -29,7 +30,8 @@
             
                 <c:forEach items="${cartList}" var="c">
                     <tr>
-                        <td><img src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}" alt="${c.goodsTitle}" style="width:100px;"></td>
+                        <td><img src="${pageContext.request.contextPath}/upload/${goods.goodsFileName}.${goods.goodsFileExt}" alt="${c.goodsTitle}"
+                         style="width:100px;"></td>
                         <td>${c.goodsTitle}</td>
                         <td>${c.cartAmount}</td>
                         <td>${c.goodsPrice}</td>
@@ -39,7 +41,7 @@
                    	</tr>
 		</c:forEach>
 	</table>
-	<form method="post" id="formPayment" action="${pageContext.request.contextPath}/customer/payment">
+	<form method="post" id="formPayment" action="${pageContext.request.contextPath}/customer/payment?paymentNo=${paymentNo}">
 		<table class="table table-bordered">
 			<tr>
 				
@@ -52,7 +54,8 @@
 			<tr>
 			
 		</table>
-		<button id="btnPayment" type="button">결제</button>
+		<button id="btnPayment" type="button">전체주문</button>
+		<button id="btnPayment" type="button">선택주문</button>
 		</form>
 	</div>
 </body>

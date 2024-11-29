@@ -18,6 +18,16 @@ public class CartService {
  		return cartMapper.selectCartList(customerMail);
  	}
 
+ // 장바구니 총합 액수
+ 	public long getCartByPayment(List<Map<String, Object>> cartList) {
+ 		long payment = cartList.stream().mapToLong(c ->(long)c.get("totalPrice")).sum();
+ 		return payment;
+ 	}
+
+ 	
+
 	
    
+ 	
+ 	
 }

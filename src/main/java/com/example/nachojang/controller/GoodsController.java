@@ -29,7 +29,7 @@ public class GoodsController {
 
 	// 나정우
 
-	@GetMapping("/staff/on/goodsList") // 기존 "/goodsList"를 "/staff/on/goodsList"로 수정
+	@GetMapping("/staff/on/goodsList") 
 	public String goodsList(@RequestParam(defaultValue = "10") int rowPerPage,
 			@RequestParam(defaultValue = "1") int currentPage, Model model, HttpSession session) {
 		int pageSize = 10; // 한 페이지에 표시할 상품 개수

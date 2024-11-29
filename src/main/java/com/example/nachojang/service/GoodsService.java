@@ -36,8 +36,7 @@ public class GoodsService {
 	        
 	        return goodsMapper.selectGoodsList(params);
 
-//	        List< Map<String, Object>> goodsList = goodsMapper.selectGoodsList(params);
-//	        int totalCount = goodsMapper.selectGoodsCount();
+
 
 	    }
 	
