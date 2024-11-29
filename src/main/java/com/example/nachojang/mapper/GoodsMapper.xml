@@ -9,7 +9,7 @@
 		g.goods_price AS goodsPrice,
 		g.create_date AS createDate,
 		c.category_no AS category,
-		gf.goods_file_no AS goodsFileNo,
+		gf.goods_file_name AS goodsFileName,
 		gf.goods_file_ext AS goodsFileExt
 		FROM goods g
 		LEFT JOIN goods_category gc ON g.goods_no = gc.goods_no

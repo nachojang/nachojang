@@ -52,7 +52,7 @@
                                 <td>${goods.goodsNo}</td>
                                 <td>${goods.category}</td>
                                 <td>${goods.goodsTitle}</td>
-                                <td><img src="${pageContext.request.contextPath}/upload/${goods.goodsFileNo}.${goods.goodsFileExt}" 
+                                <td><img src="${pageContext.request.contextPath}/upload/${goods.goodsFileName}.${goods.goodsFileExt}" 
                          alt="상품 이미지" width="80" height="80" style="object-fit: cover;"></td>
                                 <td>${goods.goodsPrice} 원</td>
                             </tr>

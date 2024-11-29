@@ -36,17 +36,6 @@ public class GoodsController {
 
 		List<Map<String, Object>> goodsList = goodsService.getGoodsList(currentPage, rowPerPage);
 
-		String uploadPath = session.getServletContext().getContextPath() + "/upload/";
-		for (Map<String, Object> goods : goodsList) {
-			Integer fileNo = (Integer) goods.get("goodsFileNo");
-			String fileExt = (String) goods.get("goodsFileExt");
-
-			if (fileNo != null && fileExt != null) {
-				goods.put("imagePath", uploadPath + fileNo + "." + fileExt);
-			} else {
-				goods.put("imagePath", uploadPath + "default.jpg");
-			}
-		}
 
 		model.addAttribute("goodsList", goodsList);
 		model.addAttribute("currentPage", currentPage);
