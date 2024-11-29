@@ -15,7 +15,7 @@ public interface OrdersMapper {
 	List<Map<String, Object>> selectLatestOrdersByCustomerMail(String customerMail);
 	
 	// 세영) 고객의 총 주문 내역 개수
-	Integer selectTotalOrdersByCustomerMail(Integer rowPerPage);
+	Integer selectTotalOrdersByCustomerMail(String customerMail);
 	
 	// 세영) 고객의 전체 주문 내역
 	List<Map<String, Object>> selectOrdersListByCustomerMail(String customerMail);

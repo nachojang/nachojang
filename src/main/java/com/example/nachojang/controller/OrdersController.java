@@ -47,6 +47,7 @@ public class OrdersController {
         return "customer/on/ordersOne";  // JSP 페이지로 전달
 	}
 	
+	/*
 	// 세영) 고객의 주문 전체 내역(페이징)
 	@GetMapping("/customer/on/ordersList")
 	public String ordersList(Model model
@@ -82,5 +83,5 @@ public class OrdersController {
 		// 고객의 주문 내역 페이지로 이동
 		return "customer/on/ordersList";
 	}
-		
+	*/
 }

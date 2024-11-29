@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.nachojang.mapper.CustomerMapper;
+import com.example.nachojang.mapper.OrdersMapper;
 import com.example.nachojang.vo.Customer;
 
 import java.util.HashMap;
@@ -15,6 +16,18 @@ import java.util.Map;
 public class CustomerService {
 
     @Autowired CustomerMapper customerMapper;
+    @Autowired OrdersMapper ordersMapper;
+    
+    
+    // 우림) 고객 총 주문 건수 : customer/on/my
+    public Integer selectTotalOrdersByCustomerMail(String customerMail) {
+    	return ordersMapper.selectTotalOrdersByCustomerMail(customerMail);
+    }
+    
+    // 우림) 고객 회원정보 조회 : customer/on/my
+    public Customer selectCustomer(String loginCustomer) {
+    	return customerMapper.selectCustomer(loginCustomer);
+    }
     
     // 우림) 고객 회원가입 메일 중복체크 : customer/off/mailCheck
     public String mailCheck(String mailCheck) {

@@ -45,7 +45,9 @@
 	</select>
 	
 	<!-- 세영) customerMail의 총 주문 내역 개수 -->
-	<select id="selectTotalOrdersByCustomerMail" parameterType="Integer">
+	<select id="selectTotalOrdersByCustomerMail"
+			parameterType="String"
+			resultType="Integer">
 		SELECT
 			count(*)
 		FROM orders o

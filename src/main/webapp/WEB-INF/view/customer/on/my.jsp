@@ -20,9 +20,27 @@
 		<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
 	</div>
 	
+	<!-- 우림) 회원정보 수정(비밀번호) -->
+	<div class="container card card-header row justify-content-center">
+		 <img src="" alt="Description of image" class="img-fluid">
+		<a href="${pageContext.request.contextPath}/customer/on/modifyMyByPw">수정</a>
+		<a href="">탈퇴</a>
+	</div>
+	
 	<!-- 우림) 회원정보 (주문건수, 메일, 성별) -->	
 	<div>
-		
+		<table class="table table-bordered">
+			<tr>
+				<td>총 주문 건수</td>
+				<td>메일</td>
+				<td>성별</td>
+			</tr>
+			<tr>
+				<td>${totalOrederCount}</td>
+				<td>${customer.customerMail}</td>
+				<td>${customer.customerGender}</td>
+			</tr>
+		</table>
 	</div>
 	
 	

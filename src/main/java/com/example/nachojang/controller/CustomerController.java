@@ -26,9 +26,24 @@ public class CustomerController {
     @Autowired
     private OrdersService ordersService;
     
-    // 우림) 고객 마이페이지
+    // 우림) 고객 마이페이지 -> 회원정보수정(비밀번호)
+    @GetMapping("/customer/on/modifyMyByPw")
+    public String modifyMyByPw() {
+    	return "customer/on/modifyMyByPw";
+    }
+    
+    // 고객 마이페이지
     @GetMapping("/customer/on/my")
-    public String myPage(Model model, @RequestParam String customerMail) {
+    public String myPage(Model model, HttpSession session, @RequestParam String customerMail) {
+    	
+    	// 우림) 고객 총 주문 건수
+    	Integer totalOrederCount = customerService.selectTotalOrdersByCustomerMail(customerMail);
+    	model.addAttribute("totalOrederCount", totalOrederCount);
+    	
+    	// 우림) 고객 정보 조회 (메일, 성별), 정보 수정(비밀번호)
+    	session.getAttribute("loginCustomer");
+    	Customer customer = customerService.selectCustomer((String)session.getAttribute("loginCustomer"));
+    	model.addAttribute("customer", customer);
         	
     	// 세영) 최신 주문 목록 가져오기
     	List<Map<String, Object>> latestOrdersList = ordersService.getLatestOrdersList(customerMail);

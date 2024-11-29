@@ -30,6 +30,7 @@ public class OrdersService {
 		return ordersMapper.selectLatestOrdersByCustomerMail(customerMail);
 	}
 	
+	/*
 	// 세영) 마지막 페이지
 	// /customer/on/ordersList
 	public Integer getLastPage(Integer rowPerPage) {
@@ -84,4 +85,5 @@ public class OrdersService {
 		
 		return resultMap;
 	}
+	*/
 }
