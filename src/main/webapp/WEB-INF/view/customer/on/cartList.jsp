@@ -36,7 +36,7 @@
                         <td>${c.cartAmount}</td>
                         <td>${c.goodsPrice}</td>
                         <td>
-                            <button class="btn btn-danger btn-sm">삭제</button>
+                            <a href="${pageContext.request.contextPath}/customer/cart/delete?cartNo=${c.cartNo}">삭제</a>
                         </td>
                    	</tr>
 		</c:forEach>

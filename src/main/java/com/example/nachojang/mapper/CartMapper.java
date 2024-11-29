@@ -9,10 +9,13 @@ import com.example.nachojang.vo.Cart;
 
 @Mapper
 public interface CartMapper {
+	
+	public int getRemoveCart(int cartNo);
 
 	public List<Map<String, Object>> selectCartList(String customerMail);
 
 	public int insertCart(Cart cart);
+	
 	
 	
 }

@@ -27,7 +27,7 @@ public class GoodsService {
 	@Autowired GoodsCategoryMapper goodsCategoryMapper;
 	
 	//페이징
-	 public List<Map<String, Object>> getGoodsList( int currentPage  , int rowPerPage) {
+	 public List<Map<String, Object>> selectGoodsList( int currentPage  , int rowPerPage) {
 	        int beginRow = (currentPage - 1) * rowPerPage ;
 
 	        Map<String, Object> params = new HashMap<>();

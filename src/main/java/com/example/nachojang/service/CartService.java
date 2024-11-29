@@ -24,10 +24,9 @@ public class CartService {
  		return payment;
  	}
 
- 	
+	// 장바구니 상품 삭제
+		public int getRemoveCart(int cartNo) {
+			return cartMapper.getRemoveCart(cartNo);
 
-	
-   
- 	
- 	
+		}
 }
