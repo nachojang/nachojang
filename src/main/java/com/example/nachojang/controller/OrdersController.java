@@ -1,5 +1,6 @@
 package com.example.nachojang.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,14 @@ public class OrdersController {
 	
 	// 세영) payment 안에 있는 주문목록
 	@GetMapping("/customer/on/ordersOne")
-	public String orderOne (Model model, @RequestParam Integer paymentNo) {
+	public String orderOne(Model model, @RequestParam Integer paymentNo) {
+		
+		log.debug("paymentNo : " + paymentNo);
+		
         // 서비스에서 주문 상세 내역
-        Map<String, Object> orderOne = ordersService.getSelectOrderListByPayment(paymentNo);
+        List<Map<String, Object>> orderOne = ordersService.getSelectOrderListByPayment(paymentNo);
+        
+        log.debug("orderOne : " + orderOne);
         
         // 모델에 주문 상세 정보 추가
         model.addAttribute("orderOne", orderOne);
@@ -47,41 +53,21 @@ public class OrdersController {
         return "customer/on/ordersOne";  // JSP 페이지로 전달
 	}
 	
-	/*
-	// 세영) 고객의 주문 전체 내역(페이징)
+	// 세영) 고객의 주문 전체 내역
 	@GetMapping("/customer/on/ordersList")
-	public String ordersList(Model model
-						, @RequestParam(defaultValue = "1") Integer currentPage
-						, @RequestParam(defaultValue = "5") Integer rowPerPage
-						, @RequestParam String customerMail) { 
+	public String ordersList(Model model, @RequestParam String customerMail) {
 		
-		// 고객 이메일 디버깅
-		log.debug(customerMail.toString());
+		log.debug("customerMail : "+customerMail);
 		
-		// 페이징 처리하여 서비스에서 주문 목록 가져옴
-		Map<String, Object> resultMap = ordersService.getOrdersList(currentPage, rowPerPage, customerMail);
+		// 오더리스트 가져오기
+		List<Map<String, Object>> ordersList = ordersService.getOrdersList(customerMail);
 		
-		// resultMap 디버깅
-		log.debug(resultMap.toString());
+		log.debug(ordersList+"<---ordersList");
 		
-		// 마지막 페이지 가져옴
-		Integer lastPage = ordersService.getLastPage(rowPerPage);
+		// 모델에 오더리스트 추가
+		model.addAttribute("ordersList", ordersList);
 		
-		// 페이징 관련 번호 모델에 추가
-		model.addAttribute("lastPage", lastPage);
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("rowPerPage", rowPerPage);
-		model.addAttribute("startPagingNum", resultMap.get("startPagingNum"));
-		model.addAttribute("endPagingNum", resultMap.get("endPagingNum"));
-
-		// 주문 목록을 모델에 추가
-		model.addAttribute("ordersList", resultMap.get("ordersList"));
-		
-		// ordersList 디버깅
-		log.debug(resultMap.get("ordersList") + "<--ordersList");
-		
-		// 고객의 주문 내역 페이지로 이동
+		// 고객의 주문 내역 페이지로 이동	
 		return "customer/on/ordersList";
 	}
-	*/
 }

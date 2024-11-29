@@ -14,7 +14,7 @@
 
 </head>
 <body>
-
+	
 	<!-- 헤더 고정 -->
 	
 	<!-- main -->
@@ -22,18 +22,18 @@
 		<!-- main content -->
 		<table class="table">
 			<tr>
-				<td>주문 번호</td>
+				<td>결제 번호</td>
 				<td>주문 일자</td>
 				<td>상품 개수</td>
 				<td>총 주문 가격</td>
 				<td>배송 상태</td>
 			</tr>
-			<c:forEach var="o" items="${ordersdList}">
+			<c:forEach var="o" items="${ordersList}">
 				<tr>
 					<td>
 						<a href="${pageContext.request.contextPath}/customer/on/ordersOne?paymentNo=${o.paymentNo}">
-							${o.ordersNo}
-						</a>
+							${o.paymentNo}
+						</a>	
 					</td>
 					<td>${o.createDate}</td>
 					<td>${o.ordersAmount}</td>
@@ -43,39 +43,11 @@
 			</c:forEach>
 		</table>
 	</div>
-	
-	<div>
-		<!-- 페이징 -->
-		<!-- 이전 11 12 13 14 15 다음 -->
-		<c:if test="${currentPage > 5}">
-			<a href="${pageContext.request.contextPath}/customer/on/orderList?currentPage=${currentPage-5}">
-				[이전] 
-			</a>
-		</c:if>
-			
-		<c:forEach var="num" begin="${startPagingNum}" end="${endPagingNum}">
-			
-			<c:if test = "${num == currentPage}">
-				${num}&nbsp;
-			</c:if	>
-			<c:if test = "${num != currentPage}">
-				<a href="${pageContext.request.contextPath}/customer/on/orderList?currentPage=${num}">
-					${num}
-				</a>
-				&nbsp;
-			</c:if>
-			
-		</c:forEach>
-		<c:if test="${currentPage < lastPage}">
-			<a href="${pageContext.request.contextPath}/customer/on/orderList?currentPage=${currentPage+5}">
-				[다음] 
-			</a>
-		</c:if>
-	</div>
+
 
 	<!-- 고정 (회사정보) -->
     <div>	
     		<c:import url="/WEB-INF/view/company.jsp"></c:import>
     </div>
 </body>
-</html>
+</html>	

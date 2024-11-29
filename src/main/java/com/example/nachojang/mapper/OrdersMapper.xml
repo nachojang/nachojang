@@ -59,7 +59,7 @@
 	<!-- 세영) customerMail의 전체 주문 내역 -->
 	<select id="selectOrdersListByCustomerMail" parameterType="String" resultType="Map">
 		SELECT
-			o.orders_no ordersNo
+			o.payment_no paymentNo
 			, o.create_date createDate
 			, o.orders_amount ordersAmount
 			, p.payment_price paymentPrice
