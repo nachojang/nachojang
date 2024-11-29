@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +10,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
-    <!-- header menu 고정 -->
     <div class="header-menu">
         <c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
     </div>
@@ -17,51 +17,43 @@
     <div class="container mt-5">
         <h2>장바구니</h2>
         <table class="table table-bordered">
-            <thead>
+            
                 <tr>
-                    <th>이미지</th>
-                    <th>상품명</th>
-                    <th>수량</th>
-                    <th>금액</th>
-                    <th><button>삭제</button></th>
+                    <td>이미지</td>
+                    <td>상품명</td>
+                    <td>수량</td>
+                    <td>금액</td>
+                    <td>삭제</td>
                 </tr>
-            </thead>
-            <tbody>
-                <c:forEach var="cart" items="${cartList}">
+            
+            
+                <c:forEach items="${cartList}" var="c">
                     <tr>
-                        <td>${goodsFile.goodsFileExt}</td>
-                        <td>${cart.goodsTitle}</td>
-                        <td>${cart.cartAmount}</td>
-                        <td>${cart.goodsPrice}</td>
-                        <td>${cart.cartAmount * cart.goodsPrice}</td>
+                        <td><img src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}" alt="${c.goodsTitle}" style="width:100px;"></td>
+                        <td>${c.goodsTitle}</td>
+                        <td>${c.cartAmount}</td>
+                        <td>${c.goodsPrice}</td>
                         <td>
-                            <form action="${pageContext.request.contextPath}/customer/on/cart/delete" method="post" style="display: inline;">
-                                <input type="hidden" name="cartNo" value="${cart.cartNo}">
-                                <input type="hidden" name="customerMail" value="${cart.customerMail}">
-                                <button type="submit" class="btn btn-danger btn-sm">삭제</button>
-                            </form>
-                            <form action="${pageContext.request.contextPath}/customer/on/cart/update" method="post" style="display: inline;">
-                                <input type="hidden" name="cartNo" value="${cart.cartNo}">
-                                <input type="hidden" name="customerMail" value="${cart.customerMail}">
-                                <input type="number" name="cartAmount" value="${cart.cartAmount}" min="1" style="width: 50px;">
-                                <button type="submit" class="btn btn-primary btn-sm">수정</button>	
-                            </form>
+                            <button class="btn btn-danger btn-sm">삭제</button>
                         </td>
-                    </tr>
-                </c:forEach>
-            </tbody>
-        </table>
-        <h4>총 금액: ${totalAmount} 원</h4>
-        <form action="${pageContext.request.contextPath}/customer/on/cart/orderAll" method="post">
-            <input type="hidden" name="customerMail" value="${customerMail}">
-            <button type="submit" class="btn btn-success">전체 주문</button>
-        </form>
-    </div>
-
-    <footer class="text-center py-3 bg-dark text-white mt-5">
-        <c:import url="/WEB-INF/view/company.jsp"></c:import>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+                   	</tr>
+		</c:forEach>
+	</table>
+	<form method="post" id="formPayment" action="${pageContext.request.contextPath}/customer/payment">
+		<table class="table table-bordered">
+			<tr>
+				
+				<td>
+					<input type = "hidden" name = "paymentPrice" id = "paymentPrice" value="${paymentPrice}" readonly>
+					총결제금액 ${paymentPrice} 
+				</td>
+				<td>원</td>
+			</tr>
+			<tr>
+			
+		</table>
+		<button id="btnPayment" type="button">결제</button>
+		</form>
+	</div>
 </body>
 </html>
