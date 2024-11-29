@@ -16,7 +16,16 @@
 <body>
 
 	<!-- 헤더 고정 -->
-
+	<div>
+		<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
+	</div>
+	
+	<!-- 우림) 회원정보 (주문건수, 메일, 성별) -->	
+	<div>
+		
+	</div>
+	
+	
 	<!-- 세영) 주문내역 리스트 -->
 	<h2>주문내역 리스트</h2>
 	<div class="col-sm-10">

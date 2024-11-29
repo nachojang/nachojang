@@ -26,16 +26,15 @@ public class CustomerController {
     @Autowired
     private OrdersService ordersService;
     
+    // 우림) 고객 마이페이지
     @GetMapping("/customer/on/my")
-    public String myPage(Model model, HttpSession session) {
-    
-    	String customerMail = ((Customer)session.getAttribute("loginCustomer")).getCustomerMail();
-    	log.debug("customerMail : "+customerMail);
-    	// 최신 주문 목록 가져오기
+    public String myPage(Model model, @RequestParam String customerMail) {
+        	
+    	// 세영) 최신 주문 목록 가져오기
     	List<Map<String, Object>> latestOrdersList = ordersService.getLatestOrdersList(customerMail);
     	log.debug("latestOrdersList : "+ latestOrdersList);
     	
-    	// 최신 주문 목록을 모델에 추가
+    	// 세영) 최신 주문 목록을 모델에 추가
     	model.addAttribute("latestOrdersList", latestOrdersList);
     	model.addAttribute("customerMail", customerMail);
     	

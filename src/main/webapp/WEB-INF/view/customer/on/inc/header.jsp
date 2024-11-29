@@ -11,7 +11,7 @@
 		<c:if test="${loginCustomer != null}">
 			<a href="${pageContext.request.contextPath}/customer/on/customerLogout">로그아웃</a> &nbsp;ㅣ
 		</c:if>
-		<a href="${pageContext.request.contextPath}/customer/on/my">마이페이지</a> &nbsp;ㅣ
+		<a href="${pageContext.request.contextPath}/customer/on/my?customerMail=${loginCustomer}">마이페이지</a> &nbsp;ㅣ
 		<a href="${pageContext.request.contextPath}/customer/on/cartList?customerMail=${loginCustomer}">장바구니</a> &nbsp;
 		
 		<!-- 검색기능 (일단보류)-->
