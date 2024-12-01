@@ -29,4 +29,35 @@ public class CartService {
 			return cartMapper.getRemoveCart(cartNo);
 
 		}
+
+		public int processCartToOrders(String customerMail) {
+			return cartMapper.clearCart(customerMail);
+		}
+		
+		public int processAllOrder(String customerMail) {
+	        // 전체 장바구니 목록을 조회
+	        List<Integer> cartNos = cartMapper.getAllCartNos(customerMail);
+
+	        // 주문 생성
+	        int totalPayment = cartMapper.createOrder(cartNos);
+
+	        // 주문 완료 후 장바구니 비우기
+	        cartMapper.clearCart(customerMail);
+
+	        return totalPayment;
+	    }
+
+	    // 선택 주문 처리
+	    public int processSelectedOrder(List<Integer> selectedCartNos, String customerMail) {
+	        // 선택된 항목으로 주문 생성
+	        int totalPayment = cartMapper.createOrder(selectedCartNos);
+
+	        // 선택된 항목만 장바구니에서 삭제
+	        cartMapper.deleteSelectedCartItems(selectedCartNos);
+
+	        return totalPayment;
+	    }
+
+
+		
 }

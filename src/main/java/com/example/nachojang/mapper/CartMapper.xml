@@ -12,21 +12,67 @@
 		g.goods_price AS goodsPrice,
 		(c.cart_amount * g.goods_price) AS totalPrice
 		FROM cart c
-		INNER JOIN goods g ON c.goods_no = g.goods_no
-		LEFT JOIN (SELECT goods_no, MIN(goods_file_name) AS goods_file_name,
-		MIN(goods_file_ext) AS goods_file_ext FROM goods_file GROUP BY
-		goods_no) gf ON gf.goods_no = g.goods_no
+		INNER JOIN
+		goods g ON c.goods_no = g.goods_no
+		LEFT JOIN (SELECT goods_no,
+		MIN(goods_file_name) AS goods_file_name,
+		MIN(goods_file_ext) AS
+		goods_file_ext FROM goods_file GROUP BY
+		goods_no) gf ON gf.goods_no =
+		g.goods_no
 		<where>
 			<if test="customerMail != null and customerMail != ''">
 				c.customer_mail = #{customerMail}
 			</if>
 		</where>
 	</select>
-	
+
 	<delete id="getRemoveCart" parameterType="int">
-    DELETE FROM cart
-    WHERE cart_no = #{cartNo}
+		DELETE FROM cart
+		WHERE cart_no = #{cartNo}
 	</delete>
 
+	<insert id="insertOrders">
+		INSERT INTO orders (customer_mail, goods_title, order_amount,
+		order_price, order_date)
+		VALUES
+		<foreach collection="cartList" item="item" separator=",">
+			(#{item.customerMail}, #{item.goodsTitle}, #{item.cartAmount},
+			#{item.goodsPrice}, NOW())
+		</foreach>
+	</insert>
+	
+	 <!-- 장바구니에서 전체 상품 번호 조회 -->
+    <select id="getAllCartNos" parameterType="string" resultType="int">
+        SELECT cart_no
+        FROM cart
+        WHERE customer_mail = #{customerMail}
+    </select>
+
+    <!-- 주문 생성 -->
+    <insert id="createOrder">
+        INSERT INTO orders (cart_no, order_date)
+        SELECT cart_no, NOW()
+        FROM cart
+        WHERE cart_no IN
+        <foreach item="cartNo" collection="cartNos" open="(" separator="," close=")">
+            #{cartNo}
+        </foreach>
+    </insert>
+
+    <!-- 장바구니 비우기 -->
+    <delete id="clearCart" parameterType="string">
+        DELETE FROM cart
+        WHERE customer_mail = #{customerMail}
+    </delete>
+
+    <!-- 선택된 항목 삭제 -->
+    <delete id="deleteSelectedCartItems">
+        DELETE FROM cart
+        WHERE cart_no IN
+        <foreach item="cartNo" collection="cartNos" open="(" separator="," close=")">
+            #{cartNo}
+        </foreach>
+    </delete>
 
 </mapper>
