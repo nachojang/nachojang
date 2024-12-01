@@ -10,5 +10,6 @@ public interface PaymentMapper {
 	// 세영) 배송현황 수정
 	Integer updatePaymenyState(Payment payment);
 	
-	// 세영) 배송현황 리스트
+	// 세영) payment 추가
+	Integer addPayment(Payment payment); 
 }

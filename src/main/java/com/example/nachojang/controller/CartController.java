@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.nachojang.service.AddressService;
 import com.example.nachojang.service.CartService;
 
 import jakarta.servlet.http.HttpSession;
@@ -20,9 +21,26 @@ import lombok.extern.slf4j.Slf4j;
 public class CartController {
 
 	// 페이지 호출
-	@Autowired
-	CartService cartService;
+	@Autowired CartService cartService;
+	@Autowired AddressService addressService;
+	
+	// 세영) 결제 창 뷰
+	@GetMapping("/customer/on/ordersPayment")
+	public String ordersPayment(@RequestParam("customerMail") String customerMail, Model model) {
 
+		List<Map<String, Object>> addressList = addressService.getAddressListByCustomerMail(customerMail);
+		
+		List<Map<String, Object>> cartList = cartService.getSelectCartList(customerMail);
+		
+		long paymentPrice = cartService.getCartByPayment(cartList);
+		
+		model.addAttribute("addressList", addressList);
+		model.addAttribute("cartList", cartList);
+		model.addAttribute("paymentPrice", paymentPrice);
+		
+		return "customer/on/ordersPayment";
+	}
+	
 	// 전체 주문 처리
 	@PostMapping("/customer/payment")
 	public String processAllOrder(@RequestParam("paymentNo") int paymentNo,

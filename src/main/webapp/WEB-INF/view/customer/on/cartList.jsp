@@ -62,7 +62,7 @@
 
             <!-- 버튼 영역 -->
             <div class="d-flex justify-content-end gap-2">
-                <button type="submit" formaction="${pageContext.request.contextPath}/customer/payment?paymentNo=${paymentNo}" class="btn btn-primary">전체 주문</button>
+                <button type="submit" formaction="${pageContext.request.contextPath}/customer/on/ordersPayment?customerMail=${customerMail}" class="btn btn-primary">전체 주문</button>
                 <button type="submit" class="btn btn-secondary">선택 주문</button>
             </div>
         </form>

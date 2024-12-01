@@ -14,7 +14,8 @@ import com.example.nachojang.mapper.AddressMapper;
 public class AddressService {
 	@Autowired AddressMapper addressMapper;
 	
-	// 
+	// 세영) 고객의 주소 리스트
+	//
 	public List<Map<String,Object>> getAddressListByCustomerMail(String customerMail) {
 		return addressMapper.addressListByCustomerMail(customerMail);
 	}

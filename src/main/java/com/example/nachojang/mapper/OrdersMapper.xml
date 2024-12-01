@@ -8,6 +8,7 @@
 		SELECT 
 			o.payment_no paymentNo,
 			o.orders_no ordersNo,
+			o.create_date createDate,
 			o.goods_no goodsNo,
 			  gf.goods_file_name goodsFileName,
 			gf.goods_file_ext goodsFileExt,

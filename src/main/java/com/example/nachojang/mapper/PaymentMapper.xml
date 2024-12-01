@@ -1,3 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.nachojang.mapper.PaymentMapper"></mapper>
+<mapper namespace="com.example.nachojang.mapper.PaymentMapper">
+	
+	<!-- 세영) payment 추가 -->
+	<insert id="addPayment">
+		INSERT INTO payment(
+				address_no
+				, payment_price
+				, payment_method
+		) VALUES (
+				#{addressNo}
+				, #{paymentPrice}
+				, #{paymentMethod}
+		)
+	</insert>
+</mapper>
