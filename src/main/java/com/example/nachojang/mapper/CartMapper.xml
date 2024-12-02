@@ -29,50 +29,78 @@
 
 	<delete id="getRemoveCart" parameterType="int">
 		DELETE FROM cart
-		WHERE cart_no = #{cartNo}
+		WHERE
+		cart_no = #{cartNo}
 	</delete>
 
-	<insert id="insertOrders">
-		INSERT INTO orders (customer_mail, goods_title, order_amount,
-		order_price, order_date)
-		VALUES
-		<foreach collection="cartList" item="item" separator=",">
-			(#{item.customerMail}, #{item.goodsTitle}, #{item.cartAmount},
-			#{item.goodsPrice}, NOW())
+	<!-- 전체 주문 -->
+	<insert id="getAllOrder" parameterType="string">
+		INSERT INTO orders
+		(goods_no, orders_amount, payment_no, create_date,
+		update_date)
+		SELECT
+		c.goods_no,
+		c.cart_amount,
+		NULL AS payment_no,
+		NOW() AS create_date,
+		NOW() AS update_date
+		FROM cart c
+		WHERE c.customer_mail =
+		#{customerMail}
+	</insert>
+
+	<!-- 선택 주문 -->
+	<insert id="selectedOrder" parameterType="map">
+		INSERT INTO orders (goods_no, goods_amount, payment_no, create_date,
+		update_date)
+		SELECT
+		c.goods_no,
+		c.cart_amount,
+		NULL AS payment_no,
+		NOW() AS create_date,
+		NOW() AS update_date
+		FROM cart c
+		WHERE c.cart_no IN (${cartNoString})
+	</insert>
+
+
+
+	<!-- 장바구니에서 전체 상품 번호 조회 -->
+	<select id="getAllCartNos" parameterType="string"
+		resultType="int">
+		SELECT cart_no
+		FROM cart
+		WHERE customer_mail =
+		#{customerMail}
+	</select>
+
+	<!-- 주문 생성 -->
+	<insert id="createOrder">
+		INSERT INTO orders (cart_no, order_date)
+		SELECT cart_no, NOW()
+		FROM cart
+		WHERE cart_no IN
+		<foreach item="cartNo" collection="cartNos" open="("
+			separator="," close=")">
+			#{cartNo}
 		</foreach>
 	</insert>
-	
-	 <!-- 장바구니에서 전체 상품 번호 조회 -->
-    <select id="getAllCartNos" parameterType="string" resultType="int">
-        SELECT cart_no
-        FROM cart
-        WHERE customer_mail = #{customerMail}
-    </select>
 
-    <!-- 주문 생성 -->
-    <insert id="createOrder">
-        INSERT INTO orders (cart_no, order_date)
-        SELECT cart_no, NOW()
-        FROM cart
-        WHERE cart_no IN
-        <foreach item="cartNo" collection="cartNos" open="(" separator="," close=")">
-            #{cartNo}
-        </foreach>
-    </insert>
+	<!-- 장바구니 비우기 -->
+	<delete id="clearCart" parameterType="string">
+		DELETE FROM cart
+		WHERE
+		customer_mail = #{customerMail}
+	</delete>
 
-    <!-- 장바구니 비우기 -->
-    <delete id="clearCart" parameterType="string">
-        DELETE FROM cart
-        WHERE customer_mail = #{customerMail}
-    </delete>
-
-    <!-- 선택된 항목 삭제 -->
-    <delete id="deleteSelectedCartItems">
-        DELETE FROM cart
-        WHERE cart_no IN
-        <foreach item="cartNo" collection="cartNos" open="(" separator="," close=")">
-            #{cartNo}
-        </foreach>
-    </delete>
+	<!-- 선택된 항목 삭제 -->
+	<delete id="deleteSelectedCartItems">
+		DELETE FROM cart
+		WHERE cart_no IN
+		<foreach item="cartNo" collection="cartNos" open="("
+			separator="," close=")">
+			#{cartNo}
+		</foreach>
+	</delete>
 
 </mapper>

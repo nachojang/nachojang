@@ -17,18 +17,25 @@ public interface CartMapper {
 
 	public int insertCart(Cart cart);
 
-	public List<Map<String, Object>> insertOrders(String customerMail);
+
 	
 	 List<Integer> getAllCartNos(String customerMail);
 
 	    // 주문 생성 (리스트로 처리)
 	    int createOrder(@Param("cartNos") List<Integer> cartNos);
 
-	    // 전체 장바구니 비우기
+	    //  장바구니 비우기
 	    int clearCart(String customerMail);
 
-	    // 선택된 항목만 삭제
+	    //  삭제
 	    int deleteSelectedCartItems(@Param("cartNos") List<Integer> selectedCartNos);
+
+	    
+	    //전체주문
+		public int getAllOrder(String customerMail);
+		
+		//선택주문
+		public int selectedOrder(String customerMail);
 	
 	
 	
