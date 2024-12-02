@@ -19,53 +19,61 @@
 	</div>
 
 	<!-- 장바구니 -->
-    <div>
-        <h2>회원님 장바구니</h2>
-        <form method="post" action="${pageContext.request.contextPath}/customer/cart/checkoutSelected">
-            <input type="hidden" name="customerMail" value="${customerMail}">
+	<div></div>
+	<h2>회원님 장바구니</h2>
+	<form method="post"
+		action="${pageContext.request.contextPath}/customer/cart/checkoutSelected">
+		<input type="hidden" name="customerMail" value="${customerMail}">
 
-            <table border="1" cellspacing="0" cellpadding="5" style="width: 100%; margin-top: 20px;">
-                <thead>
-                    <tr>
-                        <th>선택</th>
-                        <th>이미지</th>
-                        <th>상품명</th>
-                        <th>수량</th>
-                        <th>금액</th>
-                        <th>삭제</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <c:forEach items="${cartList}" var="c">
-                        <tr>
-                            <td style="text-align: center;">
-                                <input type="checkbox" name="selectedCartNos" value="${c.cartNo}">
-                            </td>
-                            <td style="text-align: center;">
-                                <img src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}" alt="${c.goodsTitle}" style="width: 100px;">
-                            </td>
-                            <td>${c.goodsTitle}</td>
-                            <td style="text-align: center;">${c.cartAmount}</td>
-                            <td style="text-align: center;">${c.goodsPrice}</td>
-                            <td style="text-align: center;">
-                                <a href="${pageContext.request.contextPath}/customer/cart/delete?cartNo=${c.cartNo}">삭제</a>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </tbody>
-            </table>
+		<table border="1" cellspacing="1" cellpadding="5"
+			style="width: 100%; margin-top: 20px;">
+			<thead>
+				<tr>
+					<th>선택</th>
+					<th>이미지</th>
+					<th>상품명</th>
+					<th>수량</th>
+					<th>금액</th>
+					<th>삭제</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${cartList}" var="c">
+					<tr>
+						<td style="text-align: center;"><input type="checkbox"
+							name="selectedCartNos" value="${c.cartNo}"></td>
+						<td style="text-align: center;"><img
+							src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}"
+							alt="${c.goodsTitle}" style="width: 100px;"></td>
+						<td>${c.goodsTitle}</td>
+						<td style="text-align: center;">${c.cartAmount}</td>
+						<td style="text-align: center;">${c.goodsPrice}</td>
+						<td style="text-align: center;"><a
+							href="${pageContext.request.contextPath}/customer/cart/delete?cartNo=${c.cartNo}">삭제</a>
+						</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 
-            <div style="text-align: right; margin-top: 10px;">
-                <p>총 결제 금액: <strong>${paymentPrice} 원</strong></p>
-            </div>
+		<div style="text-align: right; margin-top: 10px;">
+			<p>
+				총 결제 금액: <strong>${paymentPrice} 원</strong>
+			</p>
+		</div>
 
 
-            <!-- 버튼 영역 -->
-            <div class="d-flex justify-content-end gap-2">
-                <button type="submit" formaction="${pageContext.request.contextPath}/customer/on/ordersPayment?customerMail=${customerMail}" class="btn btn-primary">전체 주문</button>
-                <button type="submit" class="btn btn-secondary">선택 주문</button>
-            </div>
-        </form>
-    </div>
+		<!-- 버튼 영역 -->
+		<button type="button" id="checkoutAllBtn"
+			formaction="${pageContext.request.contextPath}/customer/on/checkoutAll?customerMail=${customerMail}"
+			class="btn btn-primary">전체 주문</button>
+
+		<button type="button" id="checkoutSelectedBtn"
+			formaction="${pageContext.request.contextPath}/customer/on/checkoutSelected?customerMail=${customerMail}"
+			class="btn btn-primary">선택 주문</button>
+	</form>
 </body>
+<script>
+	$('btncheckAll')
+</script>
 </html>
