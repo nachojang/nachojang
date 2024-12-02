@@ -18,6 +18,10 @@ public class CustomerService {
     @Autowired CustomerMapper customerMapper;
     @Autowired OrdersMapper ordersMapper;
     
+    // 우림) 고객 회원정보 수정 : customer/on/modifyMyByPw
+    public Integer modifyMyByPw(Map<String, Object> loginCustomer) {
+    	return customerMapper.updateCustomer(loginCustomer);
+    }
     
     // 우림) 고객 총 주문 건수 : customer/on/my
     public Integer selectTotalOrdersByCustomerMail(String customerMail) {

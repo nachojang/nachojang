@@ -10,6 +10,9 @@ import com.example.nachojang.vo.Customer;
 @Mapper
 public interface CustomerMapper {
 	
+	// 우림) 고객 회원정보 수정 : customer/on/modifyMyByPw
+	Integer updateCustomer(Map<String, Object> loginCustomer);
+	
 	// 우림) 고객 회원정보 조회 : customer/on/my
 	Customer selectCustomer(String loginCustomer);
 	
