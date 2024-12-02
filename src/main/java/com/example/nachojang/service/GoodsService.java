@@ -39,6 +39,10 @@ public class GoodsService {
 
 
 	    }
+	// 우림) 신규상품 : customer/main
+	public List<Map<String, Object>> selectNewGoodsList() {
+		return goodsMapper.selectNewGoodsList();
+	}
 	
 	// 우림) 인기상품 : customer/main
 	public List<Map<String, Object>> selectBestGoodsList() {

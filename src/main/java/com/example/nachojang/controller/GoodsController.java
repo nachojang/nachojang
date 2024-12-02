@@ -51,7 +51,8 @@ public class GoodsController {
 		List<Map<String, Object>> bestGoodsList = goodsService.selectBestGoodsList();
 		model.addAttribute("bestGoodsList", bestGoodsList);
 		// 신규상품 리스트
-		
+		List<Map<String, Object>> newGoodsList = goodsService.selectNewGoodsList();            
+	    model.addAttribute("newGoodsList", newGoodsList);
 		return "customer/main";
 	}
 	

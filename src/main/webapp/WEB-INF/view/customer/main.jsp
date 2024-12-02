@@ -39,7 +39,24 @@
 	</form>	
 	</div>	
 	
-	<!-- 신규상품 -->
+   <!-- 신규상품 -->
+   <div class="mt-3">
+   <h1 class="text-center"> 신규상품 </h1>
+   <form>
+      <table>
+         <tr>
+            <c:forEach var="ng" items="${newGoodsList}">
+               <td>
+                  <img src="${pageContext.request.contextPath}/upload/${ng.goodsFileName}.${ng.goodsFileExt}" 
+                              alt="상품 이미지" width="80" height="80" style="object-fit: cover;">
+                </td>
+                <td>${ng.goodsTitle}</td>
+                <td>${ng.goodsPrice}</td>
+            </c:forEach>
+         </tr>
+      </table>
+   </form>   
+   </div>
 	
 	
 </body>

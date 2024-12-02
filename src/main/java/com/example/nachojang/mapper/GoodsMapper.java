@@ -10,6 +10,9 @@ import com.example.nachojang.vo.Goods;
 @Mapper
 public interface GoodsMapper {
 	
+	// 우림) 신규상품 리스트 : customer/main
+	List<Map<String, Object>> selectNewGoodsList();
+	
 	// 우림) 인기상품 리스트 : customer/main
 	List<Map<String, Object>> selectBestGoodsList();
 	
