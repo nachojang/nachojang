@@ -10,6 +10,9 @@ import com.example.nachojang.vo.Customer;
 @Mapper
 public interface CustomerMapper {
 	
+	// 우림) 고객 회원탈퇴 : customer/on/deleteCustomer
+	Integer deleteCustomer(Map<String, Object> loginCustomer);
+	
 	// 우림) 고객 회원정보 수정 : customer/on/modifyMyByPw
 	Integer updateCustomer(Map<String, Object> loginCustomer);
 	

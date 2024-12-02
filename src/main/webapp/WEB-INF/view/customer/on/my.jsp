@@ -24,7 +24,7 @@
 	<div class="container card card-header row justify-content-center">
 		 <img src="" alt="Description of image" class="img-fluid">
 		 <a href="${pageContext.request.contextPath}/customer/on/modifyMyByPw">수정</a>
-		 <a href="${pageContext.request.contextPath}/customer/on/">탈퇴</a>
+		 <a href="${pageContext.request.contextPath}/customer/on/deleteCustomer">탈퇴</a>
 	</div>
 	
 	<!-- 우림) 회원정보 (주문건수, 메일, 성별) -->	

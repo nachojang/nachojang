@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.nachojang.mapper.CustomerMapper;
 import com.example.nachojang.service.CustomerService;
 import com.example.nachojang.service.OrdersService;
 import com.example.nachojang.vo.Customer;
@@ -27,7 +28,25 @@ public class CustomerController {
     @Autowired
     private OrdersService ordersService;
     
-    // 회원정보수정(비밀번호)
+    
+    // 우림) 회원탈퇴
+    @PostMapping("/customer/on/deleteCustomer")
+    public String deleteCustomer(HttpSession session, String customerPw) {
+    	String customerMail = (String)session.getAttribute("loginCustomer");
+    	Map<String, Object> loginCustomer = new HashMap<>();
+    	loginCustomer.put("customerMail", customerMail);
+    	loginCustomer.put("customerPw", customerPw);
+    	customerService.deleteCustomer(loginCustomer);
+    	return "redirect:/customer/off/customerLogin";
+    }
+    
+    // 우림) 고객 마이페이지 -> 회원탈퇴
+    @GetMapping("/customer/on/deleteCustomer")
+    public String deleteCustomer() {
+    	return "customer/on/deleteCustomer";
+    }
+    
+    // 우림) 회원정보수정(비밀번호)
     @PostMapping("/customer/on/modifyMyByPw")
     public String modifyMyByPw(HttpSession session, String newPw, String prePw) {
     	String customerMail = (String)session.getAttribute("loginCustomer");

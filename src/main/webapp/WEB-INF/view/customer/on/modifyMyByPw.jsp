@@ -14,6 +14,11 @@
 
 </head>
 <body>
+	<!-- 헤더 고정 -->
+	<div>
+		<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
+	</div>
+
 	<h1>비밀번호 변경</h1>
 	${errMsg}
 	<form id="formModifyPw" method="post" action="${pageContext.request.contextPath}/customer/on/modifyMyByPw">
