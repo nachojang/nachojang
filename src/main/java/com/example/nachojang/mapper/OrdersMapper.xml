@@ -6,6 +6,7 @@
 	<select id="selectOrdersList" resultType="Map">
 		SELECT
 			o.payment_no paymentNo
+			, o.orders_no ordersNo
 			, o.create_date createDate
 			, o.orders_amount ordersAmount
 			, p.payment_price paymentPrice
@@ -17,19 +18,20 @@
 	</select>	
 		
 	<!-- 세영) payment 안에 있는 주문목록 -->
-	<select id="selectOrderListByPayment" resultType="Map">
+	<select id="selectOrderListByPayment" parameterType="Integer" resultType="Map">
 		SELECT 
-			o.payment_no paymentNo,
-			o.orders_no ordersNo,
-			o.create_date createDate,
-			o.goods_no goodsNo,
-			  gf.goods_file_name goodsFileName,
-			gf.goods_file_ext goodsFileExt,
-			g.goods_title goodsTitle,
-			g.goods_memo goodsMemo,
-			o.orders_amount ordersAmount,
-			g.goods_price * o.orders_amount totalPrice,
-			p.payment_state paymentState
+			p.payment_no paymentNo
+			, o.orders_no ordersNo
+			, o.create_date createDate
+			, o.goods_no goodsNo
+			, gf.goods_file_name goodsFileName
+			, gf.goods_file_ext goodsFileExt
+			, g.goods_title goodsTitle
+			, g.goods_memo goodsMemo
+			, o.orders_amount ordersAmount
+			, g.goods_price * o.orders_amount totalPrice
+			, p.payment_state paymentState
+			, p.payment_method paymentMethod
 		FROM orders o
 		INNER JOIN goods g on o.goods_no = g.goods_no
 		INNER JOIN payment p on o.payment_no = p.payment_no
@@ -74,6 +76,7 @@
 	<select id="selectOrdersListByCustomerMail" parameterType="String" resultType="Map">
 		SELECT
 			o.payment_no paymentNo
+			, o.orders_no ordersNo
 			, o.create_date createDate
 			, o.orders_amount ordersAmount
 			, p.payment_price paymentPrice

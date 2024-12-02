@@ -14,10 +14,9 @@
 
 </head>
 <body>
-	<h1>${customerMail}</h1>
+
 	<!-- 헤더 고정 -->
-	
-	
+
 	<!-- main -->
 	<div class="col-sm-10">
 		<!-- main content -->

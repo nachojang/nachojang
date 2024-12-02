@@ -2,6 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.nachojang.mapper.BoardMapper">
 	
+	<!-- 세영) 고객의 주문 상품 댓글 출력 -->
+	<select id="selectBoardByOrdersNo" resultType="Map" parameterType="Integer">
+		SELECT 
+			count(*) cnt
+			, board_content boardContent
+		FROM board
+		WHERE orders_no = #{ordersNo}
+	</select>
+	
+	<!-- 세영) 댓글 유무 확인 -->
+	<select id="boardCount">
+		SELECT COUNT(*) cnt
+		FROM board
+		WHERE orders_no = #{ordersNo}
+	</select>
+	
 	<!-- 세영) 댓글 추가 -->
 	<insert id="insertBoard" parameterType="com.example.nachojang.vo.Board">
 		INSERT INTO board(

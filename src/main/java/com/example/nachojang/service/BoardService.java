@@ -16,6 +16,18 @@ import com.example.nachojang.vo.Board;
 public class BoardService {
 	@Autowired BoardMapper boardMapper;	
 	
+	// 세영) 고객의 주문 상품 댓글 출력
+	// /customer/on/ordersOne
+	public Map<String, Object> selectBoardByOrdersNo(Integer ordersNo) {
+		return boardMapper.selectBoardByOrdersNo(ordersNo);
+	}
+	
+	// 세영) 댓글 유무 확인
+	// /customer/on/ordersOne
+	public Integer boardCount(Integer ordersNo) {
+		return boardMapper.boardCount(ordersNo);
+	}
+	
 	// 세영) 댓글 추가
 	// customer/on/ordersList
 	public Integer insertBoard(Board paramBoard) {

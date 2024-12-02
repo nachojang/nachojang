@@ -15,7 +15,10 @@
 </head>
 <body>
 	
-	<!-- 헤더 고정 -->
+	<!-- 고정 (스테프 메뉴) -->	
+	<div>
+		<c:import url="/WEB-INF/view/staff/on/inc/staffMenu.jsp"></c:import>
+	</div>
 	
 	<!-- main -->
 	<div class="col-sm-10">
@@ -39,12 +42,12 @@
 					<td>${o.ordersAmount}</td>
 					<td>${o.paymentPrice}</td>
 					<td>
-						<c:if test="${paymentState == '결제완료' || paymentState == '배송중'}">
+						<c:if test="${o.paymentState == '결제완료' || o.paymentState == '배송중'}">
 							<a href="${pageContext.request.contextPath}/staff/on/modifyState?paymentNo=${o.paymentNo}&paymentState=${o.paymentState}">
 								${o.paymentState}
 							</a>
 						</c:if>
-						<c:if test="${paymentState == '배송완료'}">
+						<c:if test="${o.paymentState == '배송완료'}">
 							${o.paymentState}
 						</c:if>						
 					</td>

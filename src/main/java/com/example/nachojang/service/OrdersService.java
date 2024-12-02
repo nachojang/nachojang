@@ -15,6 +15,7 @@ public class OrdersService {
 	@Autowired OrdersMapper ordersMapper;
 	
 	// 세영) 전체 주문 목록
+	// /staff/on/ordersList
 	public List<Map<String, Object>> getOrdersList() {
 		
 		return ordersMapper.selectOrdersList();
@@ -45,10 +46,10 @@ public class OrdersService {
 	}
 	
 	// 세영) 고객의 전체 주문 목록
-		// /customer/on/ordersList
-		public List<Map<String, Object>> getOrdersListByCustomerMail(String customerMail) {
-			
-			return ordersMapper.selectOrdersListByCustomerMail(customerMail);
-		}
+	// /customer/on/ordersList
+	public List<Map<String, Object>> getOrdersListByCustomerMail(String customerMail) {
+		
+		return ordersMapper.selectOrdersListByCustomerMail(customerMail);
+	}
 
 }

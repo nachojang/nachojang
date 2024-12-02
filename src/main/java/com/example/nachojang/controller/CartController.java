@@ -26,8 +26,8 @@ public class CartController {
 	@Autowired AddressService addressService;
 	
 	// 세영) 결제 창 뷰
-	@GetMapping("/customer/on/ordersPayment")
-	public String ordersPayment(@RequestParam("customerMail") String customerMail, Model model) {
+	@GetMapping("/customer/on/checkoutAll")
+	public String ordersPayment(@RequestParam String customerMail, Model model) {
 
 		List<Map<String, Object>> addressList = addressService.getAddressListByCustomerMail(customerMail);
 		

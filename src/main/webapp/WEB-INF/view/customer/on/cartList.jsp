@@ -74,6 +74,5 @@
 	</form>
 </body>
 <script>
-	$('btncheckAll')
 </script>
 </html>

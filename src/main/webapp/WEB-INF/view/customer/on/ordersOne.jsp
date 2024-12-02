@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-	
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +21,7 @@
 	<div class="col-sm-10">
 		<!-- main content -->
 		<table class="table">
-			<c:forEach var="o" items="${orderOne}">
+			<c:forEach var="o" items="${ordersList}">
 			<tr>
 				<td>결제 번호</td>
 				<td>${o.paymentNo}</td>
@@ -33,17 +32,11 @@
 			</tr>	
 			<tr>
 				<td>주문일자</td>
-				<td>${o.updateDate}</td>
+				<td>${o.createDate}</td>
 			</tr>	
 			<tr>	
 				<td>배송 현황</td>
-				<td>
-					<c:if test="${o.paymentState == '배송중'}">
-						<a href = "${pageContext.request.contextPath}/customer/on/modifyState">
-							${o.paymentState}
-						</a>
-					</c:if>
-				</td>
+				<td>${o.paymentState}</td>
 			</tr>	
 			<tr>	
 				<td>이미지</td>
@@ -70,15 +63,32 @@
 			<tr>	
 				<td>후기</td>
 				<td>	
-					<c:if test="${o.paymentState == '배송완료'}">
-						<form id="formComment" method = "post" action="${pageContext.request.contextPath}/customer/on/ordersOne">
-							<input type="text" name="boardContent" id="boardContent">
-						</form>
-						<button type="button" id="btnAddComment" class="btn btn-primary"> 입력 </button>
-					</c:if>
+				    <!-- 배송완료 상태일 때만 후기 관련 내용 표시 -->
+                    <c:if test="${o.paymentState == '배송완료'}">
+                        <c:forEach var="row" items="${rowList}" varStatus="status">
+                            <c:if test="${status.index == o.index}">
+                                <!-- 댓글이 0개일 때 입력 폼을 보여줍니다 -->
+                                <c:if test="${row == 0}">
+                                    <form id="formComment" method="post" action="${pageContext.request.contextPath}/customer/on/ordersOne?paymentNo=${paymentNo}&ordersNo=${o.ordersNo}">
+                                        <input type="text" name="boardContent" id="boardContent">    
+                                        <button type="submit" class="btn btn-primary">입력</button>
+                                    </form>
+                                </c:if>
+                                
+                                <!-- 댓글이 1개 있을 때 해당 댓글을 출력 -->
+                                <c:if test="${row == 1}">
+                                    <c:forEach var="comment" items="${comments}">
+                                        <c:if test="${comment.ordersNo == o.ordersNo}">
+                                            <p>${comment.boardContent}</p>
+                                        </c:if>
+                                    </c:forEach>
+                                </c:if>
+                            </c:if>
+                        </c:forEach>
+                    </c:if>
 				</td>
-			</tr>
-			</c:forEach>
+			 </tr>
+			 </c:forEach>
 		</table>
 	</div>
 	
