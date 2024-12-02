@@ -27,14 +27,21 @@ public class CartController {
 	
 	// 세영) 결제 창 뷰
 	@GetMapping("/customer/on/checkoutAll")
-	public String ordersPayment(@RequestParam String customerMail, Model model) {
+	public String ordersPayment(Model model, @RequestParam String customerMail) {
 
 		List<Map<String, Object>> addressList = addressService.getAddressListByCustomerMail(customerMail);
 		
+		log.debug("addressList : " + addressList);
+		
 		List<Map<String, Object>> cartList = cartService.getSelectCartList(customerMail);
 		
+		log.debug("cartList : " + cartList);
+
 		long paymentPrice = cartService.getCartByPayment(cartList);
 		
+		log.debug("paymentPrice : " + paymentPrice);		
+		
+		model.addAttribute("customerMail", customerMail);
 		model.addAttribute("addressList", addressList);
 		model.addAttribute("cartList", cartList);
 		model.addAttribute("paymentPrice", paymentPrice);
@@ -42,12 +49,12 @@ public class CartController {
 		return "customer/on/ordersPayment";
 	}
 	
-	 // 전체 주문 처리
-    @PostMapping("/customer/on/checkoutAll")
-    public String allOrder(@RequestParam("customerMail") String customerMail, Model model) {
-        cartService.allOrder(customerMail);
-        return "/customer/on/ordersPayment";
-    }
+	// 전체 주문 처리
+    // @PostMapping("/customer/on/checkoutAll")
+    // public String allOrder(@RequestParam("customerMail") String customerMail, Model model) {
+    //    cartService.allOrder(customerMail);
+    //    return "/customer/on/ordersPayment";
+    // }
     
     // 선택 주문 처리
     @PostMapping("/customer/on/checkoutSelected")

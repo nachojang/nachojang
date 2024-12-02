@@ -64,7 +64,7 @@
 
 
 		<!-- 버튼 영역 -->
-		<button type="button" id="checkoutAllBtn"
+		<button type="submit" id="checkoutAllBtn"
 			formaction="${pageContext.request.contextPath}/customer/on/checkoutAll?customerMail=${customerMail}"
 			class="btn btn-primary">전체 주문</button>
 
