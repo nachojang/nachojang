@@ -10,13 +10,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
 <meta charset="UTF-8">
-<title>고객 주문내역</title>
+<title>스태프 전체 주문내역</title>
 
 </head>
 <body>
-	<h1>${customerMail}</h1>
-	<!-- 헤더 고정 -->
 	
+	<!-- 헤더 고정 -->
 	
 	<!-- main -->
 	<div class="col-sm-10">
@@ -40,14 +39,14 @@
 					<td>${o.ordersAmount}</td>
 					<td>${o.paymentPrice}</td>
 					<td>
-						<c:if test="${o.paymentState == '배송중'}">
-							<a href="${pageContext.request.contextPath}/customer/on/modifyState?paymentNo=${o.paymentNo}&paymentState=${o.paymentState}&customerMail=${customerMail}">
+						<c:if test="${paymentState == '결제완료' || paymentState == '배송중'}">
+							<a href="${pageContext.request.contextPath}/staff/on/modifyState?paymentNo=${o.paymentNo}&paymentState=${o.paymentState}">
 								${o.paymentState}
 							</a>
 						</c:if>
-						<c:if test="${o.paymentState == '결제완료' || o.paymentState == '배송완료'}">
+						<c:if test="${paymentState == '배송완료'}">
 							${o.paymentState}
-						</c:if>					
+						</c:if>						
 					</td>
 				</tr>
 			</c:forEach>

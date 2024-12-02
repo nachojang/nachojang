@@ -14,4 +14,12 @@
 				, #{paymentMethod}
 		)
 	</insert>
-</mapper>
+	
+	<!-- 세영) 배송현황 수정 -->
+	<update id="updatePaymentState" parameterType="com.example.nachojang.vo.Payment">
+		UPDATE payment 	
+		SET payment_state = #{paymentState}
+		WHERE payment_no = #{paymentNo}
+	</update>
+	
+	</mapper>

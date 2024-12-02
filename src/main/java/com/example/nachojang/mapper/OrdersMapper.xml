@@ -2,8 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.nachojang.mapper.OrdersMapper">
 	
-	<!-- 세영) paymentNo  -->
-	<!-- payment 안에 있는 주문목록 -->
+	<!-- 세영) 전체 주문 내역 -->
+	<select id="selectOrdersList" resultType="Map">
+		SELECT
+			o.payment_no paymentNo
+			, o.create_date createDate
+			, o.orders_amount ordersAmount
+			, p.payment_price paymentPrice
+			, p.payment_state paymentState
+		FROM orders o
+		JOIN payment p ON o.payment_no = p.payment_no
+		JOIN address a ON a.address_no = p.address_no
+		ORDER BY p.payment_no DESC
+	</select>	
+		
+	<!-- 세영) payment 안에 있는 주문목록 -->
 	<select id="selectOrderListByPayment" resultType="Map">
 		SELECT 
 			o.payment_no paymentNo,

@@ -13,6 +13,9 @@
 	           
 	     <li class="list-group-item">   
 	           <a href="${pageContext.request.contextPath}/staff/on/goodsList" class="btn">상품 관리</a></li>
+	  
+	     <li class="list-group-item">   
+	           <a href="${pageContext.request.contextPath}/staff/on/ordersList" class="btn">주문 관리</a></li>
 	   
 	     <li class="list-group-item">
 	           <a href="${pageContext.request.contextPath}/staff/on/boardList" class="btn">댓글 관리</a></li>

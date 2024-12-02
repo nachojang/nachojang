@@ -14,6 +14,12 @@ import com.example.nachojang.mapper.OrdersMapper;
 public class OrdersService {
 	@Autowired OrdersMapper ordersMapper;
 	
+	// 세영) 전체 주문 목록
+	public List<Map<String, Object>> getOrdersList() {
+		
+		return ordersMapper.selectOrdersList();
+	}
+	
 	// 세영) payment 안에 있는 주문목록
 	// /customer/on/ordersOne
 	public List<Map<String, Object>> getSelectOrderListByPayment(Integer paymentNo) {
@@ -38,9 +44,9 @@ public class OrdersService {
 		return totalCount;
 	}
 	
-	// 세영) 전체 주문 목록
+	// 세영) 고객의 전체 주문 목록
 		// /customer/on/ordersList
-		public List<Map<String, Object>> getOrdersList(String customerMail) {
+		public List<Map<String, Object>> getOrdersListByCustomerMail(String customerMail) {
 			
 			return ordersMapper.selectOrdersListByCustomerMail(customerMail);
 		}

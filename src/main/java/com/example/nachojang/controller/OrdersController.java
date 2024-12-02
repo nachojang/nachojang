@@ -22,6 +22,22 @@ public class OrdersController {
 	@Autowired OrdersService ordersService;
 	@Autowired BoardService boardService;
 	
+	// 세영) 전체 주문 목록
+		@GetMapping("/staff/on/ordersList")
+		public String ordersList(Model model) {
+			
+			// 주문 목록 가져오기
+			List<Map<String, Object>> ordersList = ordersService.getOrdersList();
+			
+			// 디버깅
+			log.debug("ordersList : " + ordersList);
+		
+			// 모델에 추가
+			model.addAttribute("ordersList", ordersList);
+			
+			return "staff/on/ordersList";
+		}
+	
 	// 세영) 댓글 추가
 	@PostMapping("/customer/on/ordersOne")
 	public String addComment(Board board
@@ -53,19 +69,20 @@ public class OrdersController {
         return "customer/on/ordersOne";  // JSP 페이지로 전달
 	}
 	
-	// 세영) 고객의 주문 전체 내역
+	// 세영) 고객의 전체 주문 목록
 	@GetMapping("/customer/on/ordersList")
-	public String ordersList(Model model, @RequestParam String customerMail) {
+	public String ordersListByCustomerMail(Model model, @RequestParam String customerMail) {
 		
 		log.debug("customerMail : "+customerMail);
 		
 		// 오더리스트 가져오기
-		List<Map<String, Object>> ordersList = ordersService.getOrdersList(customerMail);
+		List<Map<String, Object>> ordersList = ordersService.getOrdersListByCustomerMail(customerMail);
 		
 		log.debug(ordersList+"<---ordersList");
 		
 		// 모델에 오더리스트 추가
 		model.addAttribute("ordersList", ordersList);
+		model.addAttribute("customerMail", customerMail);
 		
 		// 고객의 주문 내역 페이지로 이동	
 		return "customer/on/ordersList";
