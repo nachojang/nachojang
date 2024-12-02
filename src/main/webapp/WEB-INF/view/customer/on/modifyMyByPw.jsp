@@ -14,28 +14,42 @@
 
 </head>
 <body>
-
 	<h1>비밀번호 변경</h1>
 	${errMsg}
-	<form method="post" action="${pageContext.request.contextPath}">
+	<form id="formModifyPw" method="post" action="${pageContext.request.contextPath}/customer/on/modifyMyByPw">
 		<table border="1">
 			<tr>
 				<td>변경 전 비밀번호</td>
-				<td><input type="password" name="prePw"></td>
+				<td><input type="password" name="prePw" id="prePw"></td>
 			</tr>
 			<tr>
 				<td>변경 할 비밀번호</td>
-				<td><input type="password" name="newPw"></td>
+				<td><input type="password" name="newPw" id="newPw"></td>
 			</tr>
 			<tr>
 				<td>비밀번호 확인</td>
-				<td><input type="password" name="rePw"></td>
+				<td><input type="password" name="rePw" id="rePw"></td>
 			</tr>
 		</table>
-		<button type="submit">정보 수정</button>
+		<button type="button" id="btnModifyPw">정보 수정</button>
 	</form>
 	
 	
 
 </body>
+
+<script>
+	$('#btnModifyPw').click(function() {
+		if($('#prePw').val() == '') {
+			alert('변경 전 비밀번호를 입력하세요');
+		} else if($('#newPw').val() == '') {
+			alert('변경할 비밀번호를 입력하세요');
+		} else if($('#newPw').val() != $('#rePw').val()) {
+			alert('변경 비밀번호가 잘못 입력되었습니다');
+		} else {
+			$('#formModifyPw').submit();
+		}
+	});
+</script>
+
 </html>

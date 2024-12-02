@@ -14,6 +14,7 @@ import com.example.nachojang.vo.Customer;
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,18 @@ public class CustomerController {
     private CustomerService customerService;
     @Autowired
     private OrdersService ordersService;
+    
+    // 회원정보수정(비밀번호)
+    @PostMapping("/customer/on/modifyMyByPw")
+    public String modifyMyByPw(HttpSession session, String newPw, String prePw) {
+    	String customerMail = (String)session.getAttribute("loginCustomer");
+    	Map<String, Object> loginCustomer = new HashMap<>();
+    	loginCustomer.put("newPw", newPw);
+    	loginCustomer.put("prePw", prePw);
+    	loginCustomer.put("customerMail", customerMail);
+    	customerService.modifyMyByPw(loginCustomer);
+    	return "redirect:/customer/on/my?customerMail=" + customerMail;
+    }
     
     // 우림) 고객 마이페이지 -> 회원정보수정(비밀번호)
     @GetMapping("/customer/on/modifyMyByPw")
