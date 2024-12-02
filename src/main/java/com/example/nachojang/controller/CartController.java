@@ -2,7 +2,6 @@ package com.example.nachojang.controller;
 
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -50,11 +49,11 @@ public class CartController {
 	}
 	
 	// 전체 주문 처리
-    // @PostMapping("/customer/on/checkoutAll")
-    // public String allOrder(@RequestParam("customerMail") String customerMail, Model model) {
-    //    cartService.allOrder(customerMail);
-    //    return "/customer/on/ordersPayment";
-    // }
+     @PostMapping("/customer/on/checkAll")
+     public String allOrder(@RequestParam("customerMail") String customerMail, Model model) {
+        cartService.allOrder(customerMail);
+        return "/customer/on/ordersPayment";
+     }
     
     // 선택 주문 처리
     @PostMapping("/customer/on/checkoutSelected")
@@ -79,7 +78,7 @@ public class CartController {
 		return "/customer/on/cartList";
 
 	}
-
+	
 	@GetMapping("/customer/cart/delete")
 	public String deleteCart(@RequestParam int cartNo, HttpSession session) {
 		String customerMail = (String) session.getAttribute("loginCustomer");
