@@ -20,6 +20,27 @@
 		<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
 	</div>
 	
-
+	<!-- 인기상품 -->
+	<div class="mt-5">
+	<h1 class="text-center"> 인기상품 </h1>
+	<form>
+		<table>
+			<tr>
+				<c:forEach var="bg" items="${bestGoodsList}">
+					<td>
+						<img src="${pageContext.request.contextPath}/upload/${bg.goodsFileName}.${bg.goodsFileExt}" 
+				                  alt="상품 이미지" width="80" height="80" style="object-fit: cover;">
+				    </td>
+				    <td>${bg.goodsTitle}</td>
+				    <td>${bg.goodsPrice}</td>
+				</c:forEach>
+			</tr>
+		</table>
+	</form>	
+	</div>	
+	
+	<!-- 신규상품 -->
+	
+	
 </body>
 </html>

@@ -9,8 +9,11 @@ import com.example.nachojang.vo.Goods;
 
 @Mapper
 public interface GoodsMapper {
-
-	// 우림_상품 추가 : staff/on/addGoods
+	
+	// 우림) 인기상품 리스트 : customer/main
+	List<Map<String, Object>> selectBestGoodsList();
+	
+	// 우림) 상품 추가 : staff/on/addGoods
 	int insertGoods(Goods goods);
 	
 	//나정우

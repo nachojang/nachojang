@@ -27,7 +27,7 @@ public class GoodsService {
 	@Autowired GoodsCategoryMapper goodsCategoryMapper;
 	
 	//페이징
-	 public List<Map<String, Object>> selectGoodsList( int currentPage  , int rowPerPage) {
+	public List<Map<String, Object>> selectGoodsList( int currentPage  , int rowPerPage) {
 	        int beginRow = (currentPage - 1) * rowPerPage ;
 
 	        Map<String, Object> params = new HashMap<>();
@@ -40,9 +40,15 @@ public class GoodsService {
 
 	    }
 	
+	// 우림) 인기상품 : customer/main
+	public List<Map<String, Object>> selectBestGoodsList() {
+		return goodsMapper.selectBestGoodsList();
+	}
 	
-	// 우림) 상품 수정 : staff/on/modifyGoods
 	 
+	// 우림) 상품 수정 : staff/on/modifyGoods
+	
+	
 	// 우림_상품 추가 : staff/on/addGoods
 	public void addGoods(GoodsForm goodsForm, String path) {
 		// 상품 기본 항목 (상품명, 상품설명, 상품금액, 상품재고)

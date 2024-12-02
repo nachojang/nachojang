@@ -35,7 +35,7 @@ public class GoodsController {
 		int pageSize = 10; // 한 페이지에 표시할 상품 개수
 
 		List<Map<String, Object>> goodsList = goodsService.selectGoodsList(currentPage, rowPerPage);
-
+		log.debug("goodsList =====================> " + goodsList);
 
 		model.addAttribute("goodsList", goodsList);
 		model.addAttribute("currentPage", currentPage);
@@ -46,7 +46,12 @@ public class GoodsController {
 	
 	// 우림) 고객 홈
 	@GetMapping("/customer/main")
-	public String main() {
+	public String main(Model model) {
+		// 인기상품 리스트
+		List<Map<String, Object>> bestGoodsList = goodsService.selectBestGoodsList();
+		model.addAttribute("bestGoodsList", bestGoodsList);
+		// 신규상품 리스트
+		
 		return "customer/main";
 	}
 	
