@@ -17,8 +17,8 @@
 		<!-- 검색기능 (일단보류)-->
 		
 		<!-- 쇼핑몰 로고 -->
-		<div class="mt-4 text-center">
-			<h1>NACHOJANG</h1>
+		<div class="mt-4 text-center ">
+			<h1><a href="${pageContext.request.contextPath}/customer/main" style="text-decoration: none; color: black;">NACHOJANG</a></h1>
 		</div>			
 		<!-- 상품 카테고리 -->
 		<div>
