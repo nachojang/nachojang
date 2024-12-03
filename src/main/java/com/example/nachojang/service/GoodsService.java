@@ -39,6 +39,25 @@ public class GoodsService {
 
 
 	    }
+	
+	// 우림) 카테고리별 상품리스트(+페이징) : customer/goodsList
+	public List<Map<String, Object>> selectCategoryGoodsList(Integer categoryNo, Integer currentPage, Integer rowPerPage) {
+		Integer beginRow = (currentPage - 1) * rowPerPage;
+		Integer totalRow = goodsMapper.selectCategoryGoodsCount();
+		Integer lastPage = rowPerPage / totalRow;
+		if(rowPerPage % totalRow != 0) {
+			lastPage++;
+		}
+        
+		Map<String, Object> params = new HashMap<>();
+		params.put("categoryNo", categoryNo);
+        params.put("rowPerPage", rowPerPage);
+        params.put("beginRow", beginRow);
+        params.put("lastPage", lastPage);
+		
+		return goodsMapper.selectCategoryGoodsList(params);
+	}
+	
 	// 우림) 신규상품 : customer/main
 	public List<Map<String, Object>> selectNewGoodsList() {
 		return goodsMapper.selectNewGoodsList();
