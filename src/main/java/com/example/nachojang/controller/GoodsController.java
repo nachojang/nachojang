@@ -46,11 +46,18 @@ public class GoodsController {
 	
 	// 우림) 전체, 카테고리별 상품리스트
 	@GetMapping("/customer/goodsList")
-	public String goodsList(Model model, @RequestParam(required = false) Integer categoryNo) {
+	public String goodsList(Model model
+							, @RequestParam(required = false) Integer categoryNo
+							, @RequestParam(defaultValue = "1") int currentPage
+							, @RequestParam(defaultValue = "12") int rowPerPage) {
 		// 상품리스트
-		List<Map<String, Object>> goodsList = goodsService.selectCategoryGoodsList(categoryNo);
+		List<Map<String, Object>> goodsList = goodsService.selectCategoryGoodsList(categoryNo, currentPage, rowPerPage);
+		
+		log.debug("goodsList ===========> " + goodsList);
 		model.addAttribute("goodsList", goodsList);
 		model.addAttribute("categoryNo", categoryNo);
+		model.addAttribute("rowPerPage", rowPerPage);
+		model.addAttribute("currentPage", currentPage);
 		return "customer/goodsList";
 	}
 	
