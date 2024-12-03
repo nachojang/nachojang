@@ -41,7 +41,6 @@
 			</thead>
 			
 			<tbody>
-			
 				<c:forEach items="${cartList}" var="c">
 					<tr>
 

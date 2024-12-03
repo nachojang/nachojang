@@ -42,7 +42,7 @@
 
     <!-- Main content 중앙 정렬 -->
     <div class="main-content">
-        <h1>관리자님 환영합니다</h1>
+        <h1>${staffLogin}님 환영합니다</h1>
     </div>
 
     <footer class="text-center py-3 bg-dark text-white">
