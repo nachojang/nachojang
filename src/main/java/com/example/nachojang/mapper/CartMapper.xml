@@ -32,9 +32,23 @@
 		WHERE
 		cart_no = #{cartNo}
 	</delete>
+	
+	<!-- 장바구니에서 선택된 항목만 조회 -->
+	<select id="selectSelectedCart" parameterType="Integer" resultType="map">
+		SELECT 
+			g.goods_title goodsTitle
+			, c.cart_amount cartAmount
+			, (c.cart_amount * g.goods_price) totalPrice
+			, f.goods_file_name goodsFileName
+			, f.goods_file_ext goodsFileExt
+		FROM cart c 
+		LEFT OUTER JOIN goods g ON c.goods_no = g.goods_no
+		LEFT OUTER JOIN goods_file f ON f.goods_no = c.goods_no
+		WHERE c.cart_no = #{selectedCartNos}
+	</select>
 
 	<!-- 전체 주문 -->
-	<insert id="getAllOrder" parameterType="string">
+	<!-- <insert id="getAllOrder" parameterType="string">
 		INSERT INTO orders
 		(goods_no, orders_amount, payment_no, create_date,
 		update_date)
@@ -47,10 +61,10 @@
 		FROM cart c
 		WHERE c.customer_mail =
 		#{customerMail}
-	</insert>
+	</insert> -->
 
 	<!-- 선택 주문 -->
-	<insert id="selectedOrder" parameterType="map">
+	<!-- <insert id="selectedOrder" parameterType="String">
 		INSERT INTO orders (goods_no, goods_amount, payment_no, create_date,
 		update_date)
 		SELECT
@@ -61,7 +75,7 @@
 		NOW() AS update_date
 		FROM cart c
 		WHERE c.cart_no IN (${cartNoString})
-	</insert>
+	</insert> -->
 
 
 

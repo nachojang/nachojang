@@ -1,5 +1,6 @@
 package com.example.nachojang.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -13,7 +14,13 @@ public class CartService {
     @Autowired
     private CartMapper cartMapper;
     
-    
+    public List<Map<String, Object>> getCartListOne(List<Integer> selectedCartNos) {
+    	List<Map<String, Object>> cartList = new ArrayList<>();
+    	for (Integer c : selectedCartNos) {
+    		cartList.add(cartMapper.selectSelectedCart(c));
+    	}
+    	return cartList;
+    }
     
 
 	// 고객의 장바구니 리스트
@@ -37,13 +44,13 @@ public class CartService {
 		return cartMapper.clearCart(customerMail);
 	}
 			
-	public int allOrder(String customerMail) {
-		return cartMapper.getAllOrder(customerMail);
-	}
-
-	public int selectedOrder(String customerMail) {
-		return cartMapper.getAllOrder(customerMail);
-	}
+	/*
+	 * public int allOrder(String customerMail) { return
+	 * cartMapper.getAllOrder(customerMail); }
+	 * 
+	 * public int selectedOrder(String customerMail) { return
+	 * cartMapper.selectedOrder(customerMail); }
+	 */
 
 
 

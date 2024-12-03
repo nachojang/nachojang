@@ -24,43 +24,46 @@ public class CartController {
 	@Autowired CartService cartService;
 	@Autowired AddressService addressService;
 	
-	// 세영) 결제 창 뷰
-	@GetMapping("/customer/on/checkoutAll")
-	public String ordersPayment(Model model, @RequestParam String customerMail) {
-
-		List<Map<String, Object>> addressList = addressService.getAddressListByCustomerMail(customerMail);
-		
-		log.debug("addressList : " + addressList);
-		
-		List<Map<String, Object>> cartList = cartService.getSelectCartList(customerMail);
-		
-		log.debug("cartList : " + cartList);
-
-		long paymentPrice = cartService.getCartByPayment(cartList);
-		
-		log.debug("paymentPrice : " + paymentPrice);		
-		
-		model.addAttribute("customerMail", customerMail);
-		model.addAttribute("addressList", addressList);
-		model.addAttribute("cartList", cartList);
-		model.addAttribute("paymentPrice", paymentPrice);
-		
-		return "customer/on/ordersPayment";
-	}
+//	// 세영) 결제 창 뷰
+//	@GetMapping("/customer/on/checkoutAll")
+//	public String ordersPayment(Model model, @RequestParam String customerMail) {
+//
+//		List<Map<String, Object>> addressList = addressService.getAddressListByCustomerMail(customerMail);
+//		
+//		log.debug("addressList : " + addressList);
+//		
+//		List<Map<String, Object>> cartList = cartService.getSelectCartList(customerMail);
+//		
+//		log.debug("cartList : " + cartList);
+//
+//		long paymentPrice = cartService.getCartByPayment(cartList);
+//		
+//		log.debug("paymentPrice : " + paymentPrice);		
+//		
+//		model.addAttribute("customerMail", customerMail);
+//		model.addAttribute("addressList", addressList);
+//		model.addAttribute("cartList", cartList);
+//		model.addAttribute("paymentPrice", paymentPrice);
+//		
+//		return "customer/on/ordersPayment";
+//	}
 	
 	// 전체 주문 처리
-     @GetMapping("/customer/on/checkAll")
-     public String allOrder(@RequestParam("customerMail") String customerMail, Model model) {
-        cartService.allOrder(customerMail);
+     @PostMapping("/customer/on/checkAll")
+     public String allOrder(Model model, @RequestParam(value = "selectedCartNos", required = false) List<Integer> selectedCartNos) {
+        List<Map<String, Object>> cartList = cartService.getCartListOne(selectedCartNos);
+        model.addAttribute("cartList", cartList);
         return "/customer/on/ordersPayment";
      }
     
-    // 선택 주문 처리
-    @GetMapping("/customer/on/checkoutSelected")
-    public String selectedOrder(@RequestParam("customerMail") String customerMail, Model model) {
-    	cartService.selectedOrder(customerMail); 	    	
-    	return "/customer/on/ordersPayment";
-    }
+		/*
+		 * // 선택 주문 처리
+		 * 
+		 * @GetMapping("/customer/on/checkoutSelected") public String
+		 * selectedOrder(@RequestParam("customerMail") String customerMail, Model model)
+		 * { cartService.selectedOrder(customerMail); return
+		 * "/customer/on/ordersPayment"; }
+		 */
    
     
 	@GetMapping("/customer/on/cartList")

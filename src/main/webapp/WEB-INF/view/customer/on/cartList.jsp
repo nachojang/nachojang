@@ -21,8 +21,7 @@
 	<!-- 장바구니 -->
 	<div></div>
 	<h2>회원님 장바구니</h2>
-	<form method="get"
-		action="${pageContext.request.contextPath}/customer/cart/checkoutSelected">
+	<form method="post" action="${pageContext.request.contextPath}/customer/on/checkAll" id="cartForm">
 		<input type="hidden" name="customerMail" value="${customerMail}">
 
 		<table border="1" cellspacing="1" cellpadding="5"
@@ -67,17 +66,12 @@
 				총 결제 금액: <strong id="totalPrice">0</strong> 원
 			</p>
 		</div>
-
-
-		<!-- 버튼 영역 -->
+		<button type="button" id="checkoutSelectedBtn" class="btn btn-primary">선택 주문</button>
+	</form>
+	<!-- 버튼 영역 -->
 		<button type="submit" id="checkoutAllBtn"
 			formaction="${pageContext.request.contextPath}/customer/on/checkAll?customerMail=${customerMail}"
 			class="btn btn-primary">전체 주문</button>
-
-		<button type="submit" id="checkoutSelectedBtn"
-			formaction="${pageContext.request.contextPath}/customer/on/checkoutSelected?customerMail=${customerMail}"
-			class="btn btn-primary">선택 주문</button>
-	</form>
 </body>
 <script>
 	$(document).ready(function() {
@@ -88,6 +82,8 @@
 			if (selected.length === 0) {
 				e.preventDefault(); // 폼 제출 중지
 				alert('선택된 상품이 없습니다. 체크박스를 선택해주세요.');
+			} else {
+				$('#cartForm').submit();
 			}
 		});
 	});

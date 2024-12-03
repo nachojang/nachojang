@@ -10,6 +10,7 @@ import com.example.nachojang.vo.Cart;
 
 @Mapper
 public interface CartMapper {
+	Map<String, Object> selectSelectedCart(Integer selectedCartNos);
 	
 	public int getRemoveCart(int cartNo);
 
@@ -31,11 +32,11 @@ public interface CartMapper {
 	    int deleteSelectedCartItems(@Param("cartNos") List<Integer> selectedCartNos);
 
 	    
-	    //전체주문
-		public int getAllOrder(String customerMail);
-		
-		//선택주문
-		public int selectedOrder(String customerMail);
+		/*
+		 * //전체주문 public int getAllOrder(String customerMail);
+		 * 
+		 * //선택주문 public int selectedOrder(String customerMail);
+		 */
 	
 	
 	

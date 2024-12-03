@@ -49,7 +49,7 @@
 							</td>
 							<td>${c.goodsTitle}</td>					
 							<td>${c.cartAmount}</td>					
-							<td>${c.goodsPrice}</td>					
+							<td>${c.totalPrice}</td>					
 						</tr>
 					</c:forEach>
 					</table>
