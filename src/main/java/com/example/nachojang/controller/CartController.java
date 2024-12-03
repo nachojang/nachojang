@@ -49,16 +49,16 @@ public class CartController {
 	}
 	
 	// 전체 주문 처리
-     @PostMapping("/customer/on/checkAll")
+     @GetMapping("/customer/on/checkAll")
      public String allOrder(@RequestParam("customerMail") String customerMail, Model model) {
         cartService.allOrder(customerMail);
         return "/customer/on/ordersPayment";
      }
     
     // 선택 주문 처리
-    @PostMapping("/customer/on/checkoutSelected")
+    @GetMapping("/customer/on/checkoutSelected")
     public String selectedOrder(@RequestParam("customerMail") String customerMail, Model model) {
-    	cartService.selectedOrder(customerMail);   	    	
+    	cartService.selectedOrder(customerMail); 	    	
     	return "/customer/on/ordersPayment";
     }
    
