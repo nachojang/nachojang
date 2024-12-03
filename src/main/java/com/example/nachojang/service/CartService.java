@@ -8,17 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.nachojang.mapper.CartMapper;
-import com.example.nachojang.vo.Cart;
 
 @Service
 public class CartService {
     @Autowired
     private CartMapper cartMapper;
     
-    public Integer addCart(Cart cart) {
-    	return cartMapper.addCart(cart);
-    }
-    
+    // 세영) 체크된 카트 불러오기
+    // /customer/on/checkAll
     public List<Map<String, Object>> getCartListOne(List<Integer> selectedCartNos) {
     	List<Map<String, Object>> cartList = new ArrayList<>();
     	for (Integer c : selectedCartNos) {
@@ -27,7 +24,6 @@ public class CartService {
     	return cartList;
     }
     
-
 	// 고객의 장바구니 리스트
  	public List<Map<String,Object>> getSelectCartList(String customerMail){
  		return cartMapper.selectCartList(customerMail);
@@ -56,8 +52,4 @@ public class CartService {
 	 * public int selectedOrder(String customerMail) { return
 	 * cartMapper.selectedOrder(customerMail); }
 	 */
-
-
-
-		
 }

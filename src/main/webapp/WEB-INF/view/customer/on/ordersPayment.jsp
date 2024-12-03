@@ -22,15 +22,19 @@
 				<td>${customerMail}</td>
 			</tr>
 			<tr>
-				<td>배송지</td>
-				<td>
-					<select name = "addressNo" id="addressNo">
-					<option value="0">:::선택:::</option>
-					<c:forEach  var="a" items="${addressList}">
-						<option value="${a.addressNo}">${a.addressDetail}</option>
-					</c:forEach>
-				</select>
-				</td>
+				
+					<c:if test="${addressList == null}">
+						등록된 주소가 없습니다.
+					</c:if>
+					<c:if test="${addressList != null}">
+					<c:forEach var="a" items="${addressList}">
+						<td>${a.addressDetail}</td>
+						<td>
+							<input type="radio" id="addressNo" name="addressNo" value="${a.addressNo}">
+						</td>
+					
+				</c:forEach>
+				</c:if>	
 			</tr>
 			<tr>
 				<td>주문상품</td>
@@ -57,13 +61,13 @@
 			</tr>
 			<tr>
 				<td>결제금액</td>
-				<td>${paymentPrice}</td>
+				<td>${totalPrice}</td>
 			</tr>
 			<tr>
 				<td>결제수단</td>
 				<td>
-					페이 : <input name="paymentMethod" type="radio" value="페이">
-					카드 : <input name="paymentMethod" type="radio" value="카드">
+					페이 : <input type="radio" name="paymentMethod" value="페이">
+					카드 : <input type="radio" name="paymentMethod" value="카드">
 				</td>
 			</tr>
 		</table>
