@@ -21,7 +21,7 @@
 	<!-- 장바구니 -->
 	<div></div>
 	<h2>회원님 장바구니</h2>
-	<form method="post"
+	<form method="get"
 		action="${pageContext.request.contextPath}/customer/cart/checkoutSelected">
 		<input type="hidden" name="customerMail" value="${customerMail}">
 
@@ -30,7 +30,7 @@
 			<thead>
 
 				<tr>
-					
+
 					<th>선택</th>
 					<th>이미지</th>
 					<th>상품명</th>
@@ -38,8 +38,11 @@
 					<th>금액</th>
 					<th>삭제</th>
 				</tr>
+
 			</thead>
+			
 			<tbody>
+			
 				<c:forEach items="${cartList}" var="c">
 					<tr>
 
@@ -127,7 +130,5 @@
 				// 페이지 로드 시 초기 총 금액 계산
 				calculateTotalPrice();
 			});
-
-	
 </script>
 </html>
