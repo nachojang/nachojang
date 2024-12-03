@@ -10,6 +10,9 @@ import com.example.nachojang.vo.Goods;
 @Mapper
 public interface GoodsMapper {
 	
+	// 우림) 상품상세 : customer/goodsOne
+	Map<String, Object> selectGoodsOne(Integer goodsNo);
+	
 	// 우림) 카테고리별 총 상품 수 : customer/goodsList
 	Integer selectCategoryGoodsCount();
 	

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.nachojang.service.BoardService;
 import com.example.nachojang.service.CategoryService;
 import com.example.nachojang.service.GoodsService;
 import com.example.nachojang.vo.Category;
@@ -26,6 +27,8 @@ public class GoodsController {
 	GoodsService goodsService;
 	@Autowired
 	CategoryService categoryService;
+	@Autowired
+	BoardService boardService;
 
 	// 나정우
 
@@ -44,6 +47,26 @@ public class GoodsController {
 		return "/staff/on/goodsList";
 	}
 	
+	// 우림) 상품상세
+	@GetMapping("/customer/goodsOne")
+	public String goodsOne(HttpSession session, Model model, Integer goodsNo
+							, @RequestParam(defaultValue = "1") Integer currentPage
+							, @RequestParam(defaultValue = "12") Integer rowPerPage) {
+		// 작성자 확인용
+		String customerMail = (String)session.getAttribute("loginCustomer");
+		model.addAttribute("customerMail", customerMail);
+		
+		// 상품 상세정보
+		Map<String, Object> goodsOne = goodsService.selectGoodsOne(goodsNo);
+		model.addAttribute("goodsOne", goodsOne);
+		
+		// 댓글 목록
+		List<Map<String, Object>> boardList = boardService.selectBoardListByGoodsOne(goodsNo);
+		log.debug("boardList ==================> " + boardList);
+		model.addAttribute("boardList", boardList);
+		return "customer/goodsOne";
+	}
+	
 	// 우림) 전체, 카테고리별 상품리스트
 	@GetMapping("/customer/goodsList")
 	public String goodsList(Model model
@@ -52,7 +75,6 @@ public class GoodsController {
 							, @RequestParam(defaultValue = "12") int rowPerPage) {
 		// 상품리스트
 		List<Map<String, Object>> goodsList = goodsService.selectCategoryGoodsList(categoryNo, currentPage, rowPerPage);
-		
 		log.debug("goodsList ===========> " + goodsList);
 		model.addAttribute("goodsList", goodsList);
 		model.addAttribute("categoryNo", categoryNo);

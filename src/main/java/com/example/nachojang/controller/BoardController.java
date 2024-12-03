@@ -18,6 +18,13 @@ import com.example.nachojang.vo.Board;
 @Controller	
 public class BoardController {
 	@Autowired BoardService boardService;
+	
+	// 우림)
+	@GetMapping("customer/on/deleteBoard")
+	public String deleterBoardByGoodsOne(Integer goodsNo, Integer ordersNo) {
+		boardService.deleteBoard(ordersNo);
+		return "redirect:/customer/goodsOne?goodsNo=" + goodsNo + "&ordersNo" + ordersNo;
+	}
 
 	// 세영) 댓글 추가
 	@PostMapping("/staff/on/addBoard")
@@ -39,10 +46,10 @@ public class BoardController {
 	
 	// 세영) 댓글 삭제
 	@GetMapping("/staff/on/deleteBoard")
-	public String deleteBoard(Board board) {
+	public String deleteBoard(Integer orderNo) {
 		
 		// 삭제 메소드 호출
-		boardService.deleteBoard(board);
+		boardService.deleteBoard(orderNo);
 		
 		// 삭제가 완료되면 댓글 목록 페이지로 리다이
 		return "redirect:/staff/on/boardList";

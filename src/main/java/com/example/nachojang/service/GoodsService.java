@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.nachojang.mapper.BoardMapper;
 import com.example.nachojang.mapper.GoodsCategoryMapper;
 import com.example.nachojang.mapper.GoodsFileMapper;
 import com.example.nachojang.mapper.GoodsMapper;
@@ -39,6 +40,11 @@ public class GoodsService {
 
 
 	    }
+	
+	// 우림) 상품상세 : customer/goodsOne
+	public Map<String, Object> selectGoodsOne(Integer goodsNo){
+		return goodsMapper.selectGoodsOne(goodsNo);
+	}
 	
 	// 우림) 카테고리별 상품리스트(+페이징) : customer/goodsList
 	public List<Map<String, Object>> selectCategoryGoodsList(Integer categoryNo, Integer currentPage, Integer rowPerPage) {

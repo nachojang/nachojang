@@ -23,41 +23,51 @@
 	<!-- 인기상품 -->
 	<div class="mt-5">
 	<h1 class="text-center"> 인기상품 </h1>
-	<form>
-		<table>
+	<c:forEach var="bg" items="${bestGoodsList}">
+		<table class="table table-bordered">
 			<tr>
-				<c:forEach var="bg" items="${bestGoodsList}">
-					<td>
-						<img src="${pageContext.request.contextPath}/upload/${bg.goodsFileName}.${bg.goodsFileExt}" 
-				                  alt="상품 이미지" width="80" height="80" style="object-fit: cover;">
-				    </td>
-				    <td>${bg.goodsTitle}</td>
-				    <td>${bg.goodsPrice}</td>
-				</c:forEach>
+				<td>
+					<a href="${pageContext.request.contextPath}/customer/goodsOne?goodsNo=${bg.goodsNo}">
+					<img src="${pageContext.request.contextPath}/upload/${bg.goodsFileName}.${bg.goodsFileExt}" 
+					alt="상품 이미지" width="80" height="80" style="object-fit: cover;">
+					</a>              
+				</td>
+			</tr>
+			<tr>
+				<td>${bg.goodsTitle}</td>
+			</tr>
+			<tr>
+				<td>${bg.goodsPrice}</td>
 			</tr>
 		</table>
-	</form>	
+	</c:forEach>
 	</div>	
+		
+	   <!-- 신규상품 -->
+	<div class="mt-3">
+	<h1 class="text-center"> 신규상품 </h1>
+	<c:forEach var="ng" items="${newGoodsList}">
+		<table class="table table-bordered">
+			<tr>
+				<td>
+					<a href="${pageContext.request.contextPath}/customer/goodsOne?goodsNo=${ng.goodsNo}">
+					<img src="${pageContext.request.contextPath}/upload/${ng.goodsFileName}.${ng.goodsFileExt}" 
+					alt="상품 이미지" width="80" height="80" style="object-fit: cover;">
+					</a>
+				</td>
+			</tr>
+			<tr>
+				<td>${ng.goodsTitle}</td>
+			</tr>
+			<tr>
+				<td>${ng.goodsPrice}</td>
+			</tr>
+		</table>
+	</c:forEach>
+	</div>
 	
-   <!-- 신규상품 -->
-   <div class="mt-3">
-   <h1 class="text-center"> 신규상품 </h1>
-   <form>
-      <table>
-         <tr>
-            <c:forEach var="ng" items="${newGoodsList}">
-               <td>
-                  <img src="${pageContext.request.contextPath}/upload/${ng.goodsFileName}.${ng.goodsFileExt}" 
-                              alt="상품 이미지" width="80" height="80" style="object-fit: cover;">
-                </td>
-                <td>${ng.goodsTitle}</td>
-                <td>${ng.goodsPrice}</td>
-            </c:forEach>
-         </tr>
-      </table>
-   </form>   
-   </div>
-	
+	<!-- 고정 회사정보 -->
+    <c:import url="/WEB-INF/view/company.jsp"></c:import>
 	
 </body>
 </html>

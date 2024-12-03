@@ -2,6 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.nachojang.mapper.GoodsMapper">
 	
+	<!-- 우림) 상품상세 : customer/goodsOne -->
+	<select id="selectGoodsOne"
+			parameterType="Integer"
+			resultType="Map">
+		SELECT
+			g.goods_no goodsNo
+			, g.goods_title goodsTitle
+			, g.goods_memo goodsMemo
+			, g.goods_price goodsPrice
+			, g.goods_state goodsState
+			, gf.goods_file_name goodsFileName
+			, gf.goods_file_ext goodsFileExt
+			, c.category_title categoryTitle
+		FROM goods g
+		JOIN 
+			goods_file gf ON g.goods_no = gf.goods_no
+		JOIN 
+			goods_category gc ON g.goods_no = gc.goods_no
+		LEFT JOIN 
+			category c ON gc.category_no = c.category_no
+		WHERE g.goods_no = ${goodsNo}
+	</select>
+	
 	<!-- 우림) 카테고리별 총 상품 수 : customer/goodsList -->
 	<select id="selectCategoryGoodsCount">
 		SELECT COUNT(*) 

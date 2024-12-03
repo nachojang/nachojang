@@ -16,6 +16,11 @@ import com.example.nachojang.vo.Board;
 public class BoardService {
 	@Autowired BoardMapper boardMapper;	
 	
+	// 우림) 상품상세 -> 댓글 목록 : customer/goodsOne
+	public List<Map<String, Object>> selectBoardListByGoodsOne(Integer goodsNo) {
+		return boardMapper.selectBoardListByGoodsOne(goodsNo);
+	}
+	
 	// 세영) 고객의 주문 상품 댓글 출력
 	// /customer/on/ordersOne
 	public Map<String, Object> selectBoardByOrdersNo(Integer ordersNo) {
@@ -36,8 +41,8 @@ public class BoardService {
 	
 	// 세영) 댓글 삭제
 	// staff/on/deleteBoard
-	public Integer deleteBoard(Board paramBoard) {
-		return boardMapper.deleteBoard(paramBoard);
+	public Integer deleteBoard(Integer orderNo) {
+		return boardMapper.deleteBoard(orderNo);
 	}
 	
 	// 세영) 마지막 페이지

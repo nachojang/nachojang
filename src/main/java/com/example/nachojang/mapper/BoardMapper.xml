@@ -2,6 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.nachojang.mapper.BoardMapper">
 	
+	<!-- 우림) 상품상세 -> 댓글 목록 : customer/goodsOne -->
+	<select id="selectBoardListByGoodsOne"
+			parameterType="Integer">
+		SELECT 
+		    g.goods_no goodsNo
+		    , b.orders_no ordersNo
+		    , c.customer_mail customerMail
+		    , b.board_content boardContent
+		    , b.create_date createDate
+		FROM 
+		    board b
+		JOIN 
+		    orders o ON b.orders_no = o.orders_no
+		JOIN 
+		    goods g ON o.goods_no = g.goods_no
+		JOIN 
+		    payment p ON o.payment_no = p.payment_no
+		JOIN 
+		    address a ON p.address_no = a.address_no
+		JOIN
+			customer c ON c.customer_mail = a.customer_mail
+		WHERE g.goods_no = ${goodsNo}
+		ORDER BY b.create_date DESC
+	</select>
+	
 	<!-- 세영) 고객의 주문 상품 댓글 출력 -->
 	<select id="selectBoardByOrdersNo" resultType="Map" parameterType="Integer">
 		SELECT 
@@ -28,7 +53,7 @@
 	</insert>
 	
 	<!-- 세영) 댓글 삭제 -->
-	<delete id="deleteBoard" parameterType="com.example.nachojang.vo.Board">
+	<delete id="deleteBoard" parameterType="Integer">
 		DELETE FROM board
 		WHERE orders_no = #{ordersNo}
 	</delete>
