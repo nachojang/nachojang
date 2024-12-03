@@ -44,7 +44,17 @@ public class GoodsController {
 		return "/staff/on/goodsList";
 	}
 	
-	// 우림) 고객 홈
+	// 우림) 전체, 카테고리별 상품리스트
+	@GetMapping("/customer/goodsList")
+	public String goodsList(Model model, @RequestParam(required = false) Integer categoryNo) {
+		// 상품리스트
+		List<Map<String, Object>> goodsList = goodsService.selectCategoryGoodsList(categoryNo);
+		model.addAttribute("goodsList", goodsList);
+		model.addAttribute("categoryNo", categoryNo);
+		return "customer/goodsList";
+	}
+	
+	// 우림) 고객 홈 인기상품, 신규상품
 	@GetMapping("/customer/main")
 	public String main(Model model) {
 		// 인기상품 리스트

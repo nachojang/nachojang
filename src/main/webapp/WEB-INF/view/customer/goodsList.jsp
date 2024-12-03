@@ -15,5 +15,37 @@
 </head>
 <body>
 
+	<div class="row">
+		<!-- 헤더 고정 -->
+		<div>
+			<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
+		</div>
+			
+		<!-- 상품리스트 -->	
+		<div class="mt-5">
+		<h1 class="text-center"> 상품목록 </h1>
+		<form>
+			<table>
+				<tr>
+					<c:forEach var="g" items="${goodsList}">
+						<td>
+							<img src="${pageContext.request.contextPath}/upload/${g.goodsFileName}.${g.goodsFileExt}" 
+					                  alt="상품 이미지" width="80" height="80" style="object-fit: cover;">
+					    </td>
+					    <td>${g.goodsTitle}</td>
+					    <td>${g.goodsPrice}</td>
+					</c:forEach>
+				</tr>
+			</table>
+		</form>	
+		</div>	
+	</div>
+	
+	
+	
+    <!-- 고정 회사정보 -->
+    <c:import url="/WEB-INF/view/company.jsp"></c:import>
+
+
 </body>
 </html>

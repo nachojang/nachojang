@@ -22,9 +22,10 @@
 		</div>			
 		<!-- 상품 카테고리 -->
 		<div class=" text-center">
-			<a href="${pageContext.request.contextPath}/customer/goodsList" style="text-decoration: none; color: black;">상의</a> &nbsp;ㅣ
-			<a href="${pageContext.request.contextPath}/customer/goodsList" style="text-decoration: none; color: black;">하의</a> &nbsp;ㅣ
-			<a href="${pageContext.request.contextPath}/customer/goodsList" style="text-decoration: none; color: black;">겉옷</a> &nbsp;
+			<a href="${pageContext.request.contextPath}/customer/goodsList" style="text-decoration: none; color: black;">전체</a> &nbsp;ㅣ
+			<a href="${pageContext.request.contextPath}/customer/goodsList?categoryNo=1" style="text-decoration: none; color: black;">상의</a> &nbsp;ㅣ
+			<a href="${pageContext.request.contextPath}/customer/goodsList?categoryNo=2" style="text-decoration: none; color: black;">하의</a> &nbsp;ㅣ
+			<a href="${pageContext.request.contextPath}/customer/goodsList?categoryNo=3" style="text-decoration: none; color: black;">겉옷</a> &nbsp;
 		</div>
 		
 </div>

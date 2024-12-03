@@ -39,6 +39,12 @@ public class GoodsService {
 
 
 	    }
+	
+	// 우림) 카테고리별 상품리스트(+페이징) : customer/goodsList
+	public List<Map<String, Object>> selectCategoryGoodsList(Integer categoryNo) {
+		return goodsMapper.selectCategoryGoodsList(categoryNo);
+	}
+	
 	// 우림) 신규상품 : customer/main
 	public List<Map<String, Object>> selectNewGoodsList() {
 		return goodsMapper.selectNewGoodsList();
