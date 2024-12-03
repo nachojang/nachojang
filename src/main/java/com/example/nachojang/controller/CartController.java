@@ -58,7 +58,7 @@ public class CartController {
     // 선택 주문 처리
     @GetMapping("/customer/on/checkoutSelected")
     public String selectedOrder(@RequestParam("customerMail") String customerMail, Model model) {
-    	cartService.selectedOrder(customerMail);   	    	
+    	cartService.selectedOrder(customerMail); 	    	
     	return "/customer/on/ordersPayment";
     }
    
