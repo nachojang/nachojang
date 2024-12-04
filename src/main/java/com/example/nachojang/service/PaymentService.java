@@ -65,6 +65,4 @@ public class PaymentService {
 		
 		return paymentMapper.updatePaymentState(payment);
 	}
-	
-	
 }

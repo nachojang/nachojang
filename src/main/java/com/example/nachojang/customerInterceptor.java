@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 // 세영 ) customer 세션이 없을 시 리디렉션
 public class customerInterceptor implements HandlerInterceptor {
 	
-	/*
 	//특정 컨트롤러 실행전에 request, response를 가로채 먼저 실행됨
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -29,5 +28,4 @@ public class customerInterceptor implements HandlerInterceptor {
 		
 		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}
-	*/
 }

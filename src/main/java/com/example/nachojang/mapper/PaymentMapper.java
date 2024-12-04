@@ -18,5 +18,4 @@ public interface PaymentMapper {
 	
 	// 세영) 배송현황 수정
 	Integer updatePaymentState(Payment payment);
-	
 }

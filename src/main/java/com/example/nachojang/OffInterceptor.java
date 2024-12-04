@@ -13,7 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 // 세영) 세션이 있을 시 리디렉션
 public class OffInterceptor implements HandlerInterceptor {
 	
-	/*
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
@@ -31,9 +30,6 @@ public class OffInterceptor implements HandlerInterceptor {
 			response.sendRedirect(request.getContextPath() + "/customer/on/main");
 			return false;
 		}
-		
-		
 		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}
-	*/
 }
