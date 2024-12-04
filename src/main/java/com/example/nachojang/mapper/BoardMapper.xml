@@ -31,6 +31,7 @@
 	<select id="selectBoardByOrdersNo" resultType="Map" parameterType="Integer">
 		SELECT 
 			count(*) cnt
+			, orders_no ordersNo
 			, board_content boardContent
 		FROM board
 		WHERE orders_no = #{ordersNo}

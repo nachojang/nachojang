@@ -7,19 +7,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.nachojang.service.PaymentService;
+import com.example.nachojang.vo.Payment;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
 public class PaymentController {
-	@Autowired PaymentService paymentService;
-
+	@Autowired PaymentService paymentService;	
+	
 	// 세영) 결제 완료 창
-	@GetMapping("/customer/on/payment")
+	@GetMapping("/customer/on/completePayment")
 	public String completePayment(@RequestParam Integer paymentNo
 								, Model model) {
 		
@@ -33,6 +35,18 @@ public class PaymentController {
 		model.addAttribute("paymentList", paymentList);
 		
 		return "customer/on/payment";
+	}
+	
+	// 세영) 결제 완료 시 orders payment 생성, cart 삭제
+	@PostMapping("/customer/on/addPayment")
+	public String addPayment(Payment payment, @RequestParam(value = "cartNo", required = false) List<Integer> cartNo) {
+		
+		log.debug("!!!selectedCartNos : "+ cartNo);
+		log.debug("payment : "+ payment);
+		
+		Integer paymentNo = paymentService.addPayment(payment, cartNo);
+		
+		return "redirect:/customer/on/completePayment?paymentNo=" + paymentNo;
 	}
 	
 	// 세영) 고객 배송 상태 변경

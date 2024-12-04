@@ -77,9 +77,9 @@
                                 
                                 <!-- 댓글이 1개 있을 때 해당 댓글을 출력 -->
                                 <c:if test="${row == 1}">
-                                    <c:forEach var="comment" items="${comments}">
-                                        <c:if test="${comment.ordersNo == o.ordersNo}">
-                                            <p>${comment.boardContent}</p>
+                                    <c:forEach var="c" items="${comments}">
+                                        <c:if test="${c.ordersNo == o.ordersNo}">
+                                            <p>${c.boardContent}</p>
                                         </c:if>
                                     </c:forEach>
                                 </c:if>

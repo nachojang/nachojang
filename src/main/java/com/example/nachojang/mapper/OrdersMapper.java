@@ -5,9 +5,14 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.example.nachojang.vo.Orders;
+
 @Mapper
 public interface OrdersMapper {
 
+	// 세영) 결체 완료시 주문 내역 추가
+	Integer insertOrders(Orders orders);
+	
 	// 세영) 전체 주문 내역
 	List<Map<String, Object>> selectOrdersList();
 	

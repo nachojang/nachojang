@@ -15,7 +15,7 @@ public interface CartMapper {
 	Integer addCart(Cart cart);
 	
 	// 세영) 장바구니에서 선택된 항목만 조회
-	Map<String, Object> selectSelectedCart(Integer selectedCartNos);
+	Map<String, Object> selectSelectedCart(Integer cartNo);
 	
 	public int getRemoveCart(int cartNo);
 	

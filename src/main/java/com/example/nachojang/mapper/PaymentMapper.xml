@@ -2,6 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.nachojang.mapper.PaymentMapper">
 	
+	<!-- 세영) 결제 완료 -->
+	<insert id="insertPayment" parameterType="com.example.nachojang.vo.Payment" useGeneratedKeys="true" keyProperty="paymentNo">
+		INSERT INTO payment(
+			address_no
+			, payment_price
+			, payment_method
+		) VALUES (
+			#{addressNo}
+			, #{paymentPrice}
+			, #{paymentMethod}
+		)
+	</insert>
+	
 	<!-- 세영) 결제완료창 -->
 	<select id="completePayment" parameterType="Integer" resultType="Map">
 		SELECT
@@ -13,21 +26,8 @@
 		FROM payment p 
 		JOIN address a ON a.address_no = p.address_no
 		JOIN orders o ON o.payment_no = p.payment_no
-		WHERE p.paymentNo = #{paymentNo}
+		WHERE p.payment_no = #{paymentNo}
 	</select>
-	
-	<!-- 세영) payment 추가 -->
-	<insert id="addPayment">
-		INSERT INTO payment(
-				address_no
-				, payment_price
-				, payment_method
-		) VALUES (
-				#{addressNo}
-				, #{paymentPrice}
-				, #{paymentMethod}
-		)
-	</insert>
 	
 	<!-- 세영) 배송현황 수정 -->
 	<update id="updatePaymentState" parameterType="com.example.nachojang.vo.Payment">
