@@ -15,9 +15,9 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-	<!-- 쇼핑몰 로고 -->
-	<div class="mt-4 text-center">
-		<h1>NACHOJANG</h1>
+	<!-- 헤더 고정 -->
+	<div class="header-menu">
+		<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
 	</div>
 	
 	<!-- 로그인 폼 -->
@@ -50,9 +50,11 @@
 		</div>	
 	</div>
 	
-    <!-- 고정 회사정보 -->
-    <c:import url="/WEB-INF/view/company.jsp"></c:import>
- 
+    <!-- 고정 (회사정보) -->
+    <div>	
+    		<c:import url="/WEB-INF/view/company.jsp"></c:import>
+    </div>
+    
 </body>
 
 <script> // body보다 늦게 진행

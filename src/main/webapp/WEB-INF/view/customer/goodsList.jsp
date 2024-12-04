@@ -15,11 +15,10 @@
 </head>
 <body>
 
-	<div class="row">
-		<!-- 헤더 고정 -->
-		<div>
-			<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
-		</div>
+	<!-- 헤더 고정 -->
+	<div class="header-menu">
+		<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
+	</div>
 			
 		<div class="mt-5">
 			<!-- 상품리스트 -->	
@@ -55,12 +54,12 @@
 					<a href="${pageContext.request.contextPath}/on/staffList?currentPage=${lastPage}">마지막</a> &nbsp;
 				</c:if>
 			</div>
-		</div>	
-	</div>
+		</div>
 	
-    <!-- 고정 회사정보 -->
-    <c:import url="/WEB-INF/view/company.jsp"></c:import>
-
+    <!-- 고정 (회사정보) -->
+    <div>	
+    		<c:import url="/WEB-INF/view/company.jsp"></c:import>
+    </div>
 
 </body>
 </html>

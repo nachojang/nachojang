@@ -15,17 +15,9 @@
 <body>
 	
 	<!-- 헤더 고정 -->
-	<div>
+	<div class="header-menu">
 		<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
 	</div>
-	
-	<!-- 상품 상세정보 -->
-	<div class="row my-4">	
-		<h3 class="text-center mb-4"></h3>
-		<div class="col-md-4">
-			<img src="${pageContext.request.contextPath}/upload/${goodsOne.goodsFileName}.${goodsOne.goodsFileExt}"
-				 alt="상품 이미지" style="max-width: 200px; max-height: 200px; object-fit: contain;">
-		</div>
 	
 	<!-- main -->
 	<h1> 주문별 상세 내역 </h1>

@@ -16,17 +16,9 @@
 <body>
 
 	<!-- 헤더 고정 -->
-	<div>
+	<div class="header-menu">
 		<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
 	</div>
-	
-	<!-- 상품 상세정보 -->
-	<div class="row my-4">	
-		<h3 class="text-center mb-4"></h3>
-		<div class="col-md-4">
-			<img src="${pageContext.request.contextPath}/upload/${goodsOne.goodsFileName}.${goodsOne.goodsFileExt}"
-				 alt="상품 이미지" style="max-width: 200px; max-height: 200px; object-fit: contain;">
-		</div>
 	
 	<h1>결제</h1>
 	<form id="formPayment" method="post" action="${pageContext.request.contextPath}/customer/on/addPayment">
@@ -91,18 +83,22 @@
 	
 	</form>
 	
+	<!-- 고정 (회사정보) -->
+    <div>	
+    		<c:import url="/WEB-INF/view/company.jsp"></c:import>
+    </div>
 	
 </body>
 <script>
 	$('#btnPayment').click(function() {
-		if($('#addressNo').val() == '0'){
+		if(!$('input[name="addressNo"]:checked').val()){
 			alert('주소를 선택해주세요');
+			return;
 		} else if(!$('input[name="paymentMethod"]:checked').val()){
 			alert('결제수단을 선택해주세요');
+			return;
 		}	
 		$('#formPayment').submit();
 	});
-	
-	
 </script>
 </html>

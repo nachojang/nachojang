@@ -116,9 +116,11 @@ body {
     <header class="header">
         <nav class="main-nav">
             <ul>
-                <li><a href="#">::: ${loginStaff.staffId}님 :::</a></li>
+                <li><a href="${pageContext.request.contextPath}/staff/on/main">::: ${loginStaff.staffId}님 :::</a></li>
                 <li><a
                     href="${pageContext.request.contextPath}/staff/on/logout">로그아웃</a></li>
+                <li><a
+                    href="${pageContext.request.contextPath}/customer/main">홈페이지</a></li>
                 <li><a
                     href="${pageContext.request.contextPath}/staff/on/customerList">회원
                         관리</a></li>

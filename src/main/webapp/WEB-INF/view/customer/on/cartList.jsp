@@ -14,6 +14,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
+
+	<!-- 헤더 고정 -->
 	<div class="header-menu">
 		<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
 	</div>
@@ -71,6 +73,12 @@
 		<button type="submit" id="checkoutAllBtn"
 			formaction="${pageContext.request.contextPath}/customer/on/checkAll?customerMail=${customerMail}"
 			class="btn btn-primary">전체 주문</button>
+			
+	<!-- 고정 (회사정보) -->
+    <div>	
+    		<c:import url="/WEB-INF/view/company.jsp"></c:import>
+    </div>
+    		
 </body>
 <script>
 	$(document).ready(function() {

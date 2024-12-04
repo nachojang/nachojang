@@ -16,18 +16,10 @@
 <body>
 
 	<!-- 헤더 고정 -->
-	<div>
+	<div class="header-menu">
 		<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
 	</div>
 	
-	<!-- 상품 상세정보 -->
-	<div class="row my-4">	
-		<h3 class="text-center mb-4"></h3>
-		<div class="col-md-4">
-			<img src="${pageContext.request.contextPath}/upload/${goodsOne.goodsFileName}.${goodsOne.goodsFileExt}"
-				 alt="상품 이미지" style="max-width: 200px; max-height: 200px; object-fit: contain;">
-		</div>
-
 	<!-- 오더리스트 -->
 	<h1>결제완료</h1>
 	<c:forEach var="o" items="${ordersList}">		
@@ -61,9 +53,9 @@
 	</a>
 			
 	<!-- 고정 (회사정보) -->
-    <footer class="text-center py-3 bg-dark text-white">
-        <c:import url="/WEB-INF/view/company.jsp"></c:import>
-    </footer>
+    <div>	
+    		<c:import url="/WEB-INF/view/company.jsp"></c:import>
+    </div>
     
 </body>
 </html>

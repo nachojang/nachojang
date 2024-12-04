@@ -16,7 +16,7 @@
 <body>
 
 	<!-- 헤더 고정 -->
-	<div>
+	<div class="header-menu">
 		<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
 	</div>
 	
@@ -69,6 +69,7 @@
 			</a>
 		</div>
 	</div>
+	
 	<!-- 고정 (회사정보) -->
     <div>	
     		<c:import url="/WEB-INF/view/company.jsp"></c:import>
