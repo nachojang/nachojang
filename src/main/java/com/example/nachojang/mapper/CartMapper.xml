@@ -2,6 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.nachojang.mapper.CartMapper">
 
+	<!-- 우림) 상품상세 -> 장바구니 추가 : /customer/on/addCart -->
+	<insert id="addCart"
+			parameterType="com.example.nachojang.vo.Cart">
+		INSERT INTO cart(
+			customer_mail
+			, goods_no
+			, cart_amount
+		) VALUES (
+			#{customerMail}, #{goodsNo}, #{cartAmount}
+		)
+	</insert>
+
 	<select id="selectCartList" resultType="Map">
 		SELECT
 		c.cart_no AS cartNo,
@@ -36,7 +48,9 @@
 	<!-- 세영) 장바구니에서 선택된 항목만 조회 -->
 	<select id="selectSelectedCart" parameterType="Integer" resultType="map">
 		SELECT 
-			g.goods_title goodsTitle
+			c.cart_no cartNo
+			, c.goods_no goodsNo
+			, g.goods_title goodsTitle
 			, c.cart_amount cartAmount
 			, (c.cart_amount * g.goods_price) totalPrice
 			, f.goods_file_name goodsFileName
@@ -44,7 +58,7 @@
 		FROM cart c 
 		LEFT OUTER JOIN goods g ON c.goods_no = g.goods_no
 		LEFT OUTER JOIN goods_file f ON f.goods_no = c.goods_no
-		WHERE c.cart_no = #{selectedCartNos}
+		WHERE c.cart_no = #{cartNo}
 	</select>
 
 	<!-- 전체 주문 -->

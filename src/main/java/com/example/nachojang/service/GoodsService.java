@@ -76,7 +76,9 @@ public class GoodsService {
 	
 	 
 	// 우림) 상품 수정 : staff/on/modifyGoods
-	
+	public Integer modifyGoods(Map<String, Object> goodsform) {
+		return goodsMapper.updateGoods(goodsform);
+	}
 	
 	// 우림_상품 추가 : staff/on/addGoods
 	public void addGoods(GoodsForm goodsForm, String path) {

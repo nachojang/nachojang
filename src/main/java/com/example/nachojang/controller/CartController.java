@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.nachojang.service.AddressService;
 import com.example.nachojang.service.CartService;
 import com.example.nachojang.vo.Address;
+import com.example.nachojang.vo.Cart;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +40,7 @@ public class CartController {
 		// 카트 리스트 가져오기
 		List<Map<String, Object>> cartList = cartService.getCartListOne(selectedCartNos);
 		log.debug("cartList : " + cartList);
+		
 		model.addAttribute("cartList", cartList);
 	    // 총 결제가격을 계산
 		Long totalPrice = 0L;
@@ -50,6 +52,14 @@ public class CartController {
 	    return "/customer/on/ordersPayment";
 	 }   
     
+	// 우림) 상품상세 -> 장바구니 추가 : /customer/on/addCart
+    @PostMapping("/customer/on/addCart")
+    public String addCart(Model model, Cart cart) {
+    	cartService.addCart(cart);
+    	log.debug("cart ==================>" + cart);
+    	return "redirect:/customer/on/cartList?customerMail=" + cart.getCustomerMail();
+    }
+	
 	@GetMapping("/customer/on/cartList")
 	public String cartList(Model model, @RequestParam String customerMail) {
 
