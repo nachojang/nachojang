@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -13,13 +12,15 @@
     <title>상품 추가</title>
 
     <style>
+     @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
         body {
             background-color: #808080; /* 배경색을 회색으로 설정 */
             color: #ffffff; /* 기본 텍스트 색상을 흰색으로 설정 */
             font-family: 'Open Sans', sans-serif;
         }
 
-        h3 {
+        h1 {
             font-family: 'Montserrat', sans-serif;
             text-transform: uppercase;
             font-weight: 700;
@@ -83,7 +84,7 @@
         </div>
         
         <div class="col-sm-10 mb-3 mt-3">
-            <h3 class="text-center">상품 추가</h3>
+            <h1 class="text-center">상품 추가</h1>
             
             <hr></hr>
             

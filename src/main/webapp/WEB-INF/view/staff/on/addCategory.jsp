@@ -12,6 +12,8 @@
     <title>카테고리 추가</title>
 
     <style>
+     @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
         body {
             background-color: #808080; /* 배경색을 회색으로 설정 */
             color: #ffffff; /* 기본 텍스트 색상을 흰색으로 설정 */

@@ -12,10 +12,19 @@
     <title>스태프 전체 주문내역</title>
 
     <style>
+     @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+        @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
         body {
             background-color: #808080; /* 배경색을 회색으로 설정 */
             color: #ffffff; /* 기본 텍스트 색상을 흰색으로 설정 */
             font-family: 'Open Sans', sans-serif;
+        }
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-align: center; /* 제목 중앙 정렬 */
+            color: #ffffff; /* 제목 색상 흰색으로 설정 */
         }
 
         .col-sm-2 {

@@ -27,11 +27,9 @@
         }
 
         .col-sm-2 {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 100vh;
-            overflow-y: auto;
+           margin-top: 20px; /* 표 상단 여백 */
+            width: 100%; /* 표 너비를 페이지 가로에 맞게 100%로 설정 */
+            border-collapse: collapse; /* 테이블 셀 간의 경계선 합침 */
         }
 
         .col-sm-10 {

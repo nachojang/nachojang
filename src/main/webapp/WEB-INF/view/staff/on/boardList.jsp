@@ -43,6 +43,7 @@
         table {
             margin-top: 20px;
             width: 100%; /* 테이블 너비를 100%로 설정 */
+            border-collapse: collapse; /* 테이블 경계선을 단순화 */
         }
 
         .table-dark th {
@@ -83,7 +84,7 @@
             <!-- main content -->
             <h1>댓글 관리</h1>
             
-            <table class="table table-bordered table-hover mt-4">
+              <table class="table table-bordered table-hover mt-4">
                 <thead class="table-dark">
                     <tr>
                         <th>상품 번호</th>
@@ -91,7 +92,7 @@
                         <th>작성자 메일</th>
                         <th>작성 후기</th>
                         <th>작성 일자</th>
-                       
+                        <th>삭제</th> <!-- 삭제 칸 포함 -->
                     </tr>
                 </thead>
                 <tbody>
@@ -103,13 +104,14 @@
                             <td>${b.boardContent}</td>
                             <td>${b.createDate}</td>
                             <td>
-                                <a href="${pageContext.request.contextPath}/staff/on/deleteBoard?ordersNo=${b.ordersNo}" class="btn btn-danger">삭제</a> <!-- 삭제 버튼 -->
+                                <a href="${pageContext.request.contextPath}/staff/on/deleteBoard?ordersNo=${b.ordersNo}" class="btn btn-danger">삭제</a>
                             </td>
                         </tr>
                     </c:forEach>
                 </tbody>
             </table>
 
+         
             <!-- 페이징 -->
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
