@@ -43,11 +43,11 @@
 					</tr>
 					<tr>
 						<td>수량</td>
-						<td><input type="number" name="cartAmount" id="cartAmount"></td>
+						<td><input type="number" name="cartAmount" id="cartAmount" value="1"></td>
 					</tr>
 				</table>
 				<c:if test="${goodsOne.goodsState == '재고있음'}">
-					<button type="submit" id="btnCart">장바구니</button>
+					<button type="button" id="btnCart">장바구니</button>
 				</c:if>
 					<input type="hidden" name="goodsNo" value="${goodsOne.goodsNo}">
 					<input type="hidden" name="customerMail" value="${customerMail}">
@@ -97,4 +97,18 @@
     <c:import url="/WEB-INF/view/company.jsp"></c:import>
  
 </body>
+
+<script>
+	// 상품 수량 체크
+	$('#btnCart').click(function() {
+		var cartAmount = $('#cartAmount').val();
+		
+		if(cartAmount < 1 || isNaN(cartAmount))  {
+			alert('수량을 확인해주세요');
+		} else {
+			$('#formCart').submit();
+		}
+	});
+</script>
+
 </html>

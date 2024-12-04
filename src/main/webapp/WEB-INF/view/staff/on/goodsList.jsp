@@ -111,6 +111,7 @@
                             <th>상품명</th>
                             <th>상품 이미지</th>
                             <th>상품 가격</th>
+                            <th>상품 수정</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -122,6 +123,7 @@
                                 <td><img src="${pageContext.request.contextPath}/upload/${goods.goodsFileName}.${goods.goodsFileExt}" 
                                          alt="상품 이미지" width="80" height="80" style="object-fit: cover;"></td>
                                 <td>${goods.goodsPrice}원</td>
+                                <td><a href="${pageContext.request.contextPath}/staff/on/modifyGoods?goodsNo=${goods.goodsNo}" class="btn">수정</a></td>
                             </tr>
                         </c:forEach>
                     </tbody>

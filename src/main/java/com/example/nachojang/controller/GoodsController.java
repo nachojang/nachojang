@@ -97,15 +97,42 @@ public class GoodsController {
 	
 	// 우림) 상품관리 수정 액션
 	@PostMapping("/staff/on/modifyGoods")
-	public String modifyGoods() {
+	public String modifyGoods(HttpSession session, Model model, GoodsForm goodsForm) {
+		
+		// 파일업로드
+		List<MultipartFile> list = goodsForm.getGoodsFile();
+		if (list != null && list.size() != 0) { // 첨부된 파일이 있다면
+			for (MultipartFile mf : list) {
+				if (mf.getContentType().equals("image/jpeg") == false
+						&& mf.getContentType().equals("image/png") == false) {
+					model.addAttribute("msg", "이미지 파일만 입력 가능합니다");
+					return "staff/on/addGoods"; // jpeg, png가 아니면 폼으로 이동
+				}
+			}
+		}
+
+		String path = session.getServletContext().getRealPath("/upload/");
+		log.debug(path);
+		
 		return "redirect:/staff/on/goodsList";
 	}
 	
 	// 우림) 상품관리 수정 뷰
 	@GetMapping("/staff/on/modifyGoods")
-	public String modifyGoods(Model model) {
+	public String modifyGoods(Model model, Integer goodsNo) {
+		// 상품추가에서 입력한 값
+		Map<String, Object> goodsform = goodsService.selectGoodsOne(goodsNo);
+		model.addAttribute("form", goodsform);
+		log.debug("goodsform ================>" + goodsform);
+		
+		
+		
+		// 카테고리 리스트
+		List<Category> categoryList = categoryService.getCategoryList();
+		model.addAttribute("categoryList", categoryList);
 		return "staff/on/modifyGoods";
 	}
+
 	
 	// 우림) 상품관리 추가 액션
 	@PostMapping("/staff/on/addGoods")

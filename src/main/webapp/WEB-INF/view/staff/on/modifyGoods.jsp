@@ -29,13 +29,13 @@
 				<table class="table table-bordered" style="width : 80%">
 					<tr>
 						<td>상품명</td>
-						<td><input type="text" id="goodsTitle" name="goodsTitle" value="${goodsTitle}"></td>
+						<td><input type="text" id="goodsTitle" name="goodsTitle"></td>
 					</tr>
 					<tr>
 						<td>카테고리</td>
 						<td>
 							<select id="categoryNo" name="categoryNo">
-								<option value="${c.categoryNo}">${c.categoryTitle}</option>
+								<option value="${form.categoryNo}">${form.categoryTitle}</option>
 								<c:forEach var="c" items="${categoryList}">
 									<option value="${c.categoryNo}">${c.categoryTitle}</option>
 								</c:forEach>
@@ -45,23 +45,22 @@
 					<tr>
 						<td>상품금액</td>
 						<td>
-							<input type="number" id="goodsPrice" name="goodsPrice" value="${goodsPrice}">원
+							<input type="number" id="goodsPrice" name="goodsPrice" value="${form.goodsPrice}">원
 						</td>
 					</tr>
 					<tr>
 						<td>File</td>
 						<td>
 							${msg}
-							<div id="fileDiv">
-								<button type="button" id="btnAddFile">파일추가</button>
-								<button type="button" id="btnRemoveFile">파일삭제</button>
-							</div>
+							<img src="${pageContext.request.contextPath}/upload/${form.goodsFileName}.${form.goodsFileExt}"
+			 					 alt="상품 이미지" style="max-width: 200px; max-height: 200px; object-fit: contain;">
+							<input type="file" id="goodsFile" name="goodsFile" value="${form.goodsFileName}.${form.goodsFileExt}">
 						</td>
 					</tr>
 					<tr>
 						<td>상품설명</td>
 						<td>
-							<textarea rows="3" cols="50" id="goodsMemo" name="goodsMemo" value="${goodsMemo}"></textarea>
+							<textarea rows="3" cols="50" id="goodsMemo" name="goodsMemo">${form.goodsMemo}</textarea>
 						</td>
 					</tr>
 					<tr>
@@ -75,10 +74,33 @@
 				<button type="button" id="btnModifyGoods">상품 수정</button>
 			</form>
 		</div>
+	</div>
 	
 	
     <!-- 고정 회사정보 -->
     <c:import url="/WEB-INF/view/company.jsp"></c:import>
  
 </body>
+
+<script> 
+	// 입력값 유효성 검사
+	$('#btnModifyGoods').click(function() { 
+	    if($('#goodsTitle').val() == '') { 
+	        alert('상품명을 입력하세요'); 
+	    } else if($('#categoryNo').val() == '') { 
+	        alert('카테고리를 선택하세요'); 
+	    } else if($('#goodsPrice').val() == '') { 
+	        alert('상품금액을 입력하세요'); 
+	    } else if($('#goodsMemo').val() == '') { 
+	        alert('상품설명을 입력하세요'); 
+	    } else if($('#goodsFile').length > 0 && $('#goodsFile').last().val() == '') { 
+	        alert('파일을 첨부하세요'); 
+	    } else if($('.goodsState:checked').length == 0) { 
+	        alert('재고상태를 선택하세요'); 
+	    } else { 
+	        $('#formModify').submit(); 
+	    } 
+	});
+</script>
+
 </html>
