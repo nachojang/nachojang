@@ -25,14 +25,14 @@ public class PaymentController {
 	public String completePayment(@RequestParam Integer paymentNo
 								, Model model) {
 		
-		// 결제리스트 가져오기
-		List<Map<String, Object>> paymentList = paymentService.completePayment(paymentNo);
+		// 오더리스트 가져오기
+		List<Map<String, Object>> ordersList = paymentService.completePayment(paymentNo);
 		
 		// 디버깅
-		log.debug("paymentList : " + paymentList);
+		log.debug("ordersList : " + ordersList);
 		
 		// 모델에 추가
-		model.addAttribute("paymentList", paymentList);
+		model.addAttribute("ordersList", ordersList);
 		
 		return "customer/on/payment";
 	}

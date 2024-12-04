@@ -18,14 +18,14 @@
 	<!-- 세영) 결제완료창 -->
 	<select id="completePayment" parameterType="Integer" resultType="Map">
 		SELECT
-			p.payment_no paymentNo
+			o.orders_no ordersNo
 			, o.create_date createDate
 			, a.address_detail addressDetail
 			, p.payment_price paymentPrice
 			, p.payment_method paymentMethod
-		FROM payment p 
+		FROM orders o 
+		JOIN payment p ON p.payment_no = o.payment_no
 		JOIN address a ON a.address_no = p.address_no
-		JOIN orders o ON o.payment_no = p.payment_no
 		WHERE p.payment_no = #{paymentNo}
 	</select>
 	
