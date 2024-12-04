@@ -11,6 +11,9 @@ import com.example.nachojang.vo.Cart;
 @Mapper
 public interface CartMapper {
 	
+	// 우림) 상품상세 -> 장바구니 추가 : /customer/on/addCart
+	Integer addCart(Cart cart);
+	
 	// 세영) 장바구니에서 선택된 항목만 조회
 	Map<String, Object> selectSelectedCart(Integer selectedCartNos);
 	

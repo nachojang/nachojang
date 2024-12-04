@@ -110,12 +110,9 @@
                         <td><input type="number" id="goodsPrice" name="goodsPrice" class="form-control">원</td>
                     </tr>
                     <tr>
-                        <td>File</td>
+                        <td>이미지 파일</td>
                         <td>${msg}
-                            <div id="fileDiv">
-                                <button type="button" id="btnAddFile" class="app-button">파일추가</button>
-                                <button type="button" id="btnRemoveFile" class="app-button">파일삭제</button>
-                            </div>
+                        	<input type="file" name="goodsFile" id="goodsFile" class="goodsFile form-control">
                         </td>
                     </tr>
                     <tr>
@@ -152,8 +149,8 @@
                             alert('상품금액을 입력하세요'); 
                         } else if($('#goodsMemo').val() == '') { 
                             alert('상품설명을 입력하세요'); 
-                        } else if($('.goodsFile').length > 0 && $('.goodsFile').last().val() == '') { 
-                            alert('첨부되지 않은 파일이 있습니다'); 
+                        } else if($('#goodsFile').length > 0 && $('#goodsFile').last().val() == '') { 
+                            alert('파일을 첨부하세요'); 
                         } else if($('.goodsState:checked').length == 0) { 
                             alert('재고상태를 선택하세요'); 
                         } else { 
@@ -161,24 +158,6 @@
                         } 
                     });
                     
-                    // 파일 추가
-                    $('#btnAddFile').click(function() { 
-                        if($('.goodsFile').last().val() == '') { // 마지막 input=file 값이 공백이라면
-                            alert('첨부하지 않은 파일이 이미 존재합니다');
-                        } else {
-                            let html = '<input type="file" name="goodsFile" class="goodsFile form-control">'; 
-                            $('#fileDiv').append(html);
-                        }
-                    });
-                    
-                    // 파일 삭제
-                    $('#btnRemoveFile').click(function() {
-                        if($('.goodsFile').length == 0) { // class='goodsFile'가 없다면
-                            alert('삭제할 파일이 존재하지 않습니다');	
-                        } else {
-                            $('.goodsFile').last().remove(); // 마지막 파일선택 삭제
-                        }
-                    });
                 </script>
 
             </form>

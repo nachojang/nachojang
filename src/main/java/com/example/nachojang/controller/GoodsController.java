@@ -129,7 +129,7 @@ public class GoodsController {
 				if (mf.getContentType().equals("image/jpeg") == false
 						&& mf.getContentType().equals("image/png") == false) {
 					model.addAttribute("msg", "이미지 파일만 입력 가능합니다");
-					return "on/addGoods"; // jpeg, png가 아니면 폼으로 이동
+					return "staff/on/addGoods"; // jpeg, png가 아니면 폼으로 이동
 				}
 			}
 		}

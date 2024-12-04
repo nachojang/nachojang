@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.nachojang.mapper.CartMapper">
-
+	
+	<!-- 우림) 상품상세 -> 장바구니 추가 : /customer/on/addCart -->
+	<insert id="addCart"
+			parameterType="com.example.nachojang.vo.Cart">
+		INSERT INTO cart(
+			customer_mail
+			, goods_no
+			, cart_amount
+		) VALUES (
+			#{customerMail}, #{goodsNo}, #{cartAmount}
+		)
+	</insert>
+	
 	<select id="selectCartList" resultType="Map">
 		SELECT
 		c.cart_no AS cartNo,

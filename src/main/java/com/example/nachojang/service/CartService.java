@@ -8,11 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.nachojang.mapper.CartMapper;
+import com.example.nachojang.vo.Cart;
 
 @Service
 public class CartService {
     @Autowired
     private CartMapper cartMapper;
+    
+    
+    // 우림) 상품상세 -> 장바구니 추가 : /customer/on/addCart
+    public Integer addCart(Cart cart) {
+    	return cartMapper.addCart(cart);
+    }
     
     // 세영) 체크된 카트 불러오기
     // /customer/on/checkAll
