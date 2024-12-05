@@ -38,9 +38,12 @@
 		</table>
 		<button type="button" id="btnModifyPw">정보 수정</button>
 	</form>
-	
-	
 
+	<!-- 고정 (회사정보) -->
+    <div>	
+    		<c:import url="/WEB-INF/view/company.jsp"></c:import>
+    </div>
+	
 </body>
 
 <script>

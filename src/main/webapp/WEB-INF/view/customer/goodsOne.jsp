@@ -173,7 +173,7 @@
                         <td>${bl.createDate}</td>
                         <td>
                             <c:if test="${bl.customerMail != customerMail}">
-                                <span class="delete-btn">삭제</span>
+                                <span>-</span>
                             </c:if>
                             <c:if test="${bl.customerMail eq customerMail}">
                                 <a href="${pageContext.request.contextPath}/customer/on/deleteBoard?goodsNo=${goodsOne.goodsNo}&ordersNo=${bl.ordersNo}" class="delete-btn">삭제</a>

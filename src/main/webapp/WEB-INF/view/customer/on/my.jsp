@@ -22,9 +22,8 @@
 	
 	<!-- 우림) 회원정보 수정(비밀번호) -->
 	<div class="container card card-header row justify-content-center">
-		 <img src="" alt="Description of image" class="img-fluid">
+		 <img src="${pageContext.request.contextPath}/css/a.jpg" alt="image" class="img-fluid" style="max-width: 50%; height: auto;">
 		 <a href="${pageContext.request.contextPath}/customer/on/modifyMyByPw">수정</a>
-		 <a href="${pageContext.request.contextPath}/customer/on/deleteCustomer">탈퇴</a>
 	</div>
 	
 	<!-- 우림) 회원정보 (주문건수, 메일, 성별) -->	

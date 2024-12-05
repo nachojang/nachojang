@@ -10,22 +10,22 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component // new OnInterceptor(); 해서 bin에 저장
-// 세영 ) customer 세션이 없을 시 리디렉션
-public class customerInterceptor implements HandlerInterceptor {
+// 세영 ) staff 세션이 없을 시 리디렉션
+public class StaffOffInterceptor implements HandlerInterceptor {
 	
 	//특정 컨트롤러 실행전에 request, response를 가로채 먼저 실행됨
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 		
-		log.debug(request.getRequestURL().toString() + "요청 Interceptor");
 		
-		// 로그인을 하지 않았다면 session.setAttribute("loginCustomer")
+		// 로그인이 되어있다면 session.setAttribute("loginStaff")
 		HttpSession session = request.getSession();
-		if(session.getAttribute("loginCustomer") == null) { // 사용자가 로그인하지 않은 경우
-			response.sendRedirect(request.getContextPath()+"/staff/off/customerLogin"); // staffLogin.jsp
+		if(session.getAttribute("loginStaff") != null) { // 사용자가 로그인이 되어있음
+			log.debug(request.getRequestURL().toString() + ", 로그인이 되어있음");
+			response.sendRedirect(request.getContextPath()+"/staff/on/main"); 
 			return false;
 		}
 		
-		return HandlerInterceptor.super.preHandle(request, response, handler);
+		return true;
 	}
 }
