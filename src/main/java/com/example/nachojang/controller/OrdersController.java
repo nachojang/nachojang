@@ -23,18 +23,55 @@ public class OrdersController {
 	@Autowired OrdersService ordersService;
 	@Autowired BoardService boardService;
 	
+	// 세영) 고객의 전체 주문 목록
+	@GetMapping("/customer/on/ordersList")
+	public String ordersListByCustomerMail(Model model
+			, @RequestParam String customerMail
+			, @RequestParam(defaultValue = "10") Integer rowPerPage
+			, @RequestParam(defaultValue = "1") Integer currentPage) {
+		
+		log.debug("customerMail : "+customerMail);
+		
+		// 오더리스트 가져오기
+		Map<String, Object> resultMap = ordersService.getOrdersListByCustomerMail(currentPage, rowPerPage, customerMail);
+		
+		log.debug(resultMap+"<---resultMap");
+		
+		Integer lastPage = ordersService.getLastPageByCustomerMail(customerMail, rowPerPage);
+		
+		// 모델에 오더리스트 추가
+		model.addAttribute("lastPage", lastPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("rowPerPage", rowPerPage);
+		model.addAttribute("customerMail", customerMail);
+		model.addAttribute("startPagingNum", resultMap.get("startPagingNum"));
+		model.addAttribute("endPagingNum", resultMap.get("endPagingNum"));
+		model.addAttribute("ordersList", resultMap.get("ordersList"));
+		
+		// 고객의 주문 내역 페이지로 이동	
+		return "customer/on/ordersList";
+	}
+	
 	// 세영) 전체 주문 목록
 	@GetMapping("/staff/on/ordersList")
-	public String ordersList(Model model) {
+	public String ordersList(Model model
+							, @RequestParam(defaultValue = "10") Integer rowPerPage
+							, @RequestParam(defaultValue = "1") Integer currentPage) {
 		
-		// 주문 목록 가져오기
-		List<Map<String, Object>> ordersList = ordersService.getOrdersList();
+		// 오더리스트 가져오기
+		Map<String, Object> resultMap = ordersService.getOrdersList(currentPage, rowPerPage);
 		
-		// 디버깅
-		log.debug("ordersList : " + ordersList);
-	
-		// 모델에 추가
-		model.addAttribute("ordersList", ordersList);
+		log.debug(resultMap+"<---resultMap");
+		
+		Integer lastPage = ordersService.getLastPage(rowPerPage);
+		
+		// 모델에 오더리스트 추가
+		model.addAttribute("lastPage", lastPage);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("rowPerPage", rowPerPage);
+		model.addAttribute("startPagingNum", resultMap.get("startPagingNum"));
+		model.addAttribute("endPagingNum", resultMap.get("endPagingNum"));
+		model.addAttribute("ordersList", resultMap.get("ordersList"));
 		
 		return "staff/on/ordersList";
 	}
@@ -50,7 +87,6 @@ public class OrdersController {
 		// 주문 상세 페이지로 이동
 		return "redirect:/customer/on/ordersOne?paymentNo="+paymentNo;
 	}
-	
 	
 	// 세영) payment 안에 있는 주문목록
 	@GetMapping("/customer/on/ordersOne")
@@ -89,22 +125,4 @@ public class OrdersController {
 	    return "customer/on/ordersOne";  // JSP 페이지로 전달
 	}
 	
-	// 세영) 고객의 전체 주문 목록
-	@GetMapping("/customer/on/ordersList")
-	public String ordersListByCustomerMail(Model model, @RequestParam String customerMail) {
-		
-		log.debug("customerMail : "+customerMail);
-		
-		// 오더리스트 가져오기
-		List<Map<String, Object>> ordersList = ordersService.getOrdersListByCustomerMail(customerMail);
-		
-		log.debug(ordersList+"<---ordersList");
-		
-		// 모델에 오더리스트 추가
-		model.addAttribute("ordersList", ordersList);
-		model.addAttribute("customerMail", customerMail);
-		
-		// 고객의 주문 내역 페이지로 이동	
-		return "customer/on/ordersList";
-	}
 }

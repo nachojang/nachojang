@@ -66,8 +66,8 @@ public class BoardService {
 	// /staff/on/boardList
 	public Map<String, Object> getBoardList(Integer currentPage, Integer rowPerPage) {
 		
-		// 시작페이지
-		Integer beginRow = (currentPage - 1) * rowPerPage;
+		// 시작페이지(시작 인덱스 번호)
+		Integer beginRow = (currentPage - 1) * rowPerPage; //rowPerPage는 보여줄 개수
 		
 		// 파라미터 맵을 생성하여, 쿼리에서 사용될 페이지 시작 위치와 페이지당 레코드 수를 전달
 		Map<String, Object> paramMap = new HashMap<>();

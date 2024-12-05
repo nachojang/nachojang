@@ -115,16 +115,29 @@
                 </tbody>
             </table>
 
-            <!-- Pagination -->
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center">
-                    <c:forEach begin="1" end="${totalPages}" var="page">
-                        <li class="page-item ${page == currentPage ? 'active' : ''}">
-                            <a class="page-link" href="?page=${page}">${page}</a> <!-- 페이지 링크 추가 -->
-                        </li>
-                    </c:forEach>
-                </ul>
-            </nav>
+            <!-- 페이징 -->
+		    <nav aria-label="Page navigation">
+		        <ul class="pagination justify-content-center">
+		            <c:if test="${currentPage > 1}">
+		                <li class="page-item">
+		                    <a class="page-link" href="${pageContext.request.contextPath}/staff/on/ordersList?currentPage=${currentPage - 1}">이전</a> <!-- 이전 페이지 링크 -->
+		                </li>
+		            </c:if>
+		
+		            <!-- 페이지 번호 반복 출력 -->
+		            <c:forEach var="num" begin="${startPagingNum}" end="${endPagingNum}">
+		                <li class="page-item ${num == currentPage ? 'active' : ''}">
+		                    <a class="page-link" href="${pageContext.request.contextPath}/staff/on/ordersList?currentPage=${num}">${num}</a> 
+		                </li>
+		            </c:forEach>
+		
+		            <c:if test="${currentPage < lastPage}">
+		                <li class="page-item">
+		                    <a class="page-link" href="${pageContext.request.contextPath}/staff/on/ordersList?currentPage=${currentPage + 1}">다음</a> <!-- 다음 페이지 링크 -->
+		                </li>
+		            </c:if>
+		        </ul>
+		    </nav>
 
         </div>
     </div>

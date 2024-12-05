@@ -15,8 +15,13 @@
 		)
 	</insert> 
 	
+	<!-- 세영) 전체 주문 내역 총 개수 -->
+	<select id="selectTotalOrders">
+		SELECT count(*) FROM orders o
+	</select>
+	
 	<!-- 세영) 전체 주문 내역 -->
-	<select id="selectOrdersList" resultType="Map">
+	<select id="selectOrdersList" parameterType="Map" resultType="Map">
 		SELECT
 			o.payment_no paymentNo
 			, o.orders_no ordersNo
@@ -28,6 +33,7 @@
 		JOIN payment p ON o.payment_no = p.payment_no
 		JOIN address a ON a.address_no = p.address_no
 		ORDER BY p.payment_no DESC
+		LIMIT #{beginRow}, #{rowPerPage}
 	</select>	
 		
 	<!-- 세영) payment 안에 있는 주문목록 -->
@@ -86,7 +92,7 @@
 	</select>
 	
 	<!-- 세영) customerMail의 전체 주문 내역 -->
-	<select id="selectOrdersListByCustomerMail" parameterType="String" resultType="Map">
+	<select id="selectOrdersListByCustomerMail" parameterType="Map" resultType="Map">
 		SELECT
 			o.payment_no paymentNo
 			, o.orders_no ordersNo
@@ -99,6 +105,7 @@
 		JOIN address a ON a.address_no = p.address_no
 		WHERE a.customer_mail = #{customerMail}
 		ORDER BY p.payment_no DESC
+		LIMIT #{beginRow}, #{rowPerPage}
 	</select>
 	
 </mapper>
