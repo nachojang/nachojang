@@ -29,17 +29,23 @@
 				<td>${customerMail}</td>
 			</tr>
 			<tr>
-				<c:if test="${addressList == null}">
-					등록된 주소가 없습니다.
-				</c:if>
-				<c:if test="${addressList != null}">
-				<c:forEach var="a" items="${addressList}">
-					<td>${a.addressDetail}</td>
-					<td>
-						<input type="radio" id="addressNo" name="addressNo" value="${a.addressNo}">
-					</td>
-				</c:forEach>
-				</c:if>	
+				<td>주소</td>
+				<td>
+					<c:if test="${addressList == null}">
+						등록된 주소가 없습니다.
+					</c:if>
+					<c:if test="${addressList != null}">
+						<select name="addressNo">
+						    <c:forEach var="a" items="${addressList}">
+						        <!-- 첫 번째 항목에만 selected 속성 추가 -->
+						        <option value="${a.addressNo}"
+						        	<c:if test="${a == addressList[0]}">selected</c:if>>
+						        		${a.addressDetail}
+						        </option>
+						    </c:forEach>
+						</select>
+					</c:if>
+				</td>
 			</tr>
 			<tr>
 				<td>주문상품</td>
@@ -72,8 +78,8 @@
 			<tr>
 				<td>결제수단</td>
 				<td>
-					페이 : <input type="radio" name="paymentMethod" value="페이">
-					카드 : <input type="radio" name="paymentMethod" value="카드">
+					페이 <input type="radio" name="paymentMethod" value="페이">
+					카드 <input type="radio" name="paymentMethod" value="카드">
 				</td>
 			</tr>
 		</table>
@@ -91,7 +97,7 @@
 </body>
 <script>
 	$('#btnPayment').click(function() {
-		if(!$('input[name="addressNo"]:checked').val()){
+		if(!$('select[name="addressNo"]').val()){
 			alert('주소를 선택해주세요');
 			return;
 		} else if(!$('input[name="paymentMethod"]:checked').val()){

@@ -23,15 +23,13 @@
 	<!-- 장바구니 -->
 	<div></div>
 	<h2>회원님 장바구니</h2>
-	<form method="post" action="${pageContext.request.contextPath}/customer/on/checkAll" id="cartForm">
+	<form method="post"  id="cartForm" action="${pageContext.request.contextPath}/customer/on/ordersPayment">
 		<input type="hidden" name="customerMail" value="${customerMail}">
-
-		<table border="1" cellspacing="1" cellpadding="5"
-			style="width: 100%; margin-top: 20px;">
+		<table border="1" cellspacing="1" cellpadding="5" style="width: 100%; margin-top: 20px;">
+			
 			<thead>
 
 				<tr>
-
 					<th>선택</th>
 					<th>이미지</th>
 					<th>상품명</th>
@@ -45,7 +43,6 @@
 			<tbody>
 				<c:forEach items="${cartList}" var="c">
 					<tr>
-
 						<td style="text-align: center;"><input type="checkbox"
 							name="selectedCartNos" value="${c.cartNo}"></td>
 						<td style="text-align: center;"><img
@@ -53,7 +50,7 @@
 							alt="${c.goodsTitle}" style="width: 100px;"></td>
 						<td>${c.goodsTitle}</td>
 						<td style="text-align: center;">${c.cartAmount}</td>
-						<td style="text-align: center;">${c.goodsPrice}</td>
+						<td style="text-align: center;">${c.totalPrice}</td>
 						<td style="text-align: center;"><a
 							href="${pageContext.request.contextPath}/customer/cart/delete?cartNo=${c.cartNo}">삭제</a>
 						</td>
@@ -67,12 +64,14 @@
 				총 결제 금액: <strong id="totalPrice">0</strong> 원
 			</p>
 		</div>
-		<button type="button" id="checkoutSelectedBtn" class="btn btn-primary">선택 주문</button>
-	</form>
+	
 	<!-- 버튼 영역 -->
-		<button type="submit" id="checkoutAllBtn"
-			formaction="${pageContext.request.contextPath}/customer/on/checkAll?customerMail=${customerMail}"
-			class="btn btn-primary">전체 주문</button>
+	<button type="button" id="checkoutSelectedBtn" class="btn btn-primary">선택 주문</button>
+		
+	<button type="button" id="checkoutAllBtn" class="btn btn-primary">전체 주문</button>
+	
+	</form>
+	
 			
 	<!-- 고정 (회사정보) -->
     <div>	
@@ -82,56 +81,47 @@
 </body>
 <script>
 	$(document).ready(function() {
-		// 선택 주문 버튼 클릭 이벤트
-		$('#checkoutSelectedBtn').on('click', function(e) {
-			// 체크된 체크박스가 있는지 확인
-			const selected = $('input[name="selectedCartNos"]:checked');
-			if (selected.length === 0) {
-				e.preventDefault(); // 폼 제출 중지
-				alert('선택된 상품이 없습니다. 체크박스를 선택해주세요.');
-			} else {
-				$('#cartForm').submit();
-			}
-		});
+	    // 총 금액 계산 함수
+	    function calculateTotalPrice() {
+	        let totalPrice = 0;
+	
+	        // 선택된 체크박스의 금액 합산
+	        $('input[name="selectedCartNos"]:checked').each(function() {
+	            const price = parseInt($(this).closest('tr').find('td').eq(4).text().trim());
+	            totalPrice += isNaN(price) ? 0 : price;
+	        });
+	
+	        // 총 금액 표시 (천 단위로 콤마 추가)
+	        $('#totalPrice').text(totalPrice.toLocaleString());
+	    }
+	
+	    // 체크박스 클릭 시 총 금액 업데이트
+	    $('input[name="selectedCartNos"]').on('change', function() {
+	        calculateTotalPrice();
+	    });
+	
+	    // 페이지 로드 시 초기 총 금액 계산
+	    calculateTotalPrice();
+	
+	    // 선택 주문 버튼 클릭 이벤트
+	    $('#checkoutSelectedBtn').on('click', function(e) {
+	        const selected = $('input[name="selectedCartNos"]:checked');
+	        if (selected.length === 0) {
+	            e.preventDefault();
+	            alert('선택된 상품이 없습니다. 체크박스를 선택해주세요.');
+	        } else {
+	            $('#cartForm').submit();
+	        }
+	    });
+	
+	 // 전체 주문 버튼 클릭 이벤트
+	    $('#checkoutAllBtn').on('click', function(e) {
+	        // 모든 체크박스를 선택
+	        $('input[name="selectedCartNos"]').prop('checked', true);
+
+	        // 폼을 제출
+	        $('#cartForm').submit();
+	    });
 	});
-
-	$(document).ready(function() {
-		// 전체 주문 버튼 클릭 이벤트
-		$('#checkoutAllBtn').on('click', function(e) {
-			// 장바구니에 상품이 있는지 확인
-			const cartItems = $('input[name="selectedCartNos"]'); // 모든 체크박스 가져오기
-			if (cartItems.length === 0) {
-				e.preventDefault(); // 폼 제출 중지
-				alert('장바구니에 상품이 없습니다.');
-			}
-		});
-	});
-
-	$(document).ready(
-			function() {
-				// 총 금액 계산 함수
-				function calculateTotalPrice() {
-					let totalPrice = 0;
-
-					// 선택된 체크박스의 금액 합산
-					$('input[name="selectedCartNos"]:checked').each(
-							function() {
-								const price = parseInt($(this).closest('tr')
-										.find('td').eq(4).text().trim());
-								totalPrice += isNaN(price) ? 0 : price;
-							});
-
-					// 총 금액 표시
-					$('#totalPrice').text(totalPrice);
-				}
-
-				// 체크박스 클릭 시 총 금액 업데이트
-				$('input[name="selectedCartNos"]').on('change', function() {
-					calculateTotalPrice();
-				});
-
-				// 페이지 로드 시 초기 총 금액 계산
-				calculateTotalPrice();
-			});
 </script>
 </html>
