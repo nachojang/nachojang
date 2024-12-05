@@ -59,7 +59,7 @@ public class BoardController {
 	@GetMapping("/staff/on/boardList")
 	public String boardList(Model model
 						, @RequestParam(defaultValue = "1") Integer currentPage
-						, @RequestParam(defaultValue = "5") Integer rowPerPage) {
+						, @RequestParam(defaultValue = "10") Integer rowPerPage) {
 		
 		// 페이징 처리하여 서비스에서 댓글 목록 가져옴
 		Map<String, Object> resultMap = boardService.getBoardList(currentPage, rowPerPage);

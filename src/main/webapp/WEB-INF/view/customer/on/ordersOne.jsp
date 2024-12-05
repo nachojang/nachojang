@@ -65,30 +65,23 @@
 			</tr>	
 			<tr>	
 				<td>후기</td>
-				<td>	
+				<td>
+								
 				    <!-- 배송완료 상태일 때만 후기 관련 내용 표시 -->
                     <c:if test="${o.paymentState == '배송완료'}">
-                        <c:forEach var="row" items="${rowList}" varStatus="status">
-                            <c:if test="${status.index == o.index}">
-                                <!-- 댓글이 0개일 때 입력 폼을 보여줍니다 -->
-                                <c:if test="${row == 0}">
-                                    <form id="formComment" method="post" action="${pageContext.request.contextPath}/customer/on/ordersOne?paymentNo=${paymentNo}&ordersNo=${o.ordersNo}">
-                                        <input type="text" name="boardContent" id="boardContent">    
-                                        <button type="submit" class="btn btn-primary">입력</button>
-                                    </form>
-                                </c:if>
-                                
-                                <!-- 댓글이 1개 있을 때 해당 댓글을 출력 -->
-                                <c:if test="${row == 1}">
-                                    <c:forEach var="c" items="${comments}">
-                                        <c:if test="${c.ordersNo == o.ordersNo}">
-                                            <p>${c.boardContent}</p>
-                                        </c:if>
-                                    </c:forEach>
-                                </c:if>
-                            </c:if>
-                        </c:forEach>
-                    </c:if>
+	                    <!-- 댓글이 0개일 때 입력 폼을 보여줍니다 -->
+	                    <c:if test="${rowCount == 0}">
+	                        <form id="formComment" method="post" action="${pageContext.request.contextPath}/customer/on/ordersOne?paymentNo=${paymentNo}&ordersNo=${o.ordersNo}">
+	                            <input type="text" name="boardContent" id="boardContent">    
+	                            <button type="submit" class="btn btn-primary">입력</button>
+	                        </form>
+	                    </c:if>
+	                    
+	                    <!-- 댓글이 1개 있을 때 해당 댓글을 출력 -->
+	                    <c:if test="${rowCount == 1}">
+	                    	${comments.boardContent}	
+	                	</c:if>
+	                </c:if>
 				</td>
 			 </tr>
 			 </c:forEach>

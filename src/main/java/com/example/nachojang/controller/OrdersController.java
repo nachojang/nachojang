@@ -103,6 +103,7 @@ public class OrdersController {
 	    List<Map<String, Object>> comments = new ArrayList<>();
 	    List<Integer> rowList = new ArrayList<>();
 	    
+	    
 	    // 각 주문에 대해 댓글 정보와 댓글 수를 가져오기
 	    for (Map<String, Object> order : ordersList) {
 	        Integer ordersNo = (Integer) order.get("ordersNo");
@@ -114,11 +115,18 @@ public class OrdersController {
 	        // 해당 주문에 대한 댓글 개수
 	        Integer rowCount = boardService.boardCount(ordersNo);
 	        rowList.add(rowCount);
+	        model.addAttribute("rowCount", rowCount);
+	        log.debug("rowCount : " + rowCount);
 	    }
+	    log.debug("rowList : " + rowList);
+	    log.debug("comments : " + comments.toString());
+	    log.debug("comments : " + comments.get(0));
 
 	    // 모델에 주문 상세 정보, 댓글, 댓글 개수 정보 추가
+	    log.debug("ordersList : " + ordersList.toString());
+	    
 	    model.addAttribute("ordersList", ordersList);
-	    model.addAttribute("comments", comments);
+	    model.addAttribute("comments", comments.get(0));
 	    model.addAttribute("rowList", rowList);
 
 	    // 주문 상세 페이지로 이동
