@@ -35,8 +35,8 @@ public class BoardService {
 	
 	// 세영) 댓글 추가
 	// customer/on/ordersList
-	public Integer insertBoard(Board paramBoard) {
-		return boardMapper.insertBoard(paramBoard);
+	public Integer insertBoard(Board board) {
+		return boardMapper.insertBoard(board);
 	}
 	
 	// 세영) 댓글 삭제

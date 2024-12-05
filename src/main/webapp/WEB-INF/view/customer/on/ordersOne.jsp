@@ -65,13 +65,14 @@
 			</tr>	
 			<tr>	
 				<td>후기</td>
-				<td>
-								
+				<td>	
 				    <!-- 배송완료 상태일 때만 후기 관련 내용 표시 -->
                     <c:if test="${o.paymentState == '배송완료'}">
 	                    <!-- 댓글이 0개일 때 입력 폼을 보여줍니다 -->
 	                    <c:if test="${rowCount == 0}">
-	                        <form id="formComment" method="post" action="${pageContext.request.contextPath}/customer/on/ordersOne?paymentNo=${paymentNo}&ordersNo=${o.ordersNo}">
+	                        <form id="formComment" method="post" action="${pageContext.request.contextPath}/customer/on/ordersOne">
+	                            <input type="hidden" name="ordersNo" value="${o.ordersNo}">    
+	                            <input type="hidden" name="paymentNo" value="${o.paymentNo}">    
 	                            <input type="text" name="boardContent" id="boardContent">    
 	                            <button type="submit" class="btn btn-primary">입력</button>
 	                        </form>

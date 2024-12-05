@@ -79,8 +79,9 @@ public class OrdersController {
 	// 세영) 댓글 추가
 	@PostMapping("/customer/on/ordersOne")
 	public String addComment(Board board
-							, RequestParam paymentNo) {
-		
+							, @RequestParam String boardContent
+							, @RequestParam Integer ordersNo
+							, @RequestParam Integer paymentNo) {
 		// 댓글 추가
 		boardService.insertBoard(board);
 		
