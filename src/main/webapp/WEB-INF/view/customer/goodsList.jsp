@@ -45,13 +45,13 @@
 			<!-- 페이징 -->
 			<div class="text-center mt-5">
 				<c:if test="${currentPage > 1}">
-					<a href="${pageContext.request.contextPath}/on/staffList?currentPage=1">처음</a> &nbsp;
-					<a href="${pageContext.request.contextPath}/on/staffList?currentPage=${currentPage - 1}">이전</a> &nbsp;
+					<a href="${pageContext.request.contextPath}/customer/goodsList?currentPage=1">처음</a> &nbsp;
+					<a href="${pageContext.request.contextPath}/customer/goodsList?currentPage=${currentPage - 1}">이전</a> &nbsp;
 				</c:if>
 				[${currentPage}] &nbsp;
 				<c:if test="${currentPage < lastPage}">
-					<a href="${pageContext.request.contextPath}/on/staffList?currentPage=${currentPage + 1}">다음</a> &nbsp;
-					<a href="${pageContext.request.contextPath}/on/staffList?currentPage=${lastPage}">마지막</a> &nbsp;
+					<a href="${pageContext.request.contextPath}/customer/goodsList?currentPage=${currentPage + 1}">다음</a> &nbsp;
+					<a href="${pageContext.request.contextPath}/customer/goodsList?currentPage=${lastPage}">마지막</a> &nbsp;
 				</c:if>
 			</div>
 		</div>

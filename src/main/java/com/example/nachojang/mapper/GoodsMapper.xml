@@ -136,15 +136,16 @@
 	</select>
 	
 	<!-- 상품 목록 조회 -->
-	<select id="selectGoodsList" resultType="map">
+	<select id="selectGoodsList" parameterType="map"
+			resultType="map">
 		SELECT
-		g.goods_no AS goodsNo,
-		g.goods_title AS goodsTitle,
-		g.goods_price AS goodsPrice,
-		g.create_date AS createDate,
-		c.category_no AS category,
-		gf.goods_file_name AS goodsFileName,
-		gf.goods_file_ext AS goodsFileExt
+			g.goods_no AS goodsNo,
+			g.goods_title AS goodsTitle,
+			g.goods_price AS goodsPrice,
+			g.create_date AS createDate,
+			c.category_no AS category,
+			gf.goods_file_name AS goodsFileName,
+			gf.goods_file_ext AS goodsFileExt
 		FROM goods g
 		LEFT JOIN goods_category gc ON g.goods_no = gc.goods_no
 		LEFT JOIN category c ON gc.category_no = c.category_no
@@ -154,12 +155,10 @@
 	</select>
 
 	<!-- 상품 전체 개수 -->
-	<select id="selectGoodsCount" parameterType="string"
-		resultType="int">
+	<select id="selectGoodsCount"
+		resultType="Integer">
 		SELECT COUNT(*)
 		FROM goods
-		WHERE goods_title LIKE CONCAT('%',
-		#{search}, '%')
 	</select>
 
 	<!-- 우림_상품 추가 : staff/on/addGoods -->

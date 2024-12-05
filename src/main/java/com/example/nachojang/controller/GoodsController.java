@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.example.nachojang.service.BoardService;
 import com.example.nachojang.service.CategoryService;
-import com.example.nachojang.service.GoodsFileService;
 import com.example.nachojang.service.GoodsService;
 import com.example.nachojang.vo.Category;
 import com.example.nachojang.vo.GoodsForm;
@@ -75,12 +74,14 @@ public class GoodsController {
 							, @RequestParam(defaultValue = "1") int currentPage
 							, @RequestParam(defaultValue = "12") int rowPerPage) {
 		// 상품리스트
-		List<Map<String, Object>> goodsList = goodsService.selectCategoryGoodsList(categoryNo, currentPage, rowPerPage);
-		log.debug("goodsList ===========> " + goodsList);
-		model.addAttribute("goodsList", goodsList);
+		Map<String, Object> result = goodsService.selectCategoryGoodsList(categoryNo, currentPage, rowPerPage);
+		log.debug("result ===========> " + result);
+		model.addAttribute("goodsList", result.get("goodsList"));
+		model.addAttribute("lastPage", result.get("lastPage"));
 		model.addAttribute("categoryNo", categoryNo);
 		model.addAttribute("rowPerPage", rowPerPage);
 		model.addAttribute("currentPage", currentPage);
+
 		return "customer/goodsList";
 	}
 	

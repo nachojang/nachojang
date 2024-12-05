@@ -33,7 +33,7 @@ public interface GoodsMapper {
 	int insertGoods(Goods goods);
 	
 	//나정우
-	List<Map<String , Object>> selectGoodsList(Map <String , Object > params);//굿즈리스트
+	List<Map<String , Object>> selectGoodsList(Map <String , Object > params); //굿즈리스트
 	
-    int selectGoodsCount(String search); // 페이징
+    Integer selectGoodsCount(); // 페이징
 }

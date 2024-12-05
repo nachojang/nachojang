@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.nachojang.mapper.BoardMapper;
+import com.example.nachojang.controller.GoodsController;
 import com.example.nachojang.mapper.GoodsCategoryMapper;
 import com.example.nachojang.mapper.GoodsFileMapper;
 import com.example.nachojang.mapper.GoodsMapper;
@@ -20,6 +20,9 @@ import com.example.nachojang.vo.GoodsCategory;
 import com.example.nachojang.vo.GoodsFile;
 import com.example.nachojang.vo.GoodsForm;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 @Transactional
 public class GoodsService {
@@ -33,10 +36,16 @@ public class GoodsService {
 	// 페이징
 	public List<Map<String, Object>> selectGoodsList(int currentPage, int rowPerPage) {
 		int beginRow = (currentPage - 1) * rowPerPage;
+		int totalRow = goodsMapper.selectGoodsCount();
+		int lastPage = totalRow / rowPerPage;
+		if(totalRow % rowPerPage != 0) {
+			lastPage++;
+		}
 
 		Map<String, Object> params = new HashMap<>();
 		params.put("rowPerPage", rowPerPage);
 		params.put("beginRow", beginRow);
+		params.put("lastPage", lastPage);
 
 		return goodsMapper.selectGoodsList(params);
 
@@ -48,12 +57,12 @@ public class GoodsService {
 	}
 
 	// 우림) 카테고리별 상품리스트(+페이징) : customer/goodsList
-	public List<Map<String, Object>> selectCategoryGoodsList(Integer categoryNo, Integer currentPage,
+	public Map<String, Object> selectCategoryGoodsList(Integer categoryNo, Integer currentPage,
 			Integer rowPerPage) {
 		Integer beginRow = (currentPage - 1) * rowPerPage;
 		Integer totalRow = goodsMapper.selectCategoryGoodsCount();
-		Integer lastPage = rowPerPage / totalRow;
-		if (rowPerPage % totalRow != 0) {
+		Integer lastPage = totalRow / rowPerPage;
+		if (totalRow % rowPerPage != 0) {
 			lastPage++;
 		}
 
@@ -61,9 +70,16 @@ public class GoodsService {
 		params.put("categoryNo", categoryNo);
 		params.put("rowPerPage", rowPerPage);
 		params.put("beginRow", beginRow);
-		params.put("lastPage", lastPage);
+		
+	    // 상품 목록 조회
+	    List<Map<String, Object>> goodsList = goodsMapper.selectCategoryGoodsList(params);
+	    
+	    // 결과를 Map에 담아서 반환
+	    Map<String, Object> result = new HashMap<>();
+	    result.put("goodsList", goodsList);
+	    result.put("lastPage", lastPage);
 
-		return goodsMapper.selectCategoryGoodsList(params);
+		return result;
 	}
 
 	// 우림) 신규상품 : customer/main
@@ -126,6 +142,7 @@ public class GoodsService {
 		goodsCategory.setCategoryNo(categoryNo);
 
 		Integer categoryRow = goodsCategoryMapper.insertGoodsByCategory(goodsCategory);
+		log.debug("categoryRow ==========> " + categoryRow);
 	}
 
 	// 우림) 상품 수정 : staff/on/modifyGoods
