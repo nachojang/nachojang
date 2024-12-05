@@ -56,14 +56,20 @@
             border-radius: 5px;
         }
 
+        /* 장바구니 버튼 스타일 */
         .btn-cart {
-            background-color: #3498db;
+            background-color: #007bff; /* Blue color */
             color: white;
             border: none;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
         }
 
         .btn-cart:hover {
-            background-color: #2980b9;
+            background-color: #0056b3; /* Darker blue when hovered */
         }
 
         .btn-out-of-stock {

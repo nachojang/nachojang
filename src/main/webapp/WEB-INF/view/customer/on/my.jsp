@@ -4,75 +4,166 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <title>마이페이지</title>
 
-<meta charset="UTF-8">
-<title>마이페이지</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
 
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .header-menu {
+            text-align: center;
+            padding: 15px;
+            background-color: #c71585;
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .member-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .member-info img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+        }
+
+        .member-info .info-text {
+            flex-grow: 1;
+            padding-left: 20px;
+        }
+
+        .member-info a {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .member-info a:hover {
+            background-color: #45a049;
+        }
+
+        .table-container {
+            margin-top: 30px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+
+        .details-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .details-link:hover {
+            text-decoration: underline;
+        }
+
+        .footer-info {
+            margin-top: 50px;
+            text-align: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 
-	<!-- 헤더 고정 -->
-	<div class="header-menu">
-		<c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
-	</div>
-	
-	<!-- 우림) 회원정보 수정(비밀번호) -->
-	<div class="container card card-header row justify-content-center">
-		 <img src="${pageContext.request.contextPath}/css/a.jpg" alt="image" class="img-fluid" style="max-width: 50%; height: auto;">
-		 <a href="${pageContext.request.contextPath}/customer/on/modifyMyByPw">수정</a>
-	</div>
-	
-	<!-- 우림) 회원정보 (주문건수, 메일, 성별) -->	
-	<div>
-		<table class="table table-bordered">
-			<tr>
-				<td>총 주문 건수</td>
-				<td>메일</td>
-				<td>성별</td>
-			</tr>
-			<tr>
-				<td>${totalOrederCount}</td>
-				<td>${customer.customerMail}</td>
-				<td>${customer.customerGender}</td>
-			</tr>
-		</table>
-	</div>
-	
-	
-	<!-- 세영) 주문내역 리스트 -->
-	<h2>주문내역 리스트</h2>
-	<div class="col-sm-10">
-		<table class="table">
-			<tr>
-				<td>주문 번호</td>
-				<td>주문 일자</td>
-				<td>상품 개수</td>
-				<td>총 주문 가격</td>
-			</tr>
-			<c:forEach var="o" items="${latestOrdersList}">
-				<tr>
-					<td>${o.ordersNo}</td>
-					<td>${o.createDate}</td>
-					<td>${o.paymentPrice}</td>
-					<td>${o.paymentState}</td>
-				</tr>
-			</c:forEach>
-		</table>
-		<div>
-			<a href="${pageContext.request.contextPath}/customer/on/ordersList?customerMail=${customerMail}">
-				상세보기
-			</a>
-		</div>
-	</div>
-	
-	<!-- 고정 (회사정보) -->
-    <div>	
-    		<c:import url="/WEB-INF/view/company.jsp"></c:import>
+    <div class="container">
+
+        <!-- 헤더 -->
+        <div >
+            <c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
+        </div>
+
+        <!-- 회원 정보 -->
+        <br>
+        <div class="member-info">
+            <img src="${pageContext.request.contextPath}/css/a.jpg" alt="회원 이미지">
+            <div class="info-text">
+                <div><strong>주문건수:</strong> 0건</div>
+                <div><strong>성별:</strong> 남/여</div>
+                <div><strong>이메일:</strong> goodee.com</div>
+                <a href="${pageContext.request.contextPath}/customer/on/modifyMyByPw">수정</a>
+            </div>
+        </div>
+		<br>
+        <!-- 주문내역 리스트 -->
+        <div class="table-container">
+            <h3>주문내역 리스트</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>주문번호</th>
+                        <th>주문일자</th>
+                        <th>개수</th>
+                        <th>총 주문 가격</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="o" items="${latestOrdersList}">
+                        <tr>
+                            <td>${o.ordersNo}</td>
+                            <td>${o.createDate}</td>
+                            <td>${o.paymentPrice}</td>
+                            <td>${o.paymentState}</td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
+            <a class="details-link" href="${pageContext.request.contextPath}/customer/on/ordersList?customerMail=${customerMail}">상세보기</a>
+        </div>
+
+        <!-- 회사 정보 -->
+        <div class="footer-info">
+            <c:import url="/WEB-INF/view/company.jsp"></c:import>
+        </div>
+
     </div>
-    
+
 </body>
 </html>
