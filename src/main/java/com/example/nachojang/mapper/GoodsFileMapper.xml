@@ -16,4 +16,29 @@
 			#{goodsNo}, #{goodsFileName}, #{goodsFileOrigin}, #{goodsFileExt}, #{goodsFileType}, #{goodsFileSize} 
 		)
 	</insert>
+	
+	<select id="selectGoodsFile" parameterType="Integer" resultType="com.example.nachojang.vo.GoodsFile">
+		SELECT
+			goods_no goodsNo 
+			, goods_file_name goodsFileName
+			, goods_file_origin goodsFileOrigin
+			, goods_file_ext goodsFileExt
+			, goods_file_type goodsFileType
+			, goods_file_size goodsFileSize
+			, update_date updateDate
+			, create_date createDate
+		FROM goods_file
+		WHERE goods_no = #{goodsNo};
+	</select>
+	
+	<update id="updateGoodsFile" parameterType="com.example.nachojang.vo.GoodsFile">
+		UPDATE goods_file
+		SET
+			goods_file_name = #{goodsFileName}
+			, goods_file_origin = #{goodsFileOrigin}
+			, goods_file_ext = #{goodsFileExt}
+			, goods_file_type = #{goodsFileType}
+			, goods_file_size = #{goodsFileSize}
+		WHERE goods_no = #{goodsNo};
+	</update>
 </mapper>
