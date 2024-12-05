@@ -7,25 +7,21 @@
 			parameterType="com.example.nachojang.vo.GoodsForm">
 		UPDATE goods g
 		JOIN goods_category gc ON g.goods_no = gc.goods_no
-		JOIN goods_file gf ON g.goods_no = gf.goods_no
 		<set>
 			<if test="goodsTitle != null">
 				g.goods_title = #{goodsTitle}
 			</if>
 			<if test="categoryNo != null">
-				gc.category_no = #{categoryNo}
-			</if>
-			<if test="goodsFile != null">
-				gf.goods_file = #{goodsFile}
+				, gc.category_no = #{categoryNo}
 			</if>
 			<if test="goodsPrice != null">
-				g.goods_price = #{goodsPrice}
+				, g.goods_price = #{goodsPrice}
 			</if>
 			<if test="goodsMemo != null">
-				g.goods_memo = #{goodsMemo}
+				, g.goods_memo = #{goodsMemo}
 			</if>
 			<if test="goodsState != null">
-				g.goods_state = #{goodsState}
+				, g.goods_state = #{goodsState}
 			</if>
 		</set>
 		WHERE g.goods_no = #{goodsNo}
@@ -52,7 +48,7 @@
 			goods_category gc ON g.goods_no = gc.goods_no
 		LEFT JOIN 
 			category c ON gc.category_no = c.category_no
-		WHERE g.goods_no = ${goodsNo}
+		WHERE g.goods_no = #{goodsNo}
 	</select>
 	
 	<!-- 우림) 카테고리별 총 상품 수 : customer/goodsList -->

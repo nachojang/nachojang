@@ -6,12 +6,13 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.example.nachojang.vo.Goods;
+import com.example.nachojang.vo.GoodsForm;
 
 @Mapper
 public interface GoodsMapper {
 	
 	// 우림) 상품수정 : staff/on/modifyGoods
-	Integer updateGoods(Map<String, Object> goodsform);
+	Integer updateGoods(GoodsForm goodsform);
 
 	// 우림) 상품상세 : customer/goodsOne
 	Map<String, Object> selectGoodsOne(Integer goodsNo);

@@ -17,5 +17,5 @@ public class GoodsForm {
 	private String createDate;
 	private Integer categoryNo;
 	private String categoryTitle;
-	private List<MultipartFile> goodsFile;
+	private MultipartFile goodsFile;
 }

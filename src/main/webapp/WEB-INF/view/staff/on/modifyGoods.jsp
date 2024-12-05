@@ -21,15 +21,16 @@
 		</div>
 		
 		<div class="col-sm-9 mb-3 mt-3 ms-4">
-			<h3 class="text-center">상품 추가</h3>
+			<h3 class="text-center">상품 수정</h3>
 			
 			<hr></hr>
 			<form id="formModify" method="post" action="${pageContext.request.contextPath}/staff/on/modifyGoods"
 				enctype="multipart/form-data">
+				<input type="hidden" name="goodsNo" value="${form.goodsNo}">
 				<table class="table table-bordered" style="width : 80%">
 					<tr>
 						<td>상품명</td>
-						<td><input type="text" id="goodsTitle" name="goodsTitle"></td>
+						<td><input type="text" id="goodsTitle" name="goodsTitle" value="${form.goodsTitle}"></td>
 					</tr>
 					<tr>
 						<td>카테고리</td>
@@ -54,7 +55,7 @@
 							${msg}
 							<img src="${pageContext.request.contextPath}/upload/${form.goodsFileName}.${form.goodsFileExt}"
 			 					 alt="상품 이미지" style="max-width: 200px; max-height: 200px; object-fit: contain;">
-							<input type="file" id="goodsFile" name="goodsFile" value="${form.goodsFileName}.${form.goodsFileExt}">
+							<input type="file" id="goodsFile" name="goodsFile">
 						</td>
 					</tr>
 					<tr>
@@ -66,8 +67,14 @@
 					<tr>
 						<td>상품재고</td>
 						<td>
-							<input type="radio" class="goodsState" name="goodsState" value="재고있음">재고있음<br>
-							<input type="radio" class="goodsState" name="goodsState" value="재고없음">재고없음<br>
+							<c:if test="${form.goodsState == '재고있음'}">
+								<input type="radio" class="goodsState" name="goodsState" value="재고있음" checked>재고있음<br>
+								<input type="radio" class="goodsState" name="goodsState" value="재고없음">재고없음<br>
+							</c:if>
+							<c:if test="${form.goodsState != '재고있음'}">
+								<input type="radio" class="goodsState" name="goodsState" value="재고있음">재고있음<br>
+								<input type="radio" class="goodsState" name="goodsState" value="재고없음" checked>재고없음<br>
+							</c:if>
 						</td>
 					</tr>
 				</table>
@@ -93,8 +100,6 @@
 	        alert('상품금액을 입력하세요'); 
 	    } else if($('#goodsMemo').val() == '') { 
 	        alert('상품설명을 입력하세요'); 
-	    } else if($('#goodsFile').length > 0 && $('#goodsFile').last().val() == '') { 
-	        alert('파일을 첨부하세요'); 
 	    } else if($('.goodsState:checked').length == 0) { 
 	        alert('재고상태를 선택하세요'); 
 	    } else { 
