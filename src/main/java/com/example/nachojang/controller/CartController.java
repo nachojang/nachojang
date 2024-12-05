@@ -27,7 +27,7 @@ public class CartController {
 	@Autowired AddressService addressService;
 	
 	// 세영) 결제 폼 
-	@PostMapping("/customer/on/checkAll")
+	@PostMapping("/customer/on/ordersPayment")
 	public String allOrder(HttpSession session, Model model, @RequestParam(value = "selectedCartNos", required = false) List<Integer> selectedCartNos) {
 		// 로그인메일 가져오기
 		String customerMail = ((String)session.getAttribute("loginCustomer"));
