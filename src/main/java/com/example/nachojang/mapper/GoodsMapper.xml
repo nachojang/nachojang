@@ -108,7 +108,7 @@
 		   g.goods_no, g.goods_title, g.goods_memo, g.goods_price, g.goods_state, g.create_date, gf.goods_file_name, gf.goods_file_ext
 		ORDER BY 
 		   createDate DESC
-		Limit 4
+		LIMIT 4
 	</select>
 	
 	<!-- 우림) 인기상품 리스트 : customer/main -->
@@ -132,7 +132,8 @@
 		GROUP BY 
 		   g.goods_no, g.goods_title, g.goods_memo, g.goods_price, g.goods_state, gf.goods_file_name, gf.goods_file_ext
 		ORDER BY 
-		   total_orders DESC;
+		   total_orders DESC
+		LIMIT 4
 	</select>
 	
 	<!-- 상품 목록 조회 -->
