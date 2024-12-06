@@ -24,6 +24,8 @@
             font-weight: 400;
             font-family: 'Lato', sans-serif;
             background: #f8f9fa;
+            display: flex;
+            flex-direction: column;
         }
 
         .content {
@@ -33,6 +35,7 @@
             padding: 2rem;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex: 1; /* 남은 공간 채우기 */
         }
 
         h1 {
@@ -41,11 +44,6 @@
             color: #333;
             margin-bottom: 1rem;
             text-align: center;
-        }
-
-        h2 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
         }
 
         .form-group {
@@ -110,15 +108,11 @@
             margin-right: 1rem;
         }
 
-        .payment-method input[type="radio"] {
-            margin-right: 5px;
-        }
-
-        .footer {
+        footer {
             background-color: #f1f1f1;
-            padding: 1rem;
+            padding: 1rem 0;
             text-align: center;
-            font-size: 0.9rem;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
         }
 
         /* 반응형 디자인 */
@@ -138,15 +132,14 @@
             }
         }
     </style>
-
 </head>
 <body>
-
-    <!-- 헤더 고정 -->
-    <div class="header-menu">
+    <!-- 헤더 -->
+    <header class="header-menu">
         <c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
-    </div>
+    </header>
 
+    <!-- 메인 콘텐츠 -->
     <div class="content">
         <h1>결제</h1>
         <form id="formPayment" method="post" action="${pageContext.request.contextPath}/customer/on/addPayment">
@@ -179,17 +172,17 @@
                 <table>
                     <tr>
                         <th>이미지</th>
-                        <th>상품명</th>                    
-                        <th>수량</th>                    
-                        <th>금액</th>                    
+                        <th>상품명</th>
+                        <th>수량</th>
+                        <th>금액</th>
                     </tr>
                     <c:forEach var="c" items="${cartList}">
                         <input type="hidden" name="cartNo" value="${c.cartNo}">
                         <tr>
                             <td><img class="product-img" src="${pageContext.request.contextPath}/upload/${c.goodsFileName}.${c.goodsFileExt}" alt="${c.goodsTitle}"></td>
-                            <td>${c.goodsTitle}</td>                    
-                            <td>${c.cartAmount}</td>                    
-                            <td>${c.totalPrice}</td>                    
+                            <td>${c.goodsTitle}</td>
+                            <td>${c.cartAmount}</td>
+                            <td>${c.totalPrice}</td>
                         </tr>
                     </c:forEach>
                 </table>
@@ -212,28 +205,28 @@
                 </label>
             </div>
 
-            <!-- 결제버튼 -->
+            <!-- 결제 버튼 -->
             <button id="btnPayment" type="button" class="btn btn-primary">결제하기</button>
         </form>
     </div>
 
-    <!-- 고정 (회사정보) -->
-    <div class="footer">    
+    <!-- 푸터 -->
+    <footer>
         <c:import url="/WEB-INF/view/company.jsp"></c:import>
-    </div>
+        <p>&copy; 2024 Your Company. All rights reserved.</p>
+    </footer>
 
     <script>
         $('#btnPayment').click(function() {
-            if(!$('select[name="addressNo"]').val()){
+            if (!$('select[name="addressNo"]').val()) {
                 alert('주소를 선택해주세요');
                 return;
-            } else if(!$('input[name="paymentMethod"]:checked').val()){
+            } else if (!$('input[name="paymentMethod"]:checked').val()) {
                 alert('결제수단을 선택해주세요');
                 return;
-            }    
+            }
             $('#formPayment').submit();
         });
     </script>
-
 </body>
 </html>

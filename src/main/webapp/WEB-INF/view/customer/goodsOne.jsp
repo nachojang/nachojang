@@ -50,16 +50,10 @@
             vertical-align: middle;
         }
 
-        .product-detail .btn {
-            padding: 10px 20px;
-            font-size: 1rem;
-            border-radius: 5px;
-        }
-
         /* 장바구니 버튼 스타일 */
         .btn-cart {
-            background-color: #007bff; /* Blue color */
-            color: white;
+            background-color: #007bff !important; /* Blue color with high priority */
+            color: white !important;
             border: none;
             padding: 10px 20px;
             font-size: 1rem;
@@ -69,7 +63,7 @@
         }
 
         .btn-cart:hover {
-            background-color: #0056b3; /* Darker blue when hovered */
+            background-color: #0056b3 !important; /* Darker blue when hovered */
         }
 
         .btn-out-of-stock {
@@ -96,14 +90,19 @@
             vertical-align: middle;
         }
 
-        .reviews-table .delete-btn {
-            color: #e74c3c;
+        /* 삭제 버튼 */
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
             cursor: pointer;
-            text-decoration: none;
         }
 
-        .reviews-table .delete-btn:hover {
-            text-decoration: underline;
+        .btn-delete:hover {
+            background-color: #c0392b;
         }
     </style>
 
@@ -144,7 +143,7 @@
                         </tr>
                     </table>
                     <c:if test="${goodsOne.goodsState == '재고있음'}">
-                        <button type="button" id="btnCart" class="btn btn-cart btn-block">장바구니</button>
+                        <button type="button" id="btnCart" class="btn-cart">장바구니</button>
                     </c:if>
                     <input type="hidden" name="goodsNo" value="${goodsOne.goodsNo}">
                     <input type="hidden" name="customerMail" value="${customerMail}">
@@ -170,7 +169,7 @@
                     <th>작성자</th>
                     <th>내용</th>
                     <th>작성일자</th>
-                    <th>삭제</th>
+                    <th></th>
                 </tr>
                 <c:forEach var="bl" items="${boardList}">
                     <tr>
@@ -183,7 +182,11 @@
                                 <span>-</span>
                             </c:if>
                             <c:if test="${bl.customerMail eq customerMail}">
-                                <a href="${pageContext.request.contextPath}/customer/on/deleteBoard?goodsNo=${goodsOne.goodsNo}&ordersNo=${bl.ordersNo}" class="delete-btn">삭제</a>
+                                <form method="get" action="${pageContext.request.contextPath}/customer/on/deleteBoard">
+                                    <input type="hidden" name="goodsNo" value="${goodsOne.goodsNo}">
+                                    <input type="hidden" name="ordersNo" value="${bl.ordersNo}">
+                                    <button type="submit" class="btn-delete">삭제</button>
+                                </form>
                             </c:if>
                         </td>
                     </tr>
@@ -201,7 +204,7 @@
 </body>
 
 <script>
-    // 상품 수량 체크
+    // 장바구니 추가 시 상품 수량 체크
     $('#btnCart').click(function() {
         var cartAmount = $('#cartAmount').val();
         
@@ -209,8 +212,11 @@
             alert('수량을 확인해주세요');
         } else {
             $('#formCart').submit();
+	    	alert('상품이 장바구니에 추가되었습니다')
         }
     });
+
+    
 </script>
 
 </html>

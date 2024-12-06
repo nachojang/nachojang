@@ -49,9 +49,7 @@ public class GoodsController {
 	
 	// 우림) 상품상세
 	@GetMapping("/customer/goodsOne")
-	public String goodsOne(HttpSession session, Model model, Integer goodsNo
-							, @RequestParam(defaultValue = "1") Integer currentPage
-							, @RequestParam(defaultValue = "12") Integer rowPerPage) {
+	public String goodsOne(HttpSession session, Model model, Integer goodsNo) {
 		// 작성자 확인용
 		String customerMail = (String)session.getAttribute("loginCustomer");
 		model.addAttribute("customerMail", customerMail);
