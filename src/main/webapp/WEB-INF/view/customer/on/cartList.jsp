@@ -115,31 +115,35 @@
     </footer>
 
 <script>
-    $(document).ready(function () {
-        function calculateTotalPrice() {
-            let totalPrice = 0;
-            $('input[name="selectedCartNos"]:checked').each(function () {
-                const price = parseInt($(this).closest('tr').find('td').eq(4).text().trim());
-                totalPrice += isNaN(price) ? 0 : price;
-            });
-            $('#totalPrice').text(totalPrice.toLocaleString());
-        }
-        $('input[name="selectedCartNos"]').on('change', calculateTotalPrice);
-        calculateTotalPrice();
-        
-        $('#checkoutSelectedBtn').on('click', function () {
-            if ($('input[name="selectedCartNos"]:checked').length === 0) {
-                alert('선택된 상품이 없습니다. 체크박스를 선택해주세요.');
-            } else {
-                $('#cartForm').submit();
-            }
-        });
-        
-        $('#checkoutAllBtn').on('click', function () {
-            $('input[name="selectedCartNos"]').prop('checked', true);
-            $('#cartForm').submit();
-        });
-    });
+	$(document).ready(function () {
+	    function calculateTotalPrice() {
+	        let totalPrice = 0;
+	        $('input[name="selectedCartNos"]:checked').each(function () {
+	            const price = parseInt($(this).closest('tr').find('td').eq(4).text().trim());
+	            totalPrice += isNaN(price) ? 0 : price;
+	        });
+	        $('#totalPrice').text(totalPrice.toLocaleString());
+	    }
+	    $('input[name="selectedCartNos"]').on('change', calculateTotalPrice);
+	    calculateTotalPrice();
+	    
+	    $('#checkoutSelectedBtn').on('click', function () {
+	        if ($('input[name="selectedCartNos"]:checked').length === 0) {
+	            alert('선택된 상품이 없습니다. 체크박스를 선택해주세요.');
+	        } else {
+	            $('#cartForm').submit();
+	        }
+	    });
+	    
+	    $('#checkoutAllBtn').on('click', function () {
+	        if ($('input[name="selectedCartNos"]').length === 0) {
+	            alert('상품을 추가해 주세요.');
+	        } else {
+	            $('input[name="selectedCartNos"]').prop('checked', true);
+	            $('#cartForm').submit();
+	        }
+	    });
+});
 </script>
 
 </body>

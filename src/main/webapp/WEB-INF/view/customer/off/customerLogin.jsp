@@ -95,9 +95,11 @@
 <script>
     $('#btnLogin').click(function(){
         console.log('click');
-        if ($('#customerPw').val().length < 4) {
-            alert('PW는 4자 이상 가능합니다');
-        } else {
+        if ($('#customerMail').val() == '') {
+            alert('메일을 입력하세요');
+        } else if ($('#customerPw').val() == '') {
+        	alert('비밀번호를 입력하세요');
+    	} else {
             $('#formLogin').submit();
         }
     });
