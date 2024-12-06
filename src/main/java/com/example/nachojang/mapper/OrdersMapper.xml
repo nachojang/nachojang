@@ -54,12 +54,7 @@
 		FROM orders o
 		INNER JOIN goods g on o.goods_no = g.goods_no
 		INNER JOIN payment p on o.payment_no = p.payment_no
-		LEFT JOIN (SELECT  
-						gf.goods_file_name,
-						gf.goods_file_ext, 
-						gf.goods_no
-					FROM goods_file gf
-					LIMIT 1) gf on gf.goods_no = o.goods_no
+		LEFT JOIN goods_file gf ON gf.goods_no = o.goods_no
 		WHERE o.payment_no = #{paymentNo}
 	</select>
 	
