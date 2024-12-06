@@ -90,14 +90,19 @@
             vertical-align: middle;
         }
 
-        .reviews-table .delete-btn {
-            color: #e74c3c;
+        /* 삭제 버튼 */
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
             cursor: pointer;
-            text-decoration: none;
         }
 
-        .reviews-table .delete-btn:hover {
-            text-decoration: underline;
+        .btn-delete:hover {
+            background-color: #c0392b;
         }
     </style>
 
@@ -164,7 +169,7 @@
                     <th>작성자</th>
                     <th>내용</th>
                     <th>작성일자</th>
-                    <th>삭제</th>
+                    <th></th>
                 </tr>
                 <c:forEach var="bl" items="${boardList}">
                     <tr>
@@ -177,7 +182,11 @@
                                 <span>-</span>
                             </c:if>
                             <c:if test="${bl.customerMail eq customerMail}">
-                                <a href="${pageContext.request.contextPath}/customer/on/deleteBoard?goodsNo=${goodsOne.goodsNo}&ordersNo=${bl.ordersNo}" class="delete-btn">삭제</a>
+                                <form method="get" action="${pageContext.request.contextPath}/customer/on/deleteBoard">
+                                    <input type="hidden" name="goodsNo" value="${goodsOne.goodsNo}">
+                                    <input type="hidden" name="ordersNo" value="${bl.ordersNo}">
+                                    <button type="submit" class="btn-delete">삭제</button>
+                                </form>
                             </c:if>
                         </td>
                     </tr>
