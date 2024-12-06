@@ -153,6 +153,7 @@
 
             <!-- 주소 선택 -->
             <div class="form-group">
+            <br>
                 <label for="address">주소</label>
                 <c:if test="${addressList == null}">
                     <p>등록된 주소가 없습니다.</p>

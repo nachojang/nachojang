@@ -19,4 +19,8 @@ public class AddressService {
 	public List<Address> getAddressListByCustomerMail(String customerMail) {
 		return addressMapper.addressListByCustomerMail(customerMail);
 	}
+
+	public int insertAddress(Address address) {		
+		return addressMapper.insertAddress(address);
+	}
 }

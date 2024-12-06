@@ -10,4 +10,13 @@
 		FROM address
 		WHERE customer_mail=#{customerMail}
 	</select>
+	
+	<insert id="insertAddress" parameterType="com.example.nachojang.vo.Address">
+		INSERT INTO address(
+			customer_mail
+			, address_detail
+		) VALUES (
+			#{customerMail}, #{addressDetail}
+		)
+	</insert>
 </mapper>

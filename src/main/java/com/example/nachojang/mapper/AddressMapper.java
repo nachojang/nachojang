@@ -11,4 +11,7 @@ public interface AddressMapper {
 	
 	// 세영) 고객의 주소 리스트
 	List<Address> addressListByCustomerMail(String customerMail);
+
+	int insertAddress(Address address);
+
 }
