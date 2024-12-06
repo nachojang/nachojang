@@ -95,6 +95,8 @@
     </section>
 
     <!-- 회사정보 -->
+    <hr>
+
     <footer>
         <c:import url="/WEB-INF/view/company.jsp"></c:import>
     </footer>

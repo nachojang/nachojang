@@ -114,13 +114,22 @@
             margin-right: 5px;
         }
 
-        .footer {
-            background-color: #f1f1f1;
-            padding: 1rem;
-            text-align: center;
-            font-size: 0.9rem;
-        }
+        body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
 
+main {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex-shrink: 0;
+    background-color: #f1f1f1;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}
         /* 반응형 디자인 */
         @media (max-width: 767px) {
             .content {
@@ -140,12 +149,12 @@
     </style>
 
 </head>
-<body>
-
+<body class="d-flex flex-column min-vh-100">
     <!-- 헤더 고정 -->
-    <div class="header-menu">
+    <header class="header-menu">
         <c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
-    </div>
+    </header>
+
 
     <div class="content">
         <h1>결제</h1>
@@ -217,10 +226,15 @@
         </form>
     </div>
 
+
     <!-- 고정 (회사정보) -->
-    <div class="footer">    
-        <c:import url="/WEB-INF/view/company.jsp"></c:import>
-    </div>
+    <br>
+   <footer class="footer mt-auto">
+        <hr>
+        <div class="container">    
+            <c:import url="/WEB-INF/view/company.jsp"></c:import>
+        </div>
+    </footer>
 
     <script>
         $('#btnPayment').click(function() {
