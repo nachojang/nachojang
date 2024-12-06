@@ -142,6 +142,7 @@ table th {
 					<strong>주문건수:</strong> ${totalOrederCount}
 				</div>
 				<a href="${pageContext.request.contextPath}/customer/on/modifyMyByPw">수정</a>
+				<a href="${pageContext.request.contextPath}/customer/on/insertAddress">주소 추가</a>
 			</div>
 		</div>
 		<br>
