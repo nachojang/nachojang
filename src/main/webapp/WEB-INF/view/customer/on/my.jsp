@@ -133,16 +133,15 @@ table th {
 			<img src="${pageContext.request.contextPath}/css/a.jpg" alt="회원 이미지">
 			<div class="info-text">
 				<div>
-					<strong>주문건수:</strong> 0건
+					<strong>이메일:</strong> ${customer.customerMail}
 				</div>
 				<div>
-					<strong>성별:</strong> 남/여
+					<strong>성별:</strong> ${customer.customerGender}
 				</div>
 				<div>
-					<strong>이메일:</strong> goodee.com
+					<strong>주문건수:</strong> ${totalOrederCount}
 				</div>
-				<a
-					href="${pageContext.request.contextPath}/customer/on/modifyMyByPw">수정</a>
+				<a href="${pageContext.request.contextPath}/customer/on/modifyMyByPw">수정</a>
 			</div>
 		</div>
 		<br>

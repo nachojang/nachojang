@@ -106,6 +106,7 @@
            -webkit-transition-duration: 0.3s; /* 전환 효과 */
            transition-duration: 0.3s; /* 전환 효과 */
        }
+
     </style>
 </head>
 <body>
@@ -114,46 +115,56 @@
         <c:import url="/WEB-INF/view/customer/on/inc/header.jsp"></c:import>
     </div>
     
-    <div class="wrapper">
-        <div class="inner">
-            <h3>회원가입</h3>
-            ${msg}
-            
-             <!-- 중복확인 폼 -->
-             <form id="formMailCheck" method="post" action="${pageContext.request.contextPath}/customer/off/mailCheck">
-                <div class="form-wrapper">
-                    <input type="email" name="mailCheck" id="mailCheck" placeholder="Email Address" class="form-control">
-                </div>
-                <button type="submit">중복확인</button>
-             </form>
+ <div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card card-header">
+                <h3>회원가입</h3>
+                <!-- 회원가입 오류 메세지 -->
+                <span class="text-danger mb-3">${msg}</span>
 
-             <!-- 회원가입 폼 -->
-             <form id="formAddCustomer" method="post" action="${pageContext.request.contextPath}/customer/off/addCustomer">
-                <div class="form-wrapper">
-                    <input type="email" name="customerMail" id="customerMail" placeholder="Email Address" class="form-control" value="${mailCheck}" readonly>
-                </div>
-                <div class="form-wrapper">
-                    <input type="password" name="customerPw" id="customerPw" placeholder="Password" class="form-control">
-                </div>
-                <div class="form-wrapper">
-                    <input type="password" name="repw" id="repw" placeholder="Confirm Password" class="form-control">
-                </div>
-                <div class="form-wrapper">
-                    <input type="date" name="customerBirth" id="customerBirth" class="form-control">
-                </div>
-                <div class="form-group">
-                    <label>
-                        <input type="radio" name="customerGender" class="customerGender" value="남자"> 남자
-                    </label>
-                    <label>
-                        <input type="radio" name="customerGender" class="customerGender" value="여자"> 여자
-                    </label>
-                </div>
-                <button type="button" id="btnAddCustomer">회원가입</button>
-             </form>
+                <!-- 중복확인 폼 -->
+                <form id="formMailCheck" method="post" action="${pageContext.request.contextPath}/customer/off/mailCheck">
+                    <div class="mb-3">
+                    	<label for="customerMail" class="form-label">EMAIL</label>
+                        <input type="email" name="mailCheck" id="mailCheck" placeholder="Email Address" class="form-control">
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary w-100">중복확인</button>
+                </form>
 
-         </div> 
-     </div> 
+                <!-- 회원가입 폼 -->
+                <form id="formAddCustomer" method="post" action="${pageContext.request.contextPath}/customer/off/addCustomer">
+                    <div class="mb-3">
+                    	<label for="customerMail" class="form-label">EMAIL</label>
+                        <input type="email" name="customerMail" id="customerMail" placeholder="Email Address" class="form-control" value="${mailCheck}" readonly>
+                    </div>
+                    <div class="mb-3">
+                    	<label for="customerPw" class="form-label">PASSWORD</label>
+                        <input type="password" name="customerPw" id="customerPw" placeholder="Password" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                    	<label for="repw" class="form-label">CONFIRM</label>
+                        <input type="password" name="repw" id="repw" placeholder="Confirm Password" class="form-control">
+                    </div>
+                    <div class="mb-3">
+                    	<label for="customerBirth" class="form-label">BIRTH</label>
+                        <input type="date" name="customerBirth" id="customerBirth" class="form-control">
+                    </div>
+                    <div class="form-group">
+                    	<label for="customerGender" class="form-label">GENDER</label>
+                        <label>
+                            <input type="radio" name="customerGender" class="customerGender" value="남자"> 남자
+                        </label>
+                        <label>
+                            <input type="radio" name="customerGender" class="customerGender" value="여자"> 여자
+                        </label>
+                    </div>
+                    <button type="button" id="btnAddCustomer" class="btn btn-outline-primary w-100">회원가입</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 
 <script>
