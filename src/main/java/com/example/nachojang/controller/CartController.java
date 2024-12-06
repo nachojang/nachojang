@@ -57,7 +57,8 @@ public class CartController {
     public String addCart(Model model, Cart cart) {
     	cartService.addCart(cart);
     	log.debug("cart ==================>" + cart);
-    	return "redirect:/customer/on/cartList?customerMail=" + cart.getCustomerMail();
+    	
+    	return "redirect:/customer/goodsOne?goodsNo=" + cart.getGoodsNo();
     }
 	
 	@GetMapping("/customer/on/cartList")

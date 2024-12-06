@@ -195,7 +195,7 @@
 </body>
 
 <script>
-    // 상품 수량 체크
+    // 장바구니 추가 시 상품 수량 체크
     $('#btnCart').click(function() {
         var cartAmount = $('#cartAmount').val();
         
@@ -203,8 +203,11 @@
             alert('수량을 확인해주세요');
         } else {
             $('#formCart').submit();
+	    	alert('상품이 장바구니에 추가되었습니다')
         }
     });
+
+    
 </script>
 
 </html>
