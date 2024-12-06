@@ -85,7 +85,9 @@
 	
 	
     <!-- 고정 회사정보 -->
-    <c:import url="/WEB-INF/view/company.jsp"></c:import>
+    <footer>
+        <c:import url="/WEB-INF/view/company.jsp"></c:import>
+    </footer>
  
 </body>
 

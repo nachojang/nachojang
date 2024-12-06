@@ -46,7 +46,7 @@
         <h1>${staffLogin}님 환영합니다</h1>
     </div>
 
-    <footer class="text-center py-3 bg-dark text-white">
+    <footer>
         <c:import url="/WEB-INF/view/company.jsp"></c:import>
     </footer>
 </body>

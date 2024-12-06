@@ -86,7 +86,7 @@
     </div>
     
     <!-- 고정 (회사정보) -->
-    <div class="mt-auto">    
+    <div>    
         <c:import url="/WEB-INF/view/company.jsp"></c:import>
     </div>
     

@@ -116,6 +116,7 @@
     </div>
     
     <!-- 상품 상세정보 -->
+    <br>
     <div class="container product-detail">
         <h3 class="text-center mb-4">${goodsOne.goodsTitle}</h3>
         <div class="row">
@@ -190,8 +191,9 @@
             </table>
         </div>
     </div>
-    
+    <br>
     <!-- 고정 (회사정보) -->
+    <br>
     <div>  
         <c:import url="/WEB-INF/view/company.jsp"></c:import>
     </div>

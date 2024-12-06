@@ -94,7 +94,7 @@
     </div>
 
     <!-- 푸터 -->
-    <footer class="text-center py-3 bg-dark text-white">
+    <footer>
         <c:import url="/WEB-INF/view/company.jsp"></c:import>
     </footer>
 </body>

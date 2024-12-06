@@ -133,7 +133,7 @@
                 <button type="button" id="btnAddGoods" class="app-button">상품 추가</button> 
                 
                 <!-- 고정 회사정보 -->
-                <footer class="text-center py-3 bg-dark text-white">
+                <footer>
                     <c:import url="/WEB-INF/view/company.jsp"></c:import> 
                 </footer>
 

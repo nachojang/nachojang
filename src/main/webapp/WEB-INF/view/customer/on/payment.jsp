@@ -63,20 +63,21 @@
             font-weight: bold;
         }
 
-        a {
-            display: inline-block;
-            margin-top: 2rem;
-            padding: 0.8rem 2rem;
-            text-decoration: none;
-            background-color: $violet;
-            color: white;
-            border-radius: 4px;
-            text-align: center;
-        }
+        .blue-button {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
 
-        a:hover {
-            background-color: darken($violet, 10%);
-        }
+.blue-button:hover {
+    background-color: #0056b3;
+}
 
         .content {
             margin: 0 auto;
@@ -155,9 +156,11 @@
         </c:forEach>
 
         <!-- 홈으로 링크 -->
-        <a href="${pageContext.request.contextPath}/customer/main">
-            홈으로
-        </a>
+       <div style="text-align: center;">
+    <a href="${pageContext.request.contextPath}/customer/main" class="blue-button">
+        홈으로
+    </a>
+</div>
     </div>
     
     <br>
