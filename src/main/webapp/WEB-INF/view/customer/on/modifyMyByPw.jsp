@@ -99,6 +99,7 @@
     </div>
 
     <!-- 고정 (회사정보) -->
+    <br>
     <div>
         <c:import url="/WEB-INF/view/company.jsp"></c:import>
     </div>

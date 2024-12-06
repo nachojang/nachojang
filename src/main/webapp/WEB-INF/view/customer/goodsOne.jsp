@@ -50,16 +50,10 @@
             vertical-align: middle;
         }
 
-        .product-detail .btn {
-            padding: 10px 20px;
-            font-size: 1rem;
-            border-radius: 5px;
-        }
-
         /* 장바구니 버튼 스타일 */
         .btn-cart {
-            background-color: #007bff; /* Blue color */
-            color: white;
+            background-color: #007bff !important; /* Blue color with high priority */
+            color: white !important;
             border: none;
             padding: 10px 20px;
             font-size: 1rem;
@@ -69,7 +63,7 @@
         }
 
         .btn-cart:hover {
-            background-color: #0056b3; /* Darker blue when hovered */
+            background-color: #0056b3 !important; /* Darker blue when hovered */
         }
 
         .btn-out-of-stock {
@@ -144,7 +138,7 @@
                         </tr>
                     </table>
                     <c:if test="${goodsOne.goodsState == '재고있음'}">
-                        <button type="button" id="btnCart" class="btn btn-cart btn-block">장바구니</button>
+                        <button type="button" id="btnCart" class="btn-cart">장바구니</button>
                     </c:if>
                     <input type="hidden" name="goodsNo" value="${goodsOne.goodsNo}">
                     <input type="hidden" name="customerMail" value="${customerMail}">
