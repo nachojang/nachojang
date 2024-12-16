@@ -37,13 +37,6 @@
 		WHERE orders_no = #{ordersNo}
 	</select>
 	
-	<!-- 세영) 댓글 유무 확인 -->
-	<select id="boardCount">
-		SELECT COUNT(*) cnt
-		FROM board
-		WHERE orders_no = #{ordersNo}
-	</select>
-	
 	<!-- 세영) 댓글 추가 -->
 	<insert id="insertBoard" parameterType="com.example.nachojang.vo.Board">
 		INSERT INTO board(

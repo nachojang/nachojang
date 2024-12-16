@@ -17,9 +17,6 @@ public interface BoardMapper {
 	// 세영) 세영) 고객의 주문 상품 댓글 출력
 	Map<String, Object> selectBoardByOrdersNo(Integer boardNo);
 	
-	// 세영) 댓글 유무 확인
-	Integer boardCount(Integer boardNo);
-	
 	// 세영) 댓글 추가
 	Integer insertBoard(Board board);
 	

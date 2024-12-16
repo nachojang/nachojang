@@ -27,12 +27,6 @@ public class BoardService {
 		return boardMapper.selectBoardByOrdersNo(ordersNo);
 	}
 	
-	// 세영) 댓글 유무 확인
-	// /customer/on/ordersOne
-	public Integer boardCount(Integer ordersNo) {
-		return boardMapper.boardCount(ordersNo);
-	}
-	
 	// 세영) 댓글 추가
 	// customer/on/ordersList
 	public Integer insertBoard(Board board) {

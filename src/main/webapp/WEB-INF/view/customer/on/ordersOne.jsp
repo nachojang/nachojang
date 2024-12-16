@@ -182,7 +182,7 @@
 				    <!-- 배송완료 상태일 때만 후기 관련 내용 표시 -->
                     <c:if test="${o.paymentState == '배송완료'}">
 	                    <!-- 댓글이 0개일 때 입력 폼을 보여줍니다 -->
-	                    <c:if test="${rowCount == 0}">
+	                    <c:if test="${empty comments}">
 	                        <div class="form-comment">
 	                            <form id="formComment" method="post" action="${pageContext.request.contextPath}/customer/on/ordersOne">
 	                                <input type="hidden" name="ordersNo" value="${o.ordersNo}">    
@@ -194,7 +194,7 @@
 	                    </c:if>
 	                    
 	                    <!-- 댓글이 1개 있을 때 해당 댓글을 출력 -->
-	                    <c:if test="${rowCount == 1}">
+	                    <c:if test="${not empty comments}">
 	                    	<p>${comments.boardContent}</p>	
 	                	</c:if>
 	                </c:if>
@@ -210,6 +210,14 @@
     </div>
 
 <script>
+	$('#btnAddComment').click(function() {
+		if($('#boardContent').val() == '') {
+			alert('후기를 작성하세요');
+		} else {
+			$('#formComment').submit();
+		}
+	});
+	
 	$('#btnAddComment').click(function() {
 		if($('#boardContent').val() == '') {
 			alert('후기를 작성하세요');

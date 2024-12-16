@@ -112,13 +112,8 @@ public class OrdersController {
 	        // 'ordersNo'에 해당하는 댓글 정보를 가져오기
 	        Map<String, Object> comment = boardService.selectBoardByOrdersNo(ordersNo);
 	        comments.add(comment);
-	        
-	        // 해당 주문에 대한 댓글 개수
-	        Integer rowCount = boardService.boardCount(ordersNo);
-	        rowList.add(rowCount);
-	        model.addAttribute("rowCount", rowCount);
-	        log.debug("rowCount : " + rowCount);
 	    }
+	    
 	    log.debug("rowList : " + rowList);
 	    log.debug("comments : " + comments.toString());
 	    log.debug("comments : " + comments.get(0));
